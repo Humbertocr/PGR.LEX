@@ -1,0 +1,41 @@
+﻿@model IEnumerable<PGR.LEX.Models.TTipoAudiencia>
+
+@{
+    ViewBag.Title = "Tipo de Audiencia";
+}
+
+<h2>Tipo de Audiencia</h2>
+
+
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.idTipoAudiencia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.idTipoAudiencia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+        <td>
+            @Html.ActionLink("Modificar", "Edit", new { id = item.idTipoAudiencia }) |
+            @Html.ActionLink("Detalles", "Details", new { id = item.idTipoAudiencia }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.idTipoAudiencia })
+        </td>
+    </tr>
+}
+
+</table>
+
+<p>
+    @Html.ActionLink("Agregar", "Create")
+</p>

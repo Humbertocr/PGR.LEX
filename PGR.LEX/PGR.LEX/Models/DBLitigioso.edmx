@@ -1,0 +1,2318 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="LitigiosoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TAnomalias">
+          <Key>
+            <PropertyRef Name="idAnomalia" />
+          </Key>
+          <Property Name="idAnomalia" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TAsunto">
+          <Key>
+            <PropertyRef Name="idAsunto" />
+            <PropertyRef Name="MatIdMateria" />
+            <PropertyRef Name="TipIdTipo" />
+          </Key>
+          <Property Name="idAsunto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MatIdMateria" Type="int" Nullable="false" />
+          <Property Name="TipIdTipo" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="TAudiencias">
+          <Key>
+            <PropertyRef Name="idAudiencia" />
+          </Key>
+          <Property Name="idAudiencia" Type="int" Nullable="false" />
+          <Property Name="idTipoAudiencia" Type="int" Nullable="false" />
+          <Property Name="Fecha" Type="date" Nullable="false" />
+          <Property Name="Hora" Type="datetime" Nullable="false" />
+          <Property Name="idJuzgado" Type="int" Nullable="false" />
+          <Property Name="Procurador" Type="bigint" Nullable="false" />
+          <Property Name="Juez" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TAudienciasDetalleExpediente">
+          <Key>
+            <PropertyRef Name="idDetalleExp" />
+          </Key>
+          <Property Name="idAudiencia" Type="int" Nullable="false" />
+          <Property Name="idNumExpediente" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="idDetalleExp" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Litigioso.dbo.TBitacoraMovimientos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="TBitacoraMovimientos">
+          <Key>
+            <PropertyRef Name="Id_Sistema" />
+            <PropertyRef Name="Cedula_Usuario" />
+            <PropertyRef Name="Fecha_Movimiento" />
+            <PropertyRef Name="Tabla" />
+            <PropertyRef Name="Id_Llave" />
+            <PropertyRef Name="Tipo_Movimiento" />
+            <PropertyRef Name="Valores_Anteriores" />
+            <PropertyRef Name="Valores_Actuales" />
+          </Key>
+          <Property Name="Id_Sistema" Type="int" Nullable="false" />
+          <Property Name="Cedula_Usuario" Type="int" Nullable="false" />
+          <Property Name="Fecha_Movimiento" Type="smalldatetime" Nullable="false" />
+          <Property Name="Tabla" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id_Llave" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Tipo_Movimiento" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Valores_Anteriores" Type="varchar" MaxLength="4000" Nullable="false" />
+          <Property Name="Valores_Actuales" Type="varchar" MaxLength="4000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBitacoraNotificaciones">
+          <Key>
+            <PropertyRef Name="Id_Excepcion" />
+          </Key>
+          <Property Name="Id_Excepcion" Type="int" Nullable="false" />
+          <Property Name="Archivo_XML" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Archivo_Zip" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Expediente" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Fecha_Excepcion" Type="smalldatetime" Nullable="false" />
+          <Property Name="Procesado" Type="bit" Nullable="false" />
+          <Property Name="Resolucion" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Resultado" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Despacho_No_Registrado" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="ConCopias_Chk" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Parte" Type="varchar" MaxLength="2500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TCircuitosJudiciales">
+          <Key>
+            <PropertyRef Name="idCircuito" />
+          </Key>
+          <Property Name="idCircuito" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CodigoCircuitoPJ" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TDespachosJudiciales">
+          <Key>
+            <PropertyRef Name="idDespacho" />
+          </Key>
+          <Property Name="idDespacho" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idCircuito" Type="int" Nullable="false" />
+          <Property Name="CodigoDespachoPJ" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Electronico" Type="bit" Nullable="false" />
+          <Property Name="EntregaInmediata" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TDetalleExpediente">
+          <Key>
+            <PropertyRef Name="idDetalleExpediente" />
+          </Key>
+          <Property Name="idDetalleExpediente" Type="int" Nullable="false" />
+          <Property Name="idNumExpediente" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="idMateria" Type="int" Nullable="false" />
+          <Property Name="idTipo" Type="int" Nullable="false" />
+          <Property Name="idAsunto" Type="int" Nullable="false" />
+          <Property Name="idGeneral" Type="int" />
+          <Property Name="idParticipacion" Type="int" />
+          <Property Name="idEstadoProcesal" Type="int" Nullable="false" />
+          <Property Name="Inestimable" Type="bit" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="fechaFenecido" Type="datetime" />
+          <Property Name="Area" Type="int" Nullable="false" />
+          <Property Name="Comentarios" Type="varchar" MaxLength="5000" />
+          <Property Name="IdMonedaPretencion" Type="int" />
+          <Property Name="Pretension" Type="money" Nullable="false" />
+          <Property Name="IdMonedaCuantia" Type="int" />
+          <Property Name="Cuantia" Type="money" Nullable="false" />
+          <Property Name="Costas" Type="money" Nullable="false" />
+          <Property Name="idCedulaFuncionario" Type="bigint" Nullable="false" />
+          <Property Name="Procurador" Type="bit" Nullable="false" />
+          <Property Name="AsignadoActual" Type="bit" Nullable="false" />
+          <Property Name="FechaAsignacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaDesasignacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TEstadoProcesal">
+          <Key>
+            <PropertyRef Name="idEstadoProcesal" />
+          </Key>
+          <Property Name="idEstadoProcesal" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="150" />
+          <Property Name="Area_Corresponde" Type="varchar" MaxLength="20" />
+          <Property Name="Tipo_Expediente" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="TEstadosxAudiencia">
+          <Key>
+            <PropertyRef Name="idEstado" />
+          </Key>
+          <Property Name="idEstado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TEstadosxExpediente">
+          <Key>
+            <PropertyRef Name="NumExpediente" />
+            <PropertyRef Name="fechaHora" />
+          </Key>
+          <Property Name="idEstadoProcesal" Type="int" Nullable="false" />
+          <Property Name="NumExpediente" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fechaHora" Type="datetime" Nullable="false" />
+          <Property Name="Observaciones" Type="varchar" MaxLength="5000" />
+        </EntityType>
+        <EntityType Name="TExpediente">
+          <Key>
+            <PropertyRef Name="NumExpediente" />
+          </Key>
+          <Property Name="NumExpediente" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Promovente" Type="varchar" MaxLength="5000" />
+          <Property Name="Demandados" Type="varchar" MaxLength="5000" Nullable="false" />
+          <Property Name="Perjudicado" Type="varchar" MaxLength="500" />
+          <Property Name="AgotamientoVia" Type="bit" Nullable="false" />
+          <Property Name="IdTipoExpediente" Type="int" Nullable="false" />
+          <Property Name="idFormatoExpediente" Type="int" Nullable="false" />
+          <Property Name="Acumulado" Type="bit" />
+          <Property Name="fechaIngresoPGR" Type="datetime" Nullable="false" />
+          <Property Name="InfPos_Consecutivo" Type="int" />
+          <Property Name="Inf_Pos_Mes" Type="int" />
+          <Property Name="Inf_Pos_Anio" Type="int" />
+          <Property Name="ProcuradorSugerido" Type="varchar" MaxLength="500" />
+          <Property Name="idDespacho" Type="int" />
+        </EntityType>
+        <EntityType Name="TExpedientesAcumulados">
+          <Key>
+            <PropertyRef Name="ExpedientePrincipal" />
+            <PropertyRef Name="ExpedienteHijo" />
+          </Key>
+          <Property Name="ExpedientePrincipal" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ExpedienteHijo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TFormatosExpedientes">
+          <Key>
+            <PropertyRef Name="IdFormato" />
+          </Key>
+          <Property Name="IdFormato" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ExpresionRegular" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TInstitucionesxExpediente">
+          <Key>
+            <PropertyRef Name="IdNumExpediente" />
+            <PropertyRef Name="IdInstitucion" />
+          </Key>
+          <Property Name="IdNumExpediente" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdInstitucion" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TMateria">
+          <Key>
+            <PropertyRef Name="idMateria" />
+          </Key>
+          <Property Name="idMateria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="idArea" Type="int" />
+        </EntityType>
+        <EntityType Name="TMediosNotificacion">
+          <Key>
+            <PropertyRef Name="idMedioNotificacion" />
+          </Key>
+          <Property Name="idMedioNotificacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TMoneda">
+          <Key>
+            <PropertyRef Name="idMoneda" />
+          </Key>
+          <Property Name="idMoneda" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TMovimientosxAudiencias">
+          <Key>
+            <PropertyRef Name="idMovimiento" />
+          </Key>
+          <Property Name="idAudiencia" Type="int" Nullable="false" />
+          <Property Name="idEstado" Type="int" Nullable="false" />
+          <Property Name="Observaciones" Type="varchar" MaxLength="50" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="idMovimiento" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Litigioso.dbo.TNatutalizaciones' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="TNatutalizaciones">
+          <Key>
+            <PropertyRef Name="idConsecutivoNaturalizacion" />
+            <PropertyRef Name="idNumExpediente" />
+          </Key>
+          <Property Name="idConsecutivoNaturalizacion" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="idNumExpediente" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TNegociacionesxExpediente">
+          <Key>
+            <PropertyRef Name="NumExpediente" />
+            <PropertyRef Name="Tipo_Negociacion" />
+          </Key>
+          <Property Name="NumExpediente" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Tipo_Negociacion" Type="tinyint" Nullable="false" />
+          <Property Name="Fecha_Inicio" Type="smalldatetime" Nullable="false" />
+          <Property Name="Fecha_Revision" Type="smalldatetime" Nullable="false" />
+          <Property Name="Fecha_Vence" Type="smalldatetime" Nullable="false" />
+          <Property Name="Observaciones" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TNotificacioneSinExpediente">
+          <Key>
+            <PropertyRef Name="idNotificacionPK" />
+          </Key>
+          <Property Name="idAnomalia" Type="int" Nullable="false" />
+          <Property Name="Area" Type="tinyint" Nullable="false" />
+          <Property Name="Asociado" Type="bit" Nullable="false" />
+          <Property Name="Anexos" Type="bit" />
+          <Property Name="FechaPGR" Type="smalldatetime" Nullable="false" />
+          <Property Name="InstitucionInvolucrada" Type="tinyint" />
+          <Property Name="DespachoJudicial" Type="int" />
+          <Property Name="Materia" Type="int" Nullable="false" />
+          <Property Name="NumOficio" Type="varchar" MaxLength="50" />
+          <Property Name="Parte" Type="varchar" MaxLength="2500" />
+          <Property Name="Procurador" Type="bigint" Nullable="false" />
+          <Property Name="Resolucion" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="idMedioNotificacion" Type="tinyint" Nullable="false" />
+          <Property Name="idTipoExpediente" Type="int" Nullable="false" />
+          <Property Name="idParticipacionEstado" Type="int" Nullable="false" />
+          <Property Name="idNotificacionPK" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TNotificacionesxExpediente">
+          <Key>
+            <PropertyRef Name="ConsecutivoNotificacion" />
+            <PropertyRef Name="NumCopia" />
+          </Key>
+          <Property Name="idNumExpediente" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ConsecutivoNotificacion" Type="int" Nullable="false" />
+          <Property Name="NumResolucion" Type="varchar" MaxLength="50" />
+          <Property Name="FechaPGR" Type="datetime" />
+          <Property Name="NumCopia" Type="int" Nullable="false" />
+          <Property Name="idMedioNotificacion" Type="int" Nullable="false" />
+          <Property Name="idAnomalia" Type="int" />
+          <Property Name="Anexos" Type="bit" />
+          <Property Name="NumOficio" Type="varchar" MaxLength="50" />
+          <Property Name="EntregaInmediata" Type="bit" Nullable="false" />
+          <Property Name="ExpedienteOriginal" Type="varchar" MaxLength="50" />
+          <Property Name="NumCarpeta" Type="nchar" MaxLength="25" />
+          <Property Name="AvisadoChk" Type="tinyint" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="TParametros">
+          <Key>
+            <PropertyRef Name="ProcuradorInfPosesorias" />
+            <PropertyRef Name="ExpedientesEntregaInmediata" />
+          </Key>
+          <Property Name="ProcuradorInfPosesorias" Type="tinyint" Nullable="false" />
+          <Property Name="ExpedientesEntregaInmediata" Type="varchar" MaxLength="8000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TParticipacionEstado">
+          <Key>
+            <PropertyRef Name="idParticipacion" />
+          </Key>
+          <Property Name="idParticipacion" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TPlanosxExpediente">
+          <Key>
+            <PropertyRef Name="NumExpediente" />
+            <PropertyRef Name="Num_Plano" />
+          </Key>
+          <Property Name="NumExpediente" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Num_Plano" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Area_Plano" Type="int" Nullable="false" />
+          <Property Name="Hoja_Cartografica" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Vertical_Inicial" Type="smallint" Nullable="false" />
+          <Property Name="Vertical_Final" Type="smallint" Nullable="false" />
+          <Property Name="Horizontal_Inicial" Type="smallint" Nullable="false" />
+          <Property Name="Horizontal_Final" Type="smallint" Nullable="false" />
+          <Property Name="Observaciones" Type="varchar" MaxLength="125" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TProcedenciaExpediente">
+          <Key>
+            <PropertyRef Name="idProcedenciaExpediente" />
+          </Key>
+          <Property Name="idProcedenciaExpediente" Type="int" Nullable="false" />
+          <Property Name="idInstitucion" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TTerrenosAfectados">
+          <Key>
+            <PropertyRef Name="Terreno_Afectado" />
+          </Key>
+          <Property Name="Terreno_Afectado" Type="smallint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TTerrenosxExpediente">
+          <Key>
+            <PropertyRef Name="NumExpediente" />
+            <PropertyRef Name="Terreno_Afectado" />
+          </Key>
+          <Property Name="NumExpediente" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Terreno_Afectado" Type="smallint" Nullable="false" />
+          <Property Name="Observaciones" Type="varchar" MaxLength="125" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TTipo">
+          <Key>
+            <PropertyRef Name="idTipo" />
+            <PropertyRef Name="MatIdMateria" />
+          </Key>
+          <Property Name="idTipo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MatIdMateria" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="TTipoAudiencia">
+          <Key>
+            <PropertyRef Name="idTipoAudiencia" />
+          </Key>
+          <Property Name="idTipoAudiencia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TTipoExpediente">
+          <Key>
+            <PropertyRef Name="idTipoExpediente" />
+          </Key>
+          <Property Name="idTipoExpediente" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Peso" Type="int" />
+        </EntityType>
+        <EntityType Name="TTipoGeneral">
+          <Key>
+            <PropertyRef Name="idGeneral" />
+            <PropertyRef Name="MatIdMateria" />
+            <PropertyRef Name="TipIdTipo" />
+            <PropertyRef Name="AsuIdAsunto" />
+          </Key>
+          <Property Name="idGeneral" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MatIdMateria" Type="int" Nullable="false" />
+          <Property Name="TipIdTipo" Type="int" Nullable="false" />
+          <Property Name="AsuIdAsunto" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="TTiposNegociacion">
+          <Key>
+            <PropertyRef Name="Tipo_Negociacion" />
+          </Key>
+          <Property Name="Tipo_Negociacion" Type="tinyint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TVotosxExpediente">
+          <Key>
+            <PropertyRef Name="NumExpediente" />
+            <PropertyRef Name="Juzgado" />
+            <PropertyRef Name="Num_Voto" />
+            <PropertyRef Name="Resolucion" />
+          </Key>
+          <Property Name="NumExpediente" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Juzgado" Type="int" Nullable="false" />
+          <Property Name="Num_Voto" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Resolucion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Med_Alternas_x_Expediente_Expediente">
+          <End Role="TExpediente" Type="Self.TExpediente" Multiplicity="1" />
+          <End Role="TNegociacionesxExpediente" Type="Self.TNegociacionesxExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TExpediente">
+              <PropertyRef Name="NumExpediente" />
+            </Principal>
+            <Dependent Role="TNegociacionesxExpediente">
+              <PropertyRef Name="NumExpediente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Med_Alternas_x_Expediente_Tipos_Negociacion">
+          <End Role="TTiposNegociacion" Type="Self.TTiposNegociacion" Multiplicity="1" />
+          <End Role="TNegociacionesxExpediente" Type="Self.TNegociacionesxExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TTiposNegociacion">
+              <PropertyRef Name="Tipo_Negociacion" />
+            </Principal>
+            <Dependent Role="TNegociacionesxExpediente">
+              <PropertyRef Name="Tipo_Negociacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Planos_x_Expediente_Expediente">
+          <End Role="TExpediente" Type="Self.TExpediente" Multiplicity="1" />
+          <End Role="TPlanosxExpediente" Type="Self.TPlanosxExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TExpediente">
+              <PropertyRef Name="NumExpediente" />
+            </Principal>
+            <Dependent Role="TPlanosxExpediente">
+              <PropertyRef Name="NumExpediente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TAsunto_TMateria">
+          <End Role="TMateria" Type="Self.TMateria" Multiplicity="1" />
+          <End Role="TAsunto" Type="Self.TAsunto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TMateria">
+              <PropertyRef Name="idMateria" />
+            </Principal>
+            <Dependent Role="TAsunto">
+              <PropertyRef Name="MatIdMateria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TAudiencias_TTipoAudiencia">
+          <End Role="TTipoAudiencia" Type="Self.TTipoAudiencia" Multiplicity="1" />
+          <End Role="TAudiencias" Type="Self.TAudiencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TTipoAudiencia">
+              <PropertyRef Name="idTipoAudiencia" />
+            </Principal>
+            <Dependent Role="TAudiencias">
+              <PropertyRef Name="idTipoAudiencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TAudienciasDetalleExp_TAudiencias">
+          <End Role="TAudiencias" Type="Self.TAudiencias" Multiplicity="1" />
+          <End Role="TAudienciasDetalleExpediente" Type="Self.TAudienciasDetalleExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TAudiencias">
+              <PropertyRef Name="idAudiencia" />
+            </Principal>
+            <Dependent Role="TAudienciasDetalleExpediente">
+              <PropertyRef Name="idAudiencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TAudienciasDetalleExp_TExpediente">
+          <End Role="TExpediente" Type="Self.TExpediente" Multiplicity="1" />
+          <End Role="TAudienciasDetalleExpediente" Type="Self.TAudienciasDetalleExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TExpediente">
+              <PropertyRef Name="NumExpediente" />
+            </Principal>
+            <Dependent Role="TAudienciasDetalleExpediente">
+              <PropertyRef Name="idNumExpediente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TDespachosJudiciales_TCircuitosJudiciales">
+          <End Role="TCircuitosJudiciales" Type="Self.TCircuitosJudiciales" Multiplicity="1" />
+          <End Role="TDespachosJudiciales" Type="Self.TDespachosJudiciales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TCircuitosJudiciales">
+              <PropertyRef Name="idCircuito" />
+            </Principal>
+            <Dependent Role="TDespachosJudiciales">
+              <PropertyRef Name="idCircuito" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TDetalleExpediente_TEstadoProcesal">
+          <End Role="TEstadoProcesal" Type="Self.TEstadoProcesal" Multiplicity="1" />
+          <End Role="TDetalleExpediente" Type="Self.TDetalleExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TEstadoProcesal">
+              <PropertyRef Name="idEstadoProcesal" />
+            </Principal>
+            <Dependent Role="TDetalleExpediente">
+              <PropertyRef Name="idEstadoProcesal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TDetalleExpediente_TMateria">
+          <End Role="TMateria" Type="Self.TMateria" Multiplicity="1" />
+          <End Role="TDetalleExpediente" Type="Self.TDetalleExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TMateria">
+              <PropertyRef Name="idMateria" />
+            </Principal>
+            <Dependent Role="TDetalleExpediente">
+              <PropertyRef Name="idMateria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TDetalleExpediente_TMoneda">
+          <End Role="TMoneda" Type="Self.TMoneda" Multiplicity="1" />
+          <End Role="TDetalleExpediente" Type="Self.TDetalleExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TMoneda">
+              <PropertyRef Name="idMoneda" />
+            </Principal>
+            <Dependent Role="TDetalleExpediente">
+              <PropertyRef Name="idMateria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TDetalleExpediente_TMoneda1">
+          <End Role="TMoneda" Type="Self.TMoneda" Multiplicity="0..1" />
+          <End Role="TDetalleExpediente" Type="Self.TDetalleExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TMoneda">
+              <PropertyRef Name="idMoneda" />
+            </Principal>
+            <Dependent Role="TDetalleExpediente">
+              <PropertyRef Name="IdMonedaCuantia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TDetalleExpediente_TParticipacionEstado">
+          <End Role="TParticipacionEstado" Type="Self.TParticipacionEstado" Multiplicity="0..1" />
+          <End Role="TDetalleExpediente" Type="Self.TDetalleExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TParticipacionEstado">
+              <PropertyRef Name="idParticipacion" />
+            </Principal>
+            <Dependent Role="TDetalleExpediente">
+              <PropertyRef Name="idParticipacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TEstadosxExpediente_TEstadoProcesal">
+          <End Role="TEstadoProcesal" Type="Self.TEstadoProcesal" Multiplicity="1" />
+          <End Role="TEstadosxExpediente" Type="Self.TEstadosxExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TEstadoProcesal">
+              <PropertyRef Name="idEstadoProcesal" />
+            </Principal>
+            <Dependent Role="TEstadosxExpediente">
+              <PropertyRef Name="idEstadoProcesal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TExpediente_TDespachosJudiciales">
+          <End Role="TDespachosJudiciales" Type="Self.TDespachosJudiciales" Multiplicity="0..1" />
+          <End Role="TExpediente" Type="Self.TExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TDespachosJudiciales">
+              <PropertyRef Name="idDespacho" />
+            </Principal>
+            <Dependent Role="TExpediente">
+              <PropertyRef Name="idDespacho" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TExpedientesAcumulados_TExpediente">
+          <End Role="TExpediente" Type="Self.TExpediente" Multiplicity="1" />
+          <End Role="TExpedientesAcumulados" Type="Self.TExpedientesAcumulados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TExpediente">
+              <PropertyRef Name="NumExpediente" />
+            </Principal>
+            <Dependent Role="TExpedientesAcumulados">
+              <PropertyRef Name="ExpedientePrincipal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TInstitucionesxExpediente_TExpediente">
+          <End Role="TExpediente" Type="Self.TExpediente" Multiplicity="1" />
+          <End Role="TInstitucionesxExpediente" Type="Self.TInstitucionesxExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TExpediente">
+              <PropertyRef Name="NumExpediente" />
+            </Principal>
+            <Dependent Role="TInstitucionesxExpediente">
+              <PropertyRef Name="IdNumExpediente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TMovimientosAudiencias_TAudiencias">
+          <End Role="TAudiencias" Type="Self.TAudiencias" Multiplicity="1" />
+          <End Role="TMovimientosxAudiencias" Type="Self.TMovimientosxAudiencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TAudiencias">
+              <PropertyRef Name="idAudiencia" />
+            </Principal>
+            <Dependent Role="TMovimientosxAudiencias">
+              <PropertyRef Name="idAudiencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TMovimientosAudiencias_TEstadosxAudiencia">
+          <End Role="TEstadosxAudiencia" Type="Self.TEstadosxAudiencia" Multiplicity="1" />
+          <End Role="TMovimientosxAudiencias" Type="Self.TMovimientosxAudiencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TEstadosxAudiencia">
+              <PropertyRef Name="idEstado" />
+            </Principal>
+            <Dependent Role="TMovimientosxAudiencias">
+              <PropertyRef Name="idEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TNotificacioneSinExpediente_TAnomalias">
+          <End Role="TAnomalias" Type="Self.TAnomalias" Multiplicity="1" />
+          <End Role="TNotificacioneSinExpediente" Type="Self.TNotificacioneSinExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TAnomalias">
+              <PropertyRef Name="idAnomalia" />
+            </Principal>
+            <Dependent Role="TNotificacioneSinExpediente">
+              <PropertyRef Name="idAnomalia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TNotificacioneSinExpediente_TParticipacionEstado">
+          <End Role="TParticipacionEstado" Type="Self.TParticipacionEstado" Multiplicity="1" />
+          <End Role="TNotificacioneSinExpediente" Type="Self.TNotificacioneSinExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TParticipacionEstado">
+              <PropertyRef Name="idParticipacion" />
+            </Principal>
+            <Dependent Role="TNotificacioneSinExpediente">
+              <PropertyRef Name="idParticipacionEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TNotificacioneSinExpediente_TTipoExpediente">
+          <End Role="TTipoExpediente" Type="Self.TTipoExpediente" Multiplicity="1" />
+          <End Role="TNotificacioneSinExpediente" Type="Self.TNotificacioneSinExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TTipoExpediente">
+              <PropertyRef Name="idTipoExpediente" />
+            </Principal>
+            <Dependent Role="TNotificacioneSinExpediente">
+              <PropertyRef Name="idTipoExpediente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TNotificacionesxExpediente_TAnomalias">
+          <End Role="TAnomalias" Type="Self.TAnomalias" Multiplicity="0..1" />
+          <End Role="TNotificacionesxExpediente" Type="Self.TNotificacionesxExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TAnomalias">
+              <PropertyRef Name="idAnomalia" />
+            </Principal>
+            <Dependent Role="TNotificacionesxExpediente">
+              <PropertyRef Name="idAnomalia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TNotificacionesxExpediente_TExpediente">
+          <End Role="TExpediente" Type="Self.TExpediente" Multiplicity="1" />
+          <End Role="TNotificacionesxExpediente" Type="Self.TNotificacionesxExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TExpediente">
+              <PropertyRef Name="NumExpediente" />
+            </Principal>
+            <Dependent Role="TNotificacionesxExpediente">
+              <PropertyRef Name="idNumExpediente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TNotificacionesxExpediente_TMediosNotificacion">
+          <End Role="TMediosNotificacion" Type="Self.TMediosNotificacion" Multiplicity="1" />
+          <End Role="TNotificacionesxExpediente" Type="Self.TNotificacionesxExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TMediosNotificacion">
+              <PropertyRef Name="idMedioNotificacion" />
+            </Principal>
+            <Dependent Role="TNotificacionesxExpediente">
+              <PropertyRef Name="idMedioNotificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TTerrenosxExpediente_TExpediente">
+          <End Role="TExpediente" Type="Self.TExpediente" Multiplicity="1" />
+          <End Role="TTerrenosxExpediente" Type="Self.TTerrenosxExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TExpediente">
+              <PropertyRef Name="NumExpediente" />
+            </Principal>
+            <Dependent Role="TTerrenosxExpediente">
+              <PropertyRef Name="NumExpediente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TTerrenosxExpediente_TTerrenosAfectados">
+          <End Role="TTerrenosAfectados" Type="Self.TTerrenosAfectados" Multiplicity="1" />
+          <End Role="TTerrenosxExpediente" Type="Self.TTerrenosxExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TTerrenosAfectados">
+              <PropertyRef Name="Terreno_Afectado" />
+            </Principal>
+            <Dependent Role="TTerrenosxExpediente">
+              <PropertyRef Name="Terreno_Afectado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TTipo_TMateria">
+          <End Role="TMateria" Type="Self.TMateria" Multiplicity="1" />
+          <End Role="TTipo" Type="Self.TTipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TMateria">
+              <PropertyRef Name="idMateria" />
+            </Principal>
+            <Dependent Role="TTipo">
+              <PropertyRef Name="MatIdMateria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Votos_x_Expediente_Expediente">
+          <End Role="TExpediente" Type="Self.TExpediente" Multiplicity="1" />
+          <End Role="TVotosxExpediente" Type="Self.TVotosxExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TExpediente">
+              <PropertyRef Name="NumExpediente" />
+            </Principal>
+            <Dependent Role="TVotosxExpediente">
+              <PropertyRef Name="NumExpediente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LitigiosoModelStoreContainer">
+          <EntitySet Name="TAnomalias" EntityType="Self.TAnomalias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TAsunto" EntityType="Self.TAsunto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TAudiencias" EntityType="Self.TAudiencias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TAudienciasDetalleExpediente" EntityType="Self.TAudienciasDetalleExpediente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBitacoraNotificaciones" EntityType="Self.TBitacoraNotificaciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TCircuitosJudiciales" EntityType="Self.TCircuitosJudiciales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TDespachosJudiciales" EntityType="Self.TDespachosJudiciales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TDetalleExpediente" EntityType="Self.TDetalleExpediente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TEstadoProcesal" EntityType="Self.TEstadoProcesal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TEstadosxAudiencia" EntityType="Self.TEstadosxAudiencia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TEstadosxExpediente" EntityType="Self.TEstadosxExpediente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TExpediente" EntityType="Self.TExpediente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TExpedientesAcumulados" EntityType="Self.TExpedientesAcumulados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TFormatosExpedientes" EntityType="Self.TFormatosExpedientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TInstitucionesxExpediente" EntityType="Self.TInstitucionesxExpediente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TMateria" EntityType="Self.TMateria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TMediosNotificacion" EntityType="Self.TMediosNotificacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TMoneda" EntityType="Self.TMoneda" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TMovimientosxAudiencias" EntityType="Self.TMovimientosxAudiencias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TNegociacionesxExpediente" EntityType="Self.TNegociacionesxExpediente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TNotificacioneSinExpediente" EntityType="Self.TNotificacioneSinExpediente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TNotificacionesxExpediente" EntityType="Self.TNotificacionesxExpediente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TParticipacionEstado" EntityType="Self.TParticipacionEstado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TPlanosxExpediente" EntityType="Self.TPlanosxExpediente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TProcedenciaExpediente" EntityType="Self.TProcedenciaExpediente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TTerrenosAfectados" EntityType="Self.TTerrenosAfectados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TTerrenosxExpediente" EntityType="Self.TTerrenosxExpediente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TTipo" EntityType="Self.TTipo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TTipoAudiencia" EntityType="Self.TTipoAudiencia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TTipoExpediente" EntityType="Self.TTipoExpediente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TTipoGeneral" EntityType="Self.TTipoGeneral" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TTiposNegociacion" EntityType="Self.TTiposNegociacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TVotosxExpediente" EntityType="Self.TVotosxExpediente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBitacoraMovimientos" EntityType="Self.TBitacoraMovimientos" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TBitacoraMovimientos].[Id_Sistema] AS [Id_Sistema], 
+    [TBitacoraMovimientos].[Cedula_Usuario] AS [Cedula_Usuario], 
+    [TBitacoraMovimientos].[Fecha_Movimiento] AS [Fecha_Movimiento], 
+    [TBitacoraMovimientos].[Tabla] AS [Tabla], 
+    [TBitacoraMovimientos].[Id_Llave] AS [Id_Llave], 
+    [TBitacoraMovimientos].[Tipo_Movimiento] AS [Tipo_Movimiento], 
+    [TBitacoraMovimientos].[Valores_Anteriores] AS [Valores_Anteriores], 
+    [TBitacoraMovimientos].[Valores_Actuales] AS [Valores_Actuales]
+    FROM [dbo].[TBitacoraMovimientos] AS [TBitacoraMovimientos]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TNatutalizaciones" EntityType="Self.TNatutalizaciones" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TNatutalizaciones].[idConsecutivoNaturalizacion] AS [idConsecutivoNaturalizacion], 
+    [TNatutalizaciones].[idNumExpediente] AS [idNumExpediente]
+    FROM [dbo].[TNatutalizaciones] AS [TNatutalizaciones]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TParametros" EntityType="Self.TParametros" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TParametros].[ProcuradorInfPosesorias] AS [ProcuradorInfPosesorias], 
+    [TParametros].[ExpedientesEntregaInmediata] AS [ExpedientesEntregaInmediata]
+    FROM [dbo].[TParametros] AS [TParametros]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Med_Alternas_x_Expediente_Expediente" Association="Self.FK_Med_Alternas_x_Expediente_Expediente">
+            <End Role="TExpediente" EntitySet="TExpediente" />
+            <End Role="TNegociacionesxExpediente" EntitySet="TNegociacionesxExpediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Med_Alternas_x_Expediente_Tipos_Negociacion" Association="Self.FK_Med_Alternas_x_Expediente_Tipos_Negociacion">
+            <End Role="TTiposNegociacion" EntitySet="TTiposNegociacion" />
+            <End Role="TNegociacionesxExpediente" EntitySet="TNegociacionesxExpediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Planos_x_Expediente_Expediente" Association="Self.FK_Planos_x_Expediente_Expediente">
+            <End Role="TExpediente" EntitySet="TExpediente" />
+            <End Role="TPlanosxExpediente" EntitySet="TPlanosxExpediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TAsunto_TMateria" Association="Self.FK_TAsunto_TMateria">
+            <End Role="TMateria" EntitySet="TMateria" />
+            <End Role="TAsunto" EntitySet="TAsunto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TAudiencias_TTipoAudiencia" Association="Self.FK_TAudiencias_TTipoAudiencia">
+            <End Role="TTipoAudiencia" EntitySet="TTipoAudiencia" />
+            <End Role="TAudiencias" EntitySet="TAudiencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TAudienciasDetalleExp_TAudiencias" Association="Self.FK_TAudienciasDetalleExp_TAudiencias">
+            <End Role="TAudiencias" EntitySet="TAudiencias" />
+            <End Role="TAudienciasDetalleExpediente" EntitySet="TAudienciasDetalleExpediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TAudienciasDetalleExp_TExpediente" Association="Self.FK_TAudienciasDetalleExp_TExpediente">
+            <End Role="TExpediente" EntitySet="TExpediente" />
+            <End Role="TAudienciasDetalleExpediente" EntitySet="TAudienciasDetalleExpediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TDespachosJudiciales_TCircuitosJudiciales" Association="Self.FK_TDespachosJudiciales_TCircuitosJudiciales">
+            <End Role="TCircuitosJudiciales" EntitySet="TCircuitosJudiciales" />
+            <End Role="TDespachosJudiciales" EntitySet="TDespachosJudiciales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TDetalleExpediente_TEstadoProcesal" Association="Self.FK_TDetalleExpediente_TEstadoProcesal">
+            <End Role="TEstadoProcesal" EntitySet="TEstadoProcesal" />
+            <End Role="TDetalleExpediente" EntitySet="TDetalleExpediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TDetalleExpediente_TMateria" Association="Self.FK_TDetalleExpediente_TMateria">
+            <End Role="TMateria" EntitySet="TMateria" />
+            <End Role="TDetalleExpediente" EntitySet="TDetalleExpediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TDetalleExpediente_TMoneda" Association="Self.FK_TDetalleExpediente_TMoneda">
+            <End Role="TMoneda" EntitySet="TMoneda" />
+            <End Role="TDetalleExpediente" EntitySet="TDetalleExpediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TDetalleExpediente_TMoneda1" Association="Self.FK_TDetalleExpediente_TMoneda1">
+            <End Role="TMoneda" EntitySet="TMoneda" />
+            <End Role="TDetalleExpediente" EntitySet="TDetalleExpediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TDetalleExpediente_TParticipacionEstado" Association="Self.FK_TDetalleExpediente_TParticipacionEstado">
+            <End Role="TParticipacionEstado" EntitySet="TParticipacionEstado" />
+            <End Role="TDetalleExpediente" EntitySet="TDetalleExpediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TEstadosxExpediente_TEstadoProcesal" Association="Self.FK_TEstadosxExpediente_TEstadoProcesal">
+            <End Role="TEstadoProcesal" EntitySet="TEstadoProcesal" />
+            <End Role="TEstadosxExpediente" EntitySet="TEstadosxExpediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TExpediente_TDespachosJudiciales" Association="Self.FK_TExpediente_TDespachosJudiciales">
+            <End Role="TDespachosJudiciales" EntitySet="TDespachosJudiciales" />
+            <End Role="TExpediente" EntitySet="TExpediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TExpedientesAcumulados_TExpediente" Association="Self.FK_TExpedientesAcumulados_TExpediente">
+            <End Role="TExpediente" EntitySet="TExpediente" />
+            <End Role="TExpedientesAcumulados" EntitySet="TExpedientesAcumulados" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TInstitucionesxExpediente_TExpediente" Association="Self.FK_TInstitucionesxExpediente_TExpediente">
+            <End Role="TExpediente" EntitySet="TExpediente" />
+            <End Role="TInstitucionesxExpediente" EntitySet="TInstitucionesxExpediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TMovimientosAudiencias_TAudiencias" Association="Self.FK_TMovimientosAudiencias_TAudiencias">
+            <End Role="TAudiencias" EntitySet="TAudiencias" />
+            <End Role="TMovimientosxAudiencias" EntitySet="TMovimientosxAudiencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TMovimientosAudiencias_TEstadosxAudiencia" Association="Self.FK_TMovimientosAudiencias_TEstadosxAudiencia">
+            <End Role="TEstadosxAudiencia" EntitySet="TEstadosxAudiencia" />
+            <End Role="TMovimientosxAudiencias" EntitySet="TMovimientosxAudiencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TNotificacioneSinExpediente_TAnomalias" Association="Self.FK_TNotificacioneSinExpediente_TAnomalias">
+            <End Role="TAnomalias" EntitySet="TAnomalias" />
+            <End Role="TNotificacioneSinExpediente" EntitySet="TNotificacioneSinExpediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TNotificacioneSinExpediente_TParticipacionEstado" Association="Self.FK_TNotificacioneSinExpediente_TParticipacionEstado">
+            <End Role="TParticipacionEstado" EntitySet="TParticipacionEstado" />
+            <End Role="TNotificacioneSinExpediente" EntitySet="TNotificacioneSinExpediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TNotificacioneSinExpediente_TTipoExpediente" Association="Self.FK_TNotificacioneSinExpediente_TTipoExpediente">
+            <End Role="TTipoExpediente" EntitySet="TTipoExpediente" />
+            <End Role="TNotificacioneSinExpediente" EntitySet="TNotificacioneSinExpediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TNotificacionesxExpediente_TAnomalias" Association="Self.FK_TNotificacionesxExpediente_TAnomalias">
+            <End Role="TAnomalias" EntitySet="TAnomalias" />
+            <End Role="TNotificacionesxExpediente" EntitySet="TNotificacionesxExpediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TNotificacionesxExpediente_TExpediente" Association="Self.FK_TNotificacionesxExpediente_TExpediente">
+            <End Role="TExpediente" EntitySet="TExpediente" />
+            <End Role="TNotificacionesxExpediente" EntitySet="TNotificacionesxExpediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TNotificacionesxExpediente_TMediosNotificacion" Association="Self.FK_TNotificacionesxExpediente_TMediosNotificacion">
+            <End Role="TMediosNotificacion" EntitySet="TMediosNotificacion" />
+            <End Role="TNotificacionesxExpediente" EntitySet="TNotificacionesxExpediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TTerrenosxExpediente_TExpediente" Association="Self.FK_TTerrenosxExpediente_TExpediente">
+            <End Role="TExpediente" EntitySet="TExpediente" />
+            <End Role="TTerrenosxExpediente" EntitySet="TTerrenosxExpediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TTerrenosxExpediente_TTerrenosAfectados" Association="Self.FK_TTerrenosxExpediente_TTerrenosAfectados">
+            <End Role="TTerrenosAfectados" EntitySet="TTerrenosAfectados" />
+            <End Role="TTerrenosxExpediente" EntitySet="TTerrenosxExpediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TTipo_TMateria" Association="Self.FK_TTipo_TMateria">
+            <End Role="TMateria" EntitySet="TMateria" />
+            <End Role="TTipo" EntitySet="TTipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Votos_x_Expediente_Expediente" Association="Self.FK_Votos_x_Expediente_Expediente">
+            <End Role="TExpediente" EntitySet="TExpediente" />
+            <End Role="TVotosxExpediente" EntitySet="TVotosxExpediente" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LitigiosoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TAnomalias">
+          <Key>
+            <PropertyRef Name="idAnomalia" />
+          </Key>
+          <Property Name="idAnomalia" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TNotificacioneSinExpediente" Relationship="Self.FK_TNotificacioneSinExpediente_TAnomalias" FromRole="TAnomalias" ToRole="TNotificacioneSinExpediente" />
+          <NavigationProperty Name="TNotificacionesxExpediente" Relationship="Self.FK_TNotificacionesxExpediente_TAnomalias" FromRole="TAnomalias" ToRole="TNotificacionesxExpediente" />
+        </EntityType>
+        <EntityType Name="TAsunto">
+          <Key>
+            <PropertyRef Name="idAsunto" />
+            <PropertyRef Name="MatIdMateria" />
+            <PropertyRef Name="TipIdTipo" />
+          </Key>
+          <Property Name="idAsunto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MatIdMateria" Type="Int32" Nullable="false" />
+          <Property Name="TipIdTipo" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TMateria" Relationship="Self.FK_TAsunto_TMateria" FromRole="TAsunto" ToRole="TMateria" />
+        </EntityType>
+        <EntityType Name="TAudiencias">
+          <Key>
+            <PropertyRef Name="idAudiencia" />
+          </Key>
+          <Property Name="idAudiencia" Type="Int32" Nullable="false" />
+          <Property Name="idTipoAudiencia" Type="Int32" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Hora" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="idJuzgado" Type="Int32" Nullable="false" />
+          <Property Name="Procurador" Type="Int64" Nullable="false" />
+          <Property Name="Juez" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TTipoAudiencia" Relationship="Self.FK_TAudiencias_TTipoAudiencia" FromRole="TAudiencias" ToRole="TTipoAudiencia" />
+          <NavigationProperty Name="TAudienciasDetalleExpediente" Relationship="Self.FK_TAudienciasDetalleExp_TAudiencias" FromRole="TAudiencias" ToRole="TAudienciasDetalleExpediente" />
+          <NavigationProperty Name="TMovimientosxAudiencias" Relationship="Self.FK_TMovimientosAudiencias_TAudiencias" FromRole="TAudiencias" ToRole="TMovimientosxAudiencias" />
+        </EntityType>
+        <EntityType Name="TAudienciasDetalleExpediente">
+          <Key>
+            <PropertyRef Name="idDetalleExp" />
+          </Key>
+          <Property Name="idAudiencia" Type="Int32" Nullable="false" />
+          <Property Name="idNumExpediente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idDetalleExp" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TAudiencias" Relationship="Self.FK_TAudienciasDetalleExp_TAudiencias" FromRole="TAudienciasDetalleExpediente" ToRole="TAudiencias" />
+          <NavigationProperty Name="TExpediente" Relationship="Self.FK_TAudienciasDetalleExp_TExpediente" FromRole="TAudienciasDetalleExpediente" ToRole="TExpediente" />
+        </EntityType>
+        <EntityType Name="TBitacoraNotificaciones">
+          <Key>
+            <PropertyRef Name="Id_Excepcion" />
+          </Key>
+          <Property Name="Id_Excepcion" Type="Int32" Nullable="false" />
+          <Property Name="Archivo_XML" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Archivo_Zip" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Expediente" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fecha_Excepcion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Procesado" Type="Boolean" Nullable="false" />
+          <Property Name="Resolucion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Resultado" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Despacho_No_Registrado" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ConCopias_Chk" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Parte" Type="String" MaxLength="2500" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TCircuitosJudiciales">
+          <Key>
+            <PropertyRef Name="idCircuito" />
+          </Key>
+          <Property Name="idCircuito" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodigoCircuitoPJ" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TDespachosJudiciales" Relationship="Self.FK_TDespachosJudiciales_TCircuitosJudiciales" FromRole="TCircuitosJudiciales" ToRole="TDespachosJudiciales" />
+        </EntityType>
+        <EntityType Name="TDespachosJudiciales">
+          <Key>
+            <PropertyRef Name="idDespacho" />
+          </Key>
+          <Property Name="idDespacho" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idCircuito" Type="Int32" Nullable="false" />
+          <Property Name="CodigoDespachoPJ" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Electronico" Type="Boolean" Nullable="false" />
+          <Property Name="EntregaInmediata" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TCircuitosJudiciales" Relationship="Self.FK_TDespachosJudiciales_TCircuitosJudiciales" FromRole="TDespachosJudiciales" ToRole="TCircuitosJudiciales" />
+          <NavigationProperty Name="TExpediente" Relationship="Self.FK_TExpediente_TDespachosJudiciales" FromRole="TDespachosJudiciales" ToRole="TExpediente" />
+        </EntityType>
+        <EntityType Name="TDetalleExpediente">
+          <Key>
+            <PropertyRef Name="idDetalleExpediente" />
+          </Key>
+          <Property Name="idDetalleExpediente" Type="Int32" Nullable="false" />
+          <Property Name="idNumExpediente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idMateria" Type="Int32" Nullable="false" />
+          <Property Name="idTipo" Type="Int32" Nullable="false" />
+          <Property Name="idAsunto" Type="Int32" Nullable="false" />
+          <Property Name="idGeneral" Type="Int32" />
+          <Property Name="idParticipacion" Type="Int32" />
+          <Property Name="idEstadoProcesal" Type="Int32" Nullable="false" />
+          <Property Name="Inestimable" Type="Boolean" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="fechaFenecido" Type="DateTime" Precision="3" />
+          <Property Name="Area" Type="Int32" Nullable="false" />
+          <Property Name="Comentarios" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <Property Name="IdMonedaPretencion" Type="Int32" />
+          <Property Name="Pretension" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="IdMonedaCuantia" Type="Int32" />
+          <Property Name="Cuantia" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Costas" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="idCedulaFuncionario" Type="Int64" Nullable="false" />
+          <Property Name="Procurador" Type="Boolean" Nullable="false" />
+          <Property Name="AsignadoActual" Type="Boolean" Nullable="false" />
+          <Property Name="FechaAsignacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaDesasignacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="TEstadoProcesal" Relationship="Self.FK_TDetalleExpediente_TEstadoProcesal" FromRole="TDetalleExpediente" ToRole="TEstadoProcesal" />
+          <NavigationProperty Name="TMateria" Relationship="Self.FK_TDetalleExpediente_TMateria" FromRole="TDetalleExpediente" ToRole="TMateria" />
+          <NavigationProperty Name="TMoneda" Relationship="Self.FK_TDetalleExpediente_TMoneda" FromRole="TDetalleExpediente" ToRole="TMoneda" />
+          <NavigationProperty Name="TMoneda1" Relationship="Self.FK_TDetalleExpediente_TMoneda1" FromRole="TDetalleExpediente" ToRole="TMoneda" />
+          <NavigationProperty Name="TParticipacionEstado" Relationship="Self.FK_TDetalleExpediente_TParticipacionEstado" FromRole="TDetalleExpediente" ToRole="TParticipacionEstado" />
+        </EntityType>
+        <EntityType Name="TEstadoProcesal">
+          <Key>
+            <PropertyRef Name="idEstadoProcesal" />
+          </Key>
+          <Property Name="idEstadoProcesal" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Area_Corresponde" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Tipo_Expediente" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TDetalleExpediente" Relationship="Self.FK_TDetalleExpediente_TEstadoProcesal" FromRole="TEstadoProcesal" ToRole="TDetalleExpediente" />
+          <NavigationProperty Name="TEstadosxExpediente" Relationship="Self.FK_TEstadosxExpediente_TEstadoProcesal" FromRole="TEstadoProcesal" ToRole="TEstadosxExpediente" />
+        </EntityType>
+        <EntityType Name="TEstadosxAudiencia">
+          <Key>
+            <PropertyRef Name="idEstado" />
+          </Key>
+          <Property Name="idEstado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TMovimientosxAudiencias" Relationship="Self.FK_TMovimientosAudiencias_TEstadosxAudiencia" FromRole="TEstadosxAudiencia" ToRole="TMovimientosxAudiencias" />
+        </EntityType>
+        <EntityType Name="TEstadosxExpediente">
+          <Key>
+            <PropertyRef Name="NumExpediente" />
+            <PropertyRef Name="fechaHora" />
+          </Key>
+          <Property Name="idEstadoProcesal" Type="Int32" Nullable="false" />
+          <Property Name="NumExpediente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechaHora" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Observaciones" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TEstadoProcesal" Relationship="Self.FK_TEstadosxExpediente_TEstadoProcesal" FromRole="TEstadosxExpediente" ToRole="TEstadoProcesal" />
+        </EntityType>
+        <EntityType Name="TExpediente">
+          <Key>
+            <PropertyRef Name="NumExpediente" />
+          </Key>
+          <Property Name="NumExpediente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Promovente" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <Property Name="Demandados" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Perjudicado" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="AgotamientoVia" Type="Boolean" Nullable="false" />
+          <Property Name="IdTipoExpediente" Type="Int32" Nullable="false" />
+          <Property Name="idFormatoExpediente" Type="Int32" Nullable="false" />
+          <Property Name="Acumulado" Type="Boolean" />
+          <Property Name="fechaIngresoPGR" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="InfPos_Consecutivo" Type="Int32" />
+          <Property Name="Inf_Pos_Mes" Type="Int32" />
+          <Property Name="Inf_Pos_Anio" Type="Int32" />
+          <Property Name="ProcuradorSugerido" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="idDespacho" Type="Int32" />
+          <NavigationProperty Name="TAudienciasDetalleExpediente" Relationship="Self.FK_TAudienciasDetalleExp_TExpediente" FromRole="TExpediente" ToRole="TAudienciasDetalleExpediente" />
+          <NavigationProperty Name="TDespachosJudiciales" Relationship="Self.FK_TExpediente_TDespachosJudiciales" FromRole="TExpediente" ToRole="TDespachosJudiciales" />
+          <NavigationProperty Name="TNegociacionesxExpediente" Relationship="Self.FK_Med_Alternas_x_Expediente_Expediente" FromRole="TExpediente" ToRole="TNegociacionesxExpediente" />
+          <NavigationProperty Name="TPlanosxExpediente" Relationship="Self.FK_Planos_x_Expediente_Expediente" FromRole="TExpediente" ToRole="TPlanosxExpediente" />
+          <NavigationProperty Name="TExpedientesAcumulados" Relationship="Self.FK_TExpedientesAcumulados_TExpediente" FromRole="TExpediente" ToRole="TExpedientesAcumulados" />
+          <NavigationProperty Name="TInstitucionesxExpediente" Relationship="Self.FK_TInstitucionesxExpediente_TExpediente" FromRole="TExpediente" ToRole="TInstitucionesxExpediente" />
+          <NavigationProperty Name="TNotificacionesxExpediente" Relationship="Self.FK_TNotificacionesxExpediente_TExpediente" FromRole="TExpediente" ToRole="TNotificacionesxExpediente" />
+          <NavigationProperty Name="TTerrenosxExpediente" Relationship="Self.FK_TTerrenosxExpediente_TExpediente" FromRole="TExpediente" ToRole="TTerrenosxExpediente" />
+          <NavigationProperty Name="TVotosxExpediente" Relationship="Self.FK_Votos_x_Expediente_Expediente" FromRole="TExpediente" ToRole="TVotosxExpediente" />
+        </EntityType>
+        <EntityType Name="TExpedientesAcumulados">
+          <Key>
+            <PropertyRef Name="ExpedientePrincipal" />
+            <PropertyRef Name="ExpedienteHijo" />
+          </Key>
+          <Property Name="ExpedientePrincipal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ExpedienteHijo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="TExpediente" Relationship="Self.FK_TExpedientesAcumulados_TExpediente" FromRole="TExpedientesAcumulados" ToRole="TExpediente" />
+        </EntityType>
+        <EntityType Name="TFormatosExpedientes">
+          <Key>
+            <PropertyRef Name="IdFormato" />
+          </Key>
+          <Property Name="IdFormato" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ExpresionRegular" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TInstitucionesxExpediente">
+          <Key>
+            <PropertyRef Name="IdNumExpediente" />
+            <PropertyRef Name="IdInstitucion" />
+          </Key>
+          <Property Name="IdNumExpediente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdInstitucion" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TExpediente" Relationship="Self.FK_TInstitucionesxExpediente_TExpediente" FromRole="TInstitucionesxExpediente" ToRole="TExpediente" />
+        </EntityType>
+        <EntityType Name="TMateria">
+          <Key>
+            <PropertyRef Name="idMateria" />
+          </Key>
+          <Property Name="idMateria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idArea" Type="Int32" />
+          <NavigationProperty Name="TAsunto" Relationship="Self.FK_TAsunto_TMateria" FromRole="TMateria" ToRole="TAsunto" />
+          <NavigationProperty Name="TDetalleExpediente" Relationship="Self.FK_TDetalleExpediente_TMateria" FromRole="TMateria" ToRole="TDetalleExpediente" />
+          <NavigationProperty Name="TTipo" Relationship="Self.FK_TTipo_TMateria" FromRole="TMateria" ToRole="TTipo" />
+        </EntityType>
+        <EntityType Name="TMediosNotificacion">
+          <Key>
+            <PropertyRef Name="idMedioNotificacion" />
+          </Key>
+          <Property Name="idMedioNotificacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TNotificacionesxExpediente" Relationship="Self.FK_TNotificacionesxExpediente_TMediosNotificacion" FromRole="TMediosNotificacion" ToRole="TNotificacionesxExpediente" />
+        </EntityType>
+        <EntityType Name="TMoneda">
+          <Key>
+            <PropertyRef Name="idMoneda" />
+          </Key>
+          <Property Name="idMoneda" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TDetalleExpediente" Relationship="Self.FK_TDetalleExpediente_TMoneda" FromRole="TMoneda" ToRole="TDetalleExpediente" />
+          <NavigationProperty Name="TDetalleExpediente1" Relationship="Self.FK_TDetalleExpediente_TMoneda1" FromRole="TMoneda" ToRole="TDetalleExpediente" />
+        </EntityType>
+        <EntityType Name="TMovimientosxAudiencias">
+          <Key>
+            <PropertyRef Name="idMovimiento" />
+          </Key>
+          <Property Name="idAudiencia" Type="Int32" Nullable="false" />
+          <Property Name="idEstado" Type="Int32" Nullable="false" />
+          <Property Name="Observaciones" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="idMovimiento" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TAudiencias" Relationship="Self.FK_TMovimientosAudiencias_TAudiencias" FromRole="TMovimientosxAudiencias" ToRole="TAudiencias" />
+          <NavigationProperty Name="TEstadosxAudiencia" Relationship="Self.FK_TMovimientosAudiencias_TEstadosxAudiencia" FromRole="TMovimientosxAudiencias" ToRole="TEstadosxAudiencia" />
+        </EntityType>
+        <EntityType Name="TNegociacionesxExpediente">
+          <Key>
+            <PropertyRef Name="NumExpediente" />
+            <PropertyRef Name="Tipo_Negociacion" />
+          </Key>
+          <Property Name="NumExpediente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tipo_Negociacion" Type="Byte" Nullable="false" />
+          <Property Name="Fecha_Inicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Fecha_Revision" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Fecha_Vence" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Observaciones" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TExpediente" Relationship="Self.FK_Med_Alternas_x_Expediente_Expediente" FromRole="TNegociacionesxExpediente" ToRole="TExpediente" />
+          <NavigationProperty Name="TTiposNegociacion" Relationship="Self.FK_Med_Alternas_x_Expediente_Tipos_Negociacion" FromRole="TNegociacionesxExpediente" ToRole="TTiposNegociacion" />
+        </EntityType>
+        <EntityType Name="TNotificacioneSinExpediente">
+          <Key>
+            <PropertyRef Name="idNotificacionPK" />
+          </Key>
+          <Property Name="idAnomalia" Type="Int32" Nullable="false" />
+          <Property Name="Area" Type="Byte" Nullable="false" />
+          <Property Name="Asociado" Type="Boolean" Nullable="false" />
+          <Property Name="Anexos" Type="Boolean" />
+          <Property Name="FechaPGR" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="InstitucionInvolucrada" Type="Byte" />
+          <Property Name="DespachoJudicial" Type="Int32" />
+          <Property Name="Materia" Type="Int32" Nullable="false" />
+          <Property Name="NumOficio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Parte" Type="String" MaxLength="2500" FixedLength="false" Unicode="false" />
+          <Property Name="Procurador" Type="Int64" Nullable="false" />
+          <Property Name="Resolucion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idMedioNotificacion" Type="Byte" Nullable="false" />
+          <Property Name="idTipoExpediente" Type="Int32" Nullable="false" />
+          <Property Name="idParticipacionEstado" Type="Int32" Nullable="false" />
+          <Property Name="idNotificacionPK" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TAnomalias" Relationship="Self.FK_TNotificacioneSinExpediente_TAnomalias" FromRole="TNotificacioneSinExpediente" ToRole="TAnomalias" />
+          <NavigationProperty Name="TParticipacionEstado" Relationship="Self.FK_TNotificacioneSinExpediente_TParticipacionEstado" FromRole="TNotificacioneSinExpediente" ToRole="TParticipacionEstado" />
+          <NavigationProperty Name="TTipoExpediente" Relationship="Self.FK_TNotificacioneSinExpediente_TTipoExpediente" FromRole="TNotificacioneSinExpediente" ToRole="TTipoExpediente" />
+        </EntityType>
+        <EntityType Name="TNotificacionesxExpediente">
+          <Key>
+            <PropertyRef Name="ConsecutivoNotificacion" />
+            <PropertyRef Name="NumCopia" />
+          </Key>
+          <Property Name="idNumExpediente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ConsecutivoNotificacion" Type="Int32" Nullable="false" />
+          <Property Name="NumResolucion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaPGR" Type="DateTime" Precision="3" />
+          <Property Name="NumCopia" Type="Int32" Nullable="false" />
+          <Property Name="idMedioNotificacion" Type="Int32" Nullable="false" />
+          <Property Name="idAnomalia" Type="Int32" />
+          <Property Name="Anexos" Type="Boolean" />
+          <Property Name="NumOficio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EntregaInmediata" Type="Boolean" Nullable="false" />
+          <Property Name="ExpedienteOriginal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NumCarpeta" Type="String" MaxLength="25" FixedLength="true" Unicode="true" />
+          <Property Name="AvisadoChk" Type="Byte" />
+          <NavigationProperty Name="TAnomalias" Relationship="Self.FK_TNotificacionesxExpediente_TAnomalias" FromRole="TNotificacionesxExpediente" ToRole="TAnomalias" />
+          <NavigationProperty Name="TExpediente" Relationship="Self.FK_TNotificacionesxExpediente_TExpediente" FromRole="TNotificacionesxExpediente" ToRole="TExpediente" />
+          <NavigationProperty Name="TMediosNotificacion" Relationship="Self.FK_TNotificacionesxExpediente_TMediosNotificacion" FromRole="TNotificacionesxExpediente" ToRole="TMediosNotificacion" />
+        </EntityType>
+        <EntityType Name="TParticipacionEstado">
+          <Key>
+            <PropertyRef Name="idParticipacion" />
+          </Key>
+          <Property Name="idParticipacion" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TDetalleExpediente" Relationship="Self.FK_TDetalleExpediente_TParticipacionEstado" FromRole="TParticipacionEstado" ToRole="TDetalleExpediente" />
+          <NavigationProperty Name="TNotificacioneSinExpediente" Relationship="Self.FK_TNotificacioneSinExpediente_TParticipacionEstado" FromRole="TParticipacionEstado" ToRole="TNotificacioneSinExpediente" />
+        </EntityType>
+        <EntityType Name="TPlanosxExpediente">
+          <Key>
+            <PropertyRef Name="NumExpediente" />
+            <PropertyRef Name="Num_Plano" />
+          </Key>
+          <Property Name="NumExpediente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Num_Plano" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Area_Plano" Type="Int32" Nullable="false" />
+          <Property Name="Hoja_Cartografica" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Vertical_Inicial" Type="Int16" Nullable="false" />
+          <Property Name="Vertical_Final" Type="Int16" Nullable="false" />
+          <Property Name="Horizontal_Inicial" Type="Int16" Nullable="false" />
+          <Property Name="Horizontal_Final" Type="Int16" Nullable="false" />
+          <Property Name="Observaciones" Type="String" MaxLength="125" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TExpediente" Relationship="Self.FK_Planos_x_Expediente_Expediente" FromRole="TPlanosxExpediente" ToRole="TExpediente" />
+        </EntityType>
+        <EntityType Name="TProcedenciaExpediente">
+          <Key>
+            <PropertyRef Name="idProcedenciaExpediente" />
+          </Key>
+          <Property Name="idProcedenciaExpediente" Type="Int32" Nullable="false" />
+          <Property Name="idInstitucion" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TTerrenosAfectados">
+          <Key>
+            <PropertyRef Name="Terreno_Afectado" />
+          </Key>
+          <Property Name="Terreno_Afectado" Type="Int16" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TTerrenosxExpediente" Relationship="Self.FK_TTerrenosxExpediente_TTerrenosAfectados" FromRole="TTerrenosAfectados" ToRole="TTerrenosxExpediente" />
+        </EntityType>
+        <EntityType Name="TTerrenosxExpediente">
+          <Key>
+            <PropertyRef Name="NumExpediente" />
+            <PropertyRef Name="Terreno_Afectado" />
+          </Key>
+          <Property Name="NumExpediente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Terreno_Afectado" Type="Int16" Nullable="false" />
+          <Property Name="Observaciones" Type="String" MaxLength="125" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TExpediente" Relationship="Self.FK_TTerrenosxExpediente_TExpediente" FromRole="TTerrenosxExpediente" ToRole="TExpediente" />
+          <NavigationProperty Name="TTerrenosAfectados" Relationship="Self.FK_TTerrenosxExpediente_TTerrenosAfectados" FromRole="TTerrenosxExpediente" ToRole="TTerrenosAfectados" />
+        </EntityType>
+        <EntityType Name="TTipo">
+          <Key>
+            <PropertyRef Name="idTipo" />
+            <PropertyRef Name="MatIdMateria" />
+          </Key>
+          <Property Name="idTipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MatIdMateria" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TMateria" Relationship="Self.FK_TTipo_TMateria" FromRole="TTipo" ToRole="TMateria" />
+        </EntityType>
+        <EntityType Name="TTipoAudiencia">
+          <Key>
+            <PropertyRef Name="idTipoAudiencia" />
+          </Key>
+          <Property Name="idTipoAudiencia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TAudiencias" Relationship="Self.FK_TAudiencias_TTipoAudiencia" FromRole="TTipoAudiencia" ToRole="TAudiencias" />
+        </EntityType>
+        <EntityType Name="TTipoExpediente">
+          <Key>
+            <PropertyRef Name="idTipoExpediente" />
+          </Key>
+          <Property Name="idTipoExpediente" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Peso" Type="Int32" />
+          <NavigationProperty Name="TNotificacioneSinExpediente" Relationship="Self.FK_TNotificacioneSinExpediente_TTipoExpediente" FromRole="TTipoExpediente" ToRole="TNotificacioneSinExpediente" />
+        </EntityType>
+        <EntityType Name="TTipoGeneral">
+          <Key>
+            <PropertyRef Name="idGeneral" />
+            <PropertyRef Name="MatIdMateria" />
+            <PropertyRef Name="TipIdTipo" />
+            <PropertyRef Name="AsuIdAsunto" />
+          </Key>
+          <Property Name="idGeneral" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MatIdMateria" Type="Int32" Nullable="false" />
+          <Property Name="TipIdTipo" Type="Int32" Nullable="false" />
+          <Property Name="AsuIdAsunto" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TTiposNegociacion">
+          <Key>
+            <PropertyRef Name="Tipo_Negociacion" />
+          </Key>
+          <Property Name="Tipo_Negociacion" Type="Byte" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TNegociacionesxExpediente" Relationship="Self.FK_Med_Alternas_x_Expediente_Tipos_Negociacion" FromRole="TTiposNegociacion" ToRole="TNegociacionesxExpediente" />
+        </EntityType>
+        <EntityType Name="TVotosxExpediente">
+          <Key>
+            <PropertyRef Name="NumExpediente" />
+            <PropertyRef Name="Juzgado" />
+            <PropertyRef Name="Num_Voto" />
+            <PropertyRef Name="Resolucion" />
+          </Key>
+          <Property Name="NumExpediente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Juzgado" Type="Int32" Nullable="false" />
+          <Property Name="Num_Voto" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Resolucion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="TExpediente" Relationship="Self.FK_Votos_x_Expediente_Expediente" FromRole="TVotosxExpediente" ToRole="TExpediente" />
+        </EntityType>
+        <EntityType Name="TBitacoraMovimientos">
+          <Key>
+            <PropertyRef Name="Id_Sistema" />
+            <PropertyRef Name="Cedula_Usuario" />
+            <PropertyRef Name="Fecha_Movimiento" />
+            <PropertyRef Name="Tabla" />
+            <PropertyRef Name="Id_Llave" />
+            <PropertyRef Name="Tipo_Movimiento" />
+            <PropertyRef Name="Valores_Anteriores" />
+            <PropertyRef Name="Valores_Actuales" />
+          </Key>
+          <Property Name="Id_Sistema" Type="Int32" Nullable="false" />
+          <Property Name="Cedula_Usuario" Type="Int32" Nullable="false" />
+          <Property Name="Fecha_Movimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Tabla" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Id_Llave" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tipo_Movimiento" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Valores_Anteriores" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Valores_Actuales" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TNatutalizaciones">
+          <Key>
+            <PropertyRef Name="idConsecutivoNaturalizacion" />
+            <PropertyRef Name="idNumExpediente" />
+          </Key>
+          <Property Name="idConsecutivoNaturalizacion" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idNumExpediente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TParametros">
+          <Key>
+            <PropertyRef Name="ProcuradorInfPosesorias" />
+            <PropertyRef Name="ExpedientesEntregaInmediata" />
+          </Key>
+          <Property Name="ProcuradorInfPosesorias" Type="Byte" Nullable="false" />
+          <Property Name="ExpedientesEntregaInmediata" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_TNotificacioneSinExpediente_TAnomalias">
+          <End Role="TAnomalias" Type="Self.TAnomalias" Multiplicity="1" />
+          <End Role="TNotificacioneSinExpediente" Type="Self.TNotificacioneSinExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TAnomalias">
+              <PropertyRef Name="idAnomalia" />
+            </Principal>
+            <Dependent Role="TNotificacioneSinExpediente">
+              <PropertyRef Name="idAnomalia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TNotificacionesxExpediente_TAnomalias">
+          <End Role="TAnomalias" Type="Self.TAnomalias" Multiplicity="0..1" />
+          <End Role="TNotificacionesxExpediente" Type="Self.TNotificacionesxExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TAnomalias">
+              <PropertyRef Name="idAnomalia" />
+            </Principal>
+            <Dependent Role="TNotificacionesxExpediente">
+              <PropertyRef Name="idAnomalia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TAsunto_TMateria">
+          <End Role="TMateria" Type="Self.TMateria" Multiplicity="1" />
+          <End Role="TAsunto" Type="Self.TAsunto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TMateria">
+              <PropertyRef Name="idMateria" />
+            </Principal>
+            <Dependent Role="TAsunto">
+              <PropertyRef Name="MatIdMateria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TAudiencias_TTipoAudiencia">
+          <End Role="TTipoAudiencia" Type="Self.TTipoAudiencia" Multiplicity="1" />
+          <End Role="TAudiencias" Type="Self.TAudiencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TTipoAudiencia">
+              <PropertyRef Name="idTipoAudiencia" />
+            </Principal>
+            <Dependent Role="TAudiencias">
+              <PropertyRef Name="idTipoAudiencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TAudienciasDetalleExp_TAudiencias">
+          <End Role="TAudiencias" Type="Self.TAudiencias" Multiplicity="1" />
+          <End Role="TAudienciasDetalleExpediente" Type="Self.TAudienciasDetalleExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TAudiencias">
+              <PropertyRef Name="idAudiencia" />
+            </Principal>
+            <Dependent Role="TAudienciasDetalleExpediente">
+              <PropertyRef Name="idAudiencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TMovimientosAudiencias_TAudiencias">
+          <End Role="TAudiencias" Type="Self.TAudiencias" Multiplicity="1" />
+          <End Role="TMovimientosxAudiencias" Type="Self.TMovimientosxAudiencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TAudiencias">
+              <PropertyRef Name="idAudiencia" />
+            </Principal>
+            <Dependent Role="TMovimientosxAudiencias">
+              <PropertyRef Name="idAudiencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TAudienciasDetalleExp_TExpediente">
+          <End Role="TExpediente" Type="Self.TExpediente" Multiplicity="1" />
+          <End Role="TAudienciasDetalleExpediente" Type="Self.TAudienciasDetalleExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TExpediente">
+              <PropertyRef Name="NumExpediente" />
+            </Principal>
+            <Dependent Role="TAudienciasDetalleExpediente">
+              <PropertyRef Name="idNumExpediente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TDespachosJudiciales_TCircuitosJudiciales">
+          <End Role="TCircuitosJudiciales" Type="Self.TCircuitosJudiciales" Multiplicity="1" />
+          <End Role="TDespachosJudiciales" Type="Self.TDespachosJudiciales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TCircuitosJudiciales">
+              <PropertyRef Name="idCircuito" />
+            </Principal>
+            <Dependent Role="TDespachosJudiciales">
+              <PropertyRef Name="idCircuito" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TExpediente_TDespachosJudiciales">
+          <End Role="TDespachosJudiciales" Type="Self.TDespachosJudiciales" Multiplicity="0..1" />
+          <End Role="TExpediente" Type="Self.TExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TDespachosJudiciales">
+              <PropertyRef Name="idDespacho" />
+            </Principal>
+            <Dependent Role="TExpediente">
+              <PropertyRef Name="idDespacho" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TDetalleExpediente_TEstadoProcesal">
+          <End Role="TEstadoProcesal" Type="Self.TEstadoProcesal" Multiplicity="1" />
+          <End Role="TDetalleExpediente" Type="Self.TDetalleExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TEstadoProcesal">
+              <PropertyRef Name="idEstadoProcesal" />
+            </Principal>
+            <Dependent Role="TDetalleExpediente">
+              <PropertyRef Name="idEstadoProcesal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TDetalleExpediente_TMateria">
+          <End Role="TMateria" Type="Self.TMateria" Multiplicity="1" />
+          <End Role="TDetalleExpediente" Type="Self.TDetalleExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TMateria">
+              <PropertyRef Name="idMateria" />
+            </Principal>
+            <Dependent Role="TDetalleExpediente">
+              <PropertyRef Name="idMateria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TDetalleExpediente_TMoneda">
+          <End Role="TMoneda" Type="Self.TMoneda" Multiplicity="1" />
+          <End Role="TDetalleExpediente" Type="Self.TDetalleExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TMoneda">
+              <PropertyRef Name="idMoneda" />
+            </Principal>
+            <Dependent Role="TDetalleExpediente">
+              <PropertyRef Name="idMateria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TDetalleExpediente_TMoneda1">
+          <End Role="TMoneda" Type="Self.TMoneda" Multiplicity="0..1" />
+          <End Role="TDetalleExpediente" Type="Self.TDetalleExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TMoneda">
+              <PropertyRef Name="idMoneda" />
+            </Principal>
+            <Dependent Role="TDetalleExpediente">
+              <PropertyRef Name="IdMonedaCuantia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TDetalleExpediente_TParticipacionEstado">
+          <End Role="TParticipacionEstado" Type="Self.TParticipacionEstado" Multiplicity="0..1" />
+          <End Role="TDetalleExpediente" Type="Self.TDetalleExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TParticipacionEstado">
+              <PropertyRef Name="idParticipacion" />
+            </Principal>
+            <Dependent Role="TDetalleExpediente">
+              <PropertyRef Name="idParticipacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TEstadosxExpediente_TEstadoProcesal">
+          <End Role="TEstadoProcesal" Type="Self.TEstadoProcesal" Multiplicity="1" />
+          <End Role="TEstadosxExpediente" Type="Self.TEstadosxExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TEstadoProcesal">
+              <PropertyRef Name="idEstadoProcesal" />
+            </Principal>
+            <Dependent Role="TEstadosxExpediente">
+              <PropertyRef Name="idEstadoProcesal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TMovimientosAudiencias_TEstadosxAudiencia">
+          <End Role="TEstadosxAudiencia" Type="Self.TEstadosxAudiencia" Multiplicity="1" />
+          <End Role="TMovimientosxAudiencias" Type="Self.TMovimientosxAudiencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TEstadosxAudiencia">
+              <PropertyRef Name="idEstado" />
+            </Principal>
+            <Dependent Role="TMovimientosxAudiencias">
+              <PropertyRef Name="idEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Med_Alternas_x_Expediente_Expediente">
+          <End Role="TExpediente" Type="Self.TExpediente" Multiplicity="1" />
+          <End Role="TNegociacionesxExpediente" Type="Self.TNegociacionesxExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TExpediente">
+              <PropertyRef Name="NumExpediente" />
+            </Principal>
+            <Dependent Role="TNegociacionesxExpediente">
+              <PropertyRef Name="NumExpediente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Planos_x_Expediente_Expediente">
+          <End Role="TExpediente" Type="Self.TExpediente" Multiplicity="1" />
+          <End Role="TPlanosxExpediente" Type="Self.TPlanosxExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TExpediente">
+              <PropertyRef Name="NumExpediente" />
+            </Principal>
+            <Dependent Role="TPlanosxExpediente">
+              <PropertyRef Name="NumExpediente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TExpedientesAcumulados_TExpediente">
+          <End Role="TExpediente" Type="Self.TExpediente" Multiplicity="1" />
+          <End Role="TExpedientesAcumulados" Type="Self.TExpedientesAcumulados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TExpediente">
+              <PropertyRef Name="NumExpediente" />
+            </Principal>
+            <Dependent Role="TExpedientesAcumulados">
+              <PropertyRef Name="ExpedientePrincipal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TInstitucionesxExpediente_TExpediente">
+          <End Role="TExpediente" Type="Self.TExpediente" Multiplicity="1" />
+          <End Role="TInstitucionesxExpediente" Type="Self.TInstitucionesxExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TExpediente">
+              <PropertyRef Name="NumExpediente" />
+            </Principal>
+            <Dependent Role="TInstitucionesxExpediente">
+              <PropertyRef Name="IdNumExpediente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TNotificacionesxExpediente_TExpediente">
+          <End Role="TExpediente" Type="Self.TExpediente" Multiplicity="1" />
+          <End Role="TNotificacionesxExpediente" Type="Self.TNotificacionesxExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TExpediente">
+              <PropertyRef Name="NumExpediente" />
+            </Principal>
+            <Dependent Role="TNotificacionesxExpediente">
+              <PropertyRef Name="idNumExpediente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TTerrenosxExpediente_TExpediente">
+          <End Role="TExpediente" Type="Self.TExpediente" Multiplicity="1" />
+          <End Role="TTerrenosxExpediente" Type="Self.TTerrenosxExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TExpediente">
+              <PropertyRef Name="NumExpediente" />
+            </Principal>
+            <Dependent Role="TTerrenosxExpediente">
+              <PropertyRef Name="NumExpediente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Votos_x_Expediente_Expediente">
+          <End Role="TExpediente" Type="Self.TExpediente" Multiplicity="1" />
+          <End Role="TVotosxExpediente" Type="Self.TVotosxExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TExpediente">
+              <PropertyRef Name="NumExpediente" />
+            </Principal>
+            <Dependent Role="TVotosxExpediente">
+              <PropertyRef Name="NumExpediente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TTipo_TMateria">
+          <End Role="TMateria" Type="Self.TMateria" Multiplicity="1" />
+          <End Role="TTipo" Type="Self.TTipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TMateria">
+              <PropertyRef Name="idMateria" />
+            </Principal>
+            <Dependent Role="TTipo">
+              <PropertyRef Name="MatIdMateria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TNotificacionesxExpediente_TMediosNotificacion">
+          <End Role="TMediosNotificacion" Type="Self.TMediosNotificacion" Multiplicity="1" />
+          <End Role="TNotificacionesxExpediente" Type="Self.TNotificacionesxExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TMediosNotificacion">
+              <PropertyRef Name="idMedioNotificacion" />
+            </Principal>
+            <Dependent Role="TNotificacionesxExpediente">
+              <PropertyRef Name="idMedioNotificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Med_Alternas_x_Expediente_Tipos_Negociacion">
+          <End Role="TTiposNegociacion" Type="Self.TTiposNegociacion" Multiplicity="1" />
+          <End Role="TNegociacionesxExpediente" Type="Self.TNegociacionesxExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TTiposNegociacion">
+              <PropertyRef Name="Tipo_Negociacion" />
+            </Principal>
+            <Dependent Role="TNegociacionesxExpediente">
+              <PropertyRef Name="Tipo_Negociacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TNotificacioneSinExpediente_TParticipacionEstado">
+          <End Role="TParticipacionEstado" Type="Self.TParticipacionEstado" Multiplicity="1" />
+          <End Role="TNotificacioneSinExpediente" Type="Self.TNotificacioneSinExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TParticipacionEstado">
+              <PropertyRef Name="idParticipacion" />
+            </Principal>
+            <Dependent Role="TNotificacioneSinExpediente">
+              <PropertyRef Name="idParticipacionEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TNotificacioneSinExpediente_TTipoExpediente">
+          <End Role="TTipoExpediente" Type="Self.TTipoExpediente" Multiplicity="1" />
+          <End Role="TNotificacioneSinExpediente" Type="Self.TNotificacioneSinExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TTipoExpediente">
+              <PropertyRef Name="idTipoExpediente" />
+            </Principal>
+            <Dependent Role="TNotificacioneSinExpediente">
+              <PropertyRef Name="idTipoExpediente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TTerrenosxExpediente_TTerrenosAfectados">
+          <End Role="TTerrenosAfectados" Type="Self.TTerrenosAfectados" Multiplicity="1" />
+          <End Role="TTerrenosxExpediente" Type="Self.TTerrenosxExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TTerrenosAfectados">
+              <PropertyRef Name="Terreno_Afectado" />
+            </Principal>
+            <Dependent Role="TTerrenosxExpediente">
+              <PropertyRef Name="Terreno_Afectado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LitigiosoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TAnomalias" EntityType="Self.TAnomalias" />
+          <EntitySet Name="TAsunto" EntityType="Self.TAsunto" />
+          <EntitySet Name="TAudiencias" EntityType="Self.TAudiencias" />
+          <EntitySet Name="TAudienciasDetalleExpediente" EntityType="Self.TAudienciasDetalleExpediente" />
+          <EntitySet Name="TBitacoraNotificaciones" EntityType="Self.TBitacoraNotificaciones" />
+          <EntitySet Name="TCircuitosJudiciales" EntityType="Self.TCircuitosJudiciales" />
+          <EntitySet Name="TDespachosJudiciales" EntityType="Self.TDespachosJudiciales" />
+          <EntitySet Name="TDetalleExpediente" EntityType="Self.TDetalleExpediente" />
+          <EntitySet Name="TEstadoProcesal" EntityType="Self.TEstadoProcesal" />
+          <EntitySet Name="TEstadosxAudiencia" EntityType="Self.TEstadosxAudiencia" />
+          <EntitySet Name="TEstadosxExpediente" EntityType="Self.TEstadosxExpediente" />
+          <EntitySet Name="TExpediente" EntityType="Self.TExpediente" />
+          <EntitySet Name="TExpedientesAcumulados" EntityType="Self.TExpedientesAcumulados" />
+          <EntitySet Name="TFormatosExpedientes" EntityType="Self.TFormatosExpedientes" />
+          <EntitySet Name="TInstitucionesxExpediente" EntityType="Self.TInstitucionesxExpediente" />
+          <EntitySet Name="TMateria" EntityType="Self.TMateria" />
+          <EntitySet Name="TMediosNotificacion" EntityType="Self.TMediosNotificacion" />
+          <EntitySet Name="TMoneda" EntityType="Self.TMoneda" />
+          <EntitySet Name="TMovimientosxAudiencias" EntityType="Self.TMovimientosxAudiencias" />
+          <EntitySet Name="TNegociacionesxExpediente" EntityType="Self.TNegociacionesxExpediente" />
+          <EntitySet Name="TNotificacioneSinExpediente" EntityType="Self.TNotificacioneSinExpediente" />
+          <EntitySet Name="TNotificacionesxExpediente" EntityType="Self.TNotificacionesxExpediente" />
+          <EntitySet Name="TParticipacionEstado" EntityType="Self.TParticipacionEstado" />
+          <EntitySet Name="TPlanosxExpediente" EntityType="Self.TPlanosxExpediente" />
+          <EntitySet Name="TProcedenciaExpediente" EntityType="Self.TProcedenciaExpediente" />
+          <EntitySet Name="TTerrenosAfectados" EntityType="Self.TTerrenosAfectados" />
+          <EntitySet Name="TTerrenosxExpediente" EntityType="Self.TTerrenosxExpediente" />
+          <EntitySet Name="TTipo" EntityType="Self.TTipo" />
+          <EntitySet Name="TTipoAudiencia" EntityType="Self.TTipoAudiencia" />
+          <EntitySet Name="TTipoExpediente" EntityType="Self.TTipoExpediente" />
+          <EntitySet Name="TTipoGeneral" EntityType="Self.TTipoGeneral" />
+          <EntitySet Name="TTiposNegociacion" EntityType="Self.TTiposNegociacion" />
+          <EntitySet Name="TVotosxExpediente" EntityType="Self.TVotosxExpediente" />
+          <EntitySet Name="TBitacoraMovimientos" EntityType="Self.TBitacoraMovimientos" />
+          <EntitySet Name="TNatutalizaciones" EntityType="Self.TNatutalizaciones" />
+          <EntitySet Name="TParametros" EntityType="Self.TParametros" />
+          <AssociationSet Name="FK_TNotificacioneSinExpediente_TAnomalias" Association="Self.FK_TNotificacioneSinExpediente_TAnomalias">
+            <End Role="TAnomalias" EntitySet="TAnomalias" />
+            <End Role="TNotificacioneSinExpediente" EntitySet="TNotificacioneSinExpediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TNotificacionesxExpediente_TAnomalias" Association="Self.FK_TNotificacionesxExpediente_TAnomalias">
+            <End Role="TAnomalias" EntitySet="TAnomalias" />
+            <End Role="TNotificacionesxExpediente" EntitySet="TNotificacionesxExpediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TAsunto_TMateria" Association="Self.FK_TAsunto_TMateria">
+            <End Role="TMateria" EntitySet="TMateria" />
+            <End Role="TAsunto" EntitySet="TAsunto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TAudiencias_TTipoAudiencia" Association="Self.FK_TAudiencias_TTipoAudiencia">
+            <End Role="TTipoAudiencia" EntitySet="TTipoAudiencia" />
+            <End Role="TAudiencias" EntitySet="TAudiencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TAudienciasDetalleExp_TAudiencias" Association="Self.FK_TAudienciasDetalleExp_TAudiencias">
+            <End Role="TAudiencias" EntitySet="TAudiencias" />
+            <End Role="TAudienciasDetalleExpediente" EntitySet="TAudienciasDetalleExpediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TMovimientosAudiencias_TAudiencias" Association="Self.FK_TMovimientosAudiencias_TAudiencias">
+            <End Role="TAudiencias" EntitySet="TAudiencias" />
+            <End Role="TMovimientosxAudiencias" EntitySet="TMovimientosxAudiencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TAudienciasDetalleExp_TExpediente" Association="Self.FK_TAudienciasDetalleExp_TExpediente">
+            <End Role="TExpediente" EntitySet="TExpediente" />
+            <End Role="TAudienciasDetalleExpediente" EntitySet="TAudienciasDetalleExpediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TDespachosJudiciales_TCircuitosJudiciales" Association="Self.FK_TDespachosJudiciales_TCircuitosJudiciales">
+            <End Role="TCircuitosJudiciales" EntitySet="TCircuitosJudiciales" />
+            <End Role="TDespachosJudiciales" EntitySet="TDespachosJudiciales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TExpediente_TDespachosJudiciales" Association="Self.FK_TExpediente_TDespachosJudiciales">
+            <End Role="TDespachosJudiciales" EntitySet="TDespachosJudiciales" />
+            <End Role="TExpediente" EntitySet="TExpediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TDetalleExpediente_TEstadoProcesal" Association="Self.FK_TDetalleExpediente_TEstadoProcesal">
+            <End Role="TEstadoProcesal" EntitySet="TEstadoProcesal" />
+            <End Role="TDetalleExpediente" EntitySet="TDetalleExpediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TDetalleExpediente_TMateria" Association="Self.FK_TDetalleExpediente_TMateria">
+            <End Role="TMateria" EntitySet="TMateria" />
+            <End Role="TDetalleExpediente" EntitySet="TDetalleExpediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TDetalleExpediente_TMoneda" Association="Self.FK_TDetalleExpediente_TMoneda">
+            <End Role="TMoneda" EntitySet="TMoneda" />
+            <End Role="TDetalleExpediente" EntitySet="TDetalleExpediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TDetalleExpediente_TMoneda1" Association="Self.FK_TDetalleExpediente_TMoneda1">
+            <End Role="TMoneda" EntitySet="TMoneda" />
+            <End Role="TDetalleExpediente" EntitySet="TDetalleExpediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TDetalleExpediente_TParticipacionEstado" Association="Self.FK_TDetalleExpediente_TParticipacionEstado">
+            <End Role="TParticipacionEstado" EntitySet="TParticipacionEstado" />
+            <End Role="TDetalleExpediente" EntitySet="TDetalleExpediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TEstadosxExpediente_TEstadoProcesal" Association="Self.FK_TEstadosxExpediente_TEstadoProcesal">
+            <End Role="TEstadoProcesal" EntitySet="TEstadoProcesal" />
+            <End Role="TEstadosxExpediente" EntitySet="TEstadosxExpediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TMovimientosAudiencias_TEstadosxAudiencia" Association="Self.FK_TMovimientosAudiencias_TEstadosxAudiencia">
+            <End Role="TEstadosxAudiencia" EntitySet="TEstadosxAudiencia" />
+            <End Role="TMovimientosxAudiencias" EntitySet="TMovimientosxAudiencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Med_Alternas_x_Expediente_Expediente" Association="Self.FK_Med_Alternas_x_Expediente_Expediente">
+            <End Role="TExpediente" EntitySet="TExpediente" />
+            <End Role="TNegociacionesxExpediente" EntitySet="TNegociacionesxExpediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Planos_x_Expediente_Expediente" Association="Self.FK_Planos_x_Expediente_Expediente">
+            <End Role="TExpediente" EntitySet="TExpediente" />
+            <End Role="TPlanosxExpediente" EntitySet="TPlanosxExpediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TExpedientesAcumulados_TExpediente" Association="Self.FK_TExpedientesAcumulados_TExpediente">
+            <End Role="TExpediente" EntitySet="TExpediente" />
+            <End Role="TExpedientesAcumulados" EntitySet="TExpedientesAcumulados" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TInstitucionesxExpediente_TExpediente" Association="Self.FK_TInstitucionesxExpediente_TExpediente">
+            <End Role="TExpediente" EntitySet="TExpediente" />
+            <End Role="TInstitucionesxExpediente" EntitySet="TInstitucionesxExpediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TNotificacionesxExpediente_TExpediente" Association="Self.FK_TNotificacionesxExpediente_TExpediente">
+            <End Role="TExpediente" EntitySet="TExpediente" />
+            <End Role="TNotificacionesxExpediente" EntitySet="TNotificacionesxExpediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TTerrenosxExpediente_TExpediente" Association="Self.FK_TTerrenosxExpediente_TExpediente">
+            <End Role="TExpediente" EntitySet="TExpediente" />
+            <End Role="TTerrenosxExpediente" EntitySet="TTerrenosxExpediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Votos_x_Expediente_Expediente" Association="Self.FK_Votos_x_Expediente_Expediente">
+            <End Role="TExpediente" EntitySet="TExpediente" />
+            <End Role="TVotosxExpediente" EntitySet="TVotosxExpediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TTipo_TMateria" Association="Self.FK_TTipo_TMateria">
+            <End Role="TMateria" EntitySet="TMateria" />
+            <End Role="TTipo" EntitySet="TTipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TNotificacionesxExpediente_TMediosNotificacion" Association="Self.FK_TNotificacionesxExpediente_TMediosNotificacion">
+            <End Role="TMediosNotificacion" EntitySet="TMediosNotificacion" />
+            <End Role="TNotificacionesxExpediente" EntitySet="TNotificacionesxExpediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Med_Alternas_x_Expediente_Tipos_Negociacion" Association="Self.FK_Med_Alternas_x_Expediente_Tipos_Negociacion">
+            <End Role="TTiposNegociacion" EntitySet="TTiposNegociacion" />
+            <End Role="TNegociacionesxExpediente" EntitySet="TNegociacionesxExpediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TNotificacioneSinExpediente_TParticipacionEstado" Association="Self.FK_TNotificacioneSinExpediente_TParticipacionEstado">
+            <End Role="TParticipacionEstado" EntitySet="TParticipacionEstado" />
+            <End Role="TNotificacioneSinExpediente" EntitySet="TNotificacioneSinExpediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TNotificacioneSinExpediente_TTipoExpediente" Association="Self.FK_TNotificacioneSinExpediente_TTipoExpediente">
+            <End Role="TTipoExpediente" EntitySet="TTipoExpediente" />
+            <End Role="TNotificacioneSinExpediente" EntitySet="TNotificacioneSinExpediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TTerrenosxExpediente_TTerrenosAfectados" Association="Self.FK_TTerrenosxExpediente_TTerrenosAfectados">
+            <End Role="TTerrenosAfectados" EntitySet="TTerrenosAfectados" />
+            <End Role="TTerrenosxExpediente" EntitySet="TTerrenosxExpediente" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LitigiosoModelStoreContainer" CdmEntityContainer="LitigiosoEntities">
+          <EntitySetMapping Name="TAnomalias">
+            <EntityTypeMapping TypeName="LitigiosoModel.TAnomalias">
+              <MappingFragment StoreEntitySet="TAnomalias">
+                <ScalarProperty Name="idAnomalia" ColumnName="idAnomalia" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TAsunto">
+            <EntityTypeMapping TypeName="LitigiosoModel.TAsunto">
+              <MappingFragment StoreEntitySet="TAsunto">
+                <ScalarProperty Name="idAsunto" ColumnName="idAsunto" />
+                <ScalarProperty Name="MatIdMateria" ColumnName="MatIdMateria" />
+                <ScalarProperty Name="TipIdTipo" ColumnName="TipIdTipo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TAudiencias">
+            <EntityTypeMapping TypeName="LitigiosoModel.TAudiencias">
+              <MappingFragment StoreEntitySet="TAudiencias">
+                <ScalarProperty Name="idAudiencia" ColumnName="idAudiencia" />
+                <ScalarProperty Name="idTipoAudiencia" ColumnName="idTipoAudiencia" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Hora" ColumnName="Hora" />
+                <ScalarProperty Name="idJuzgado" ColumnName="idJuzgado" />
+                <ScalarProperty Name="Procurador" ColumnName="Procurador" />
+                <ScalarProperty Name="Juez" ColumnName="Juez" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TAudienciasDetalleExpediente">
+            <EntityTypeMapping TypeName="LitigiosoModel.TAudienciasDetalleExpediente">
+              <MappingFragment StoreEntitySet="TAudienciasDetalleExpediente">
+                <ScalarProperty Name="idAudiencia" ColumnName="idAudiencia" />
+                <ScalarProperty Name="idNumExpediente" ColumnName="idNumExpediente" />
+                <ScalarProperty Name="idDetalleExp" ColumnName="idDetalleExp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBitacoraNotificaciones">
+            <EntityTypeMapping TypeName="LitigiosoModel.TBitacoraNotificaciones">
+              <MappingFragment StoreEntitySet="TBitacoraNotificaciones">
+                <ScalarProperty Name="Id_Excepcion" ColumnName="Id_Excepcion" />
+                <ScalarProperty Name="Archivo_XML" ColumnName="Archivo_XML" />
+                <ScalarProperty Name="Archivo_Zip" ColumnName="Archivo_Zip" />
+                <ScalarProperty Name="Expediente" ColumnName="Expediente" />
+                <ScalarProperty Name="Fecha_Excepcion" ColumnName="Fecha_Excepcion" />
+                <ScalarProperty Name="Procesado" ColumnName="Procesado" />
+                <ScalarProperty Name="Resolucion" ColumnName="Resolucion" />
+                <ScalarProperty Name="Resultado" ColumnName="Resultado" />
+                <ScalarProperty Name="Despacho_No_Registrado" ColumnName="Despacho_No_Registrado" />
+                <ScalarProperty Name="ConCopias_Chk" ColumnName="ConCopias_Chk" />
+                <ScalarProperty Name="Parte" ColumnName="Parte" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TCircuitosJudiciales">
+            <EntityTypeMapping TypeName="LitigiosoModel.TCircuitosJudiciales">
+              <MappingFragment StoreEntitySet="TCircuitosJudiciales">
+                <ScalarProperty Name="idCircuito" ColumnName="idCircuito" />
+                <ScalarProperty Name="CodigoCircuitoPJ" ColumnName="CodigoCircuitoPJ" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TDespachosJudiciales">
+            <EntityTypeMapping TypeName="LitigiosoModel.TDespachosJudiciales">
+              <MappingFragment StoreEntitySet="TDespachosJudiciales">
+                <ScalarProperty Name="idDespacho" ColumnName="idDespacho" />
+                <ScalarProperty Name="idCircuito" ColumnName="idCircuito" />
+                <ScalarProperty Name="CodigoDespachoPJ" ColumnName="CodigoDespachoPJ" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Electronico" ColumnName="Electronico" />
+                <ScalarProperty Name="EntregaInmediata" ColumnName="EntregaInmediata" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TDetalleExpediente">
+            <EntityTypeMapping TypeName="LitigiosoModel.TDetalleExpediente">
+              <MappingFragment StoreEntitySet="TDetalleExpediente">
+                <ScalarProperty Name="idDetalleExpediente" ColumnName="idDetalleExpediente" />
+                <ScalarProperty Name="idNumExpediente" ColumnName="idNumExpediente" />
+                <ScalarProperty Name="idMateria" ColumnName="idMateria" />
+                <ScalarProperty Name="idTipo" ColumnName="idTipo" />
+                <ScalarProperty Name="idAsunto" ColumnName="idAsunto" />
+                <ScalarProperty Name="idGeneral" ColumnName="idGeneral" />
+                <ScalarProperty Name="idParticipacion" ColumnName="idParticipacion" />
+                <ScalarProperty Name="idEstadoProcesal" ColumnName="idEstadoProcesal" />
+                <ScalarProperty Name="Inestimable" ColumnName="Inestimable" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="fechaFenecido" ColumnName="fechaFenecido" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+                <ScalarProperty Name="IdMonedaPretencion" ColumnName="IdMonedaPretencion" />
+                <ScalarProperty Name="Pretension" ColumnName="Pretension" />
+                <ScalarProperty Name="IdMonedaCuantia" ColumnName="IdMonedaCuantia" />
+                <ScalarProperty Name="Cuantia" ColumnName="Cuantia" />
+                <ScalarProperty Name="Costas" ColumnName="Costas" />
+                <ScalarProperty Name="idCedulaFuncionario" ColumnName="idCedulaFuncionario" />
+                <ScalarProperty Name="Procurador" ColumnName="Procurador" />
+                <ScalarProperty Name="AsignadoActual" ColumnName="AsignadoActual" />
+                <ScalarProperty Name="FechaAsignacion" ColumnName="FechaAsignacion" />
+                <ScalarProperty Name="FechaDesasignacion" ColumnName="FechaDesasignacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TEstadoProcesal">
+            <EntityTypeMapping TypeName="LitigiosoModel.TEstadoProcesal">
+              <MappingFragment StoreEntitySet="TEstadoProcesal">
+                <ScalarProperty Name="idEstadoProcesal" ColumnName="idEstadoProcesal" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Area_Corresponde" ColumnName="Area_Corresponde" />
+                <ScalarProperty Name="Tipo_Expediente" ColumnName="Tipo_Expediente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TEstadosxAudiencia">
+            <EntityTypeMapping TypeName="LitigiosoModel.TEstadosxAudiencia">
+              <MappingFragment StoreEntitySet="TEstadosxAudiencia">
+                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TEstadosxExpediente">
+            <EntityTypeMapping TypeName="LitigiosoModel.TEstadosxExpediente">
+              <MappingFragment StoreEntitySet="TEstadosxExpediente">
+                <ScalarProperty Name="idEstadoProcesal" ColumnName="idEstadoProcesal" />
+                <ScalarProperty Name="NumExpediente" ColumnName="NumExpediente" />
+                <ScalarProperty Name="fechaHora" ColumnName="fechaHora" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TExpediente">
+            <EntityTypeMapping TypeName="LitigiosoModel.TExpediente">
+              <MappingFragment StoreEntitySet="TExpediente">
+                <ScalarProperty Name="NumExpediente" ColumnName="NumExpediente" />
+                <ScalarProperty Name="Promovente" ColumnName="Promovente" />
+                <ScalarProperty Name="Demandados" ColumnName="Demandados" />
+                <ScalarProperty Name="Perjudicado" ColumnName="Perjudicado" />
+                <ScalarProperty Name="AgotamientoVia" ColumnName="AgotamientoVia" />
+                <ScalarProperty Name="IdTipoExpediente" ColumnName="IdTipoExpediente" />
+                <ScalarProperty Name="idFormatoExpediente" ColumnName="idFormatoExpediente" />
+                <ScalarProperty Name="Acumulado" ColumnName="Acumulado" />
+                <ScalarProperty Name="fechaIngresoPGR" ColumnName="fechaIngresoPGR" />
+                <ScalarProperty Name="InfPos_Consecutivo" ColumnName="InfPos_Consecutivo" />
+                <ScalarProperty Name="Inf_Pos_Mes" ColumnName="Inf_Pos_Mes" />
+                <ScalarProperty Name="Inf_Pos_Anio" ColumnName="Inf_Pos_Anio" />
+                <ScalarProperty Name="ProcuradorSugerido" ColumnName="ProcuradorSugerido" />
+                <ScalarProperty Name="idDespacho" ColumnName="idDespacho" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TExpedientesAcumulados">
+            <EntityTypeMapping TypeName="LitigiosoModel.TExpedientesAcumulados">
+              <MappingFragment StoreEntitySet="TExpedientesAcumulados">
+                <ScalarProperty Name="ExpedientePrincipal" ColumnName="ExpedientePrincipal" />
+                <ScalarProperty Name="ExpedienteHijo" ColumnName="ExpedienteHijo" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TFormatosExpedientes">
+            <EntityTypeMapping TypeName="LitigiosoModel.TFormatosExpedientes">
+              <MappingFragment StoreEntitySet="TFormatosExpedientes">
+                <ScalarProperty Name="IdFormato" ColumnName="IdFormato" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="ExpresionRegular" ColumnName="ExpresionRegular" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TInstitucionesxExpediente">
+            <EntityTypeMapping TypeName="LitigiosoModel.TInstitucionesxExpediente">
+              <MappingFragment StoreEntitySet="TInstitucionesxExpediente">
+                <ScalarProperty Name="IdNumExpediente" ColumnName="IdNumExpediente" />
+                <ScalarProperty Name="IdInstitucion" ColumnName="IdInstitucion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TMateria">
+            <EntityTypeMapping TypeName="LitigiosoModel.TMateria">
+              <MappingFragment StoreEntitySet="TMateria">
+                <ScalarProperty Name="idMateria" ColumnName="idMateria" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="idArea" ColumnName="idArea" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TMediosNotificacion">
+            <EntityTypeMapping TypeName="LitigiosoModel.TMediosNotificacion">
+              <MappingFragment StoreEntitySet="TMediosNotificacion">
+                <ScalarProperty Name="idMedioNotificacion" ColumnName="idMedioNotificacion" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TMoneda">
+            <EntityTypeMapping TypeName="LitigiosoModel.TMoneda">
+              <MappingFragment StoreEntitySet="TMoneda">
+                <ScalarProperty Name="idMoneda" ColumnName="idMoneda" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TMovimientosxAudiencias">
+            <EntityTypeMapping TypeName="LitigiosoModel.TMovimientosxAudiencias">
+              <MappingFragment StoreEntitySet="TMovimientosxAudiencias">
+                <ScalarProperty Name="idAudiencia" ColumnName="idAudiencia" />
+                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="idMovimiento" ColumnName="idMovimiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TNegociacionesxExpediente">
+            <EntityTypeMapping TypeName="LitigiosoModel.TNegociacionesxExpediente">
+              <MappingFragment StoreEntitySet="TNegociacionesxExpediente">
+                <ScalarProperty Name="NumExpediente" ColumnName="NumExpediente" />
+                <ScalarProperty Name="Tipo_Negociacion" ColumnName="Tipo_Negociacion" />
+                <ScalarProperty Name="Fecha_Inicio" ColumnName="Fecha_Inicio" />
+                <ScalarProperty Name="Fecha_Revision" ColumnName="Fecha_Revision" />
+                <ScalarProperty Name="Fecha_Vence" ColumnName="Fecha_Vence" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TNotificacioneSinExpediente">
+            <EntityTypeMapping TypeName="LitigiosoModel.TNotificacioneSinExpediente">
+              <MappingFragment StoreEntitySet="TNotificacioneSinExpediente">
+                <ScalarProperty Name="idAnomalia" ColumnName="idAnomalia" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Asociado" ColumnName="Asociado" />
+                <ScalarProperty Name="Anexos" ColumnName="Anexos" />
+                <ScalarProperty Name="FechaPGR" ColumnName="FechaPGR" />
+                <ScalarProperty Name="InstitucionInvolucrada" ColumnName="InstitucionInvolucrada" />
+                <ScalarProperty Name="DespachoJudicial" ColumnName="DespachoJudicial" />
+                <ScalarProperty Name="Materia" ColumnName="Materia" />
+                <ScalarProperty Name="NumOficio" ColumnName="NumOficio" />
+                <ScalarProperty Name="Parte" ColumnName="Parte" />
+                <ScalarProperty Name="Procurador" ColumnName="Procurador" />
+                <ScalarProperty Name="Resolucion" ColumnName="Resolucion" />
+                <ScalarProperty Name="idMedioNotificacion" ColumnName="idMedioNotificacion" />
+                <ScalarProperty Name="idTipoExpediente" ColumnName="idTipoExpediente" />
+                <ScalarProperty Name="idParticipacionEstado" ColumnName="idParticipacionEstado" />
+                <ScalarProperty Name="idNotificacionPK" ColumnName="idNotificacionPK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TNotificacionesxExpediente">
+            <EntityTypeMapping TypeName="LitigiosoModel.TNotificacionesxExpediente">
+              <MappingFragment StoreEntitySet="TNotificacionesxExpediente">
+                <ScalarProperty Name="idNumExpediente" ColumnName="idNumExpediente" />
+                <ScalarProperty Name="ConsecutivoNotificacion" ColumnName="ConsecutivoNotificacion" />
+                <ScalarProperty Name="NumResolucion" ColumnName="NumResolucion" />
+                <ScalarProperty Name="FechaPGR" ColumnName="FechaPGR" />
+                <ScalarProperty Name="NumCopia" ColumnName="NumCopia" />
+                <ScalarProperty Name="idMedioNotificacion" ColumnName="idMedioNotificacion" />
+                <ScalarProperty Name="idAnomalia" ColumnName="idAnomalia" />
+                <ScalarProperty Name="Anexos" ColumnName="Anexos" />
+                <ScalarProperty Name="NumOficio" ColumnName="NumOficio" />
+                <ScalarProperty Name="EntregaInmediata" ColumnName="EntregaInmediata" />
+                <ScalarProperty Name="ExpedienteOriginal" ColumnName="ExpedienteOriginal" />
+                <ScalarProperty Name="NumCarpeta" ColumnName="NumCarpeta" />
+                <ScalarProperty Name="AvisadoChk" ColumnName="AvisadoChk" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TParticipacionEstado">
+            <EntityTypeMapping TypeName="LitigiosoModel.TParticipacionEstado">
+              <MappingFragment StoreEntitySet="TParticipacionEstado">
+                <ScalarProperty Name="idParticipacion" ColumnName="idParticipacion" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TPlanosxExpediente">
+            <EntityTypeMapping TypeName="LitigiosoModel.TPlanosxExpediente">
+              <MappingFragment StoreEntitySet="TPlanosxExpediente">
+                <ScalarProperty Name="NumExpediente" ColumnName="NumExpediente" />
+                <ScalarProperty Name="Num_Plano" ColumnName="Num_Plano" />
+                <ScalarProperty Name="Area_Plano" ColumnName="Area_Plano" />
+                <ScalarProperty Name="Hoja_Cartografica" ColumnName="Hoja_Cartografica" />
+                <ScalarProperty Name="Vertical_Inicial" ColumnName="Vertical_Inicial" />
+                <ScalarProperty Name="Vertical_Final" ColumnName="Vertical_Final" />
+                <ScalarProperty Name="Horizontal_Inicial" ColumnName="Horizontal_Inicial" />
+                <ScalarProperty Name="Horizontal_Final" ColumnName="Horizontal_Final" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TProcedenciaExpediente">
+            <EntityTypeMapping TypeName="LitigiosoModel.TProcedenciaExpediente">
+              <MappingFragment StoreEntitySet="TProcedenciaExpediente">
+                <ScalarProperty Name="idProcedenciaExpediente" ColumnName="idProcedenciaExpediente" />
+                <ScalarProperty Name="idInstitucion" ColumnName="idInstitucion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TTerrenosAfectados">
+            <EntityTypeMapping TypeName="LitigiosoModel.TTerrenosAfectados">
+              <MappingFragment StoreEntitySet="TTerrenosAfectados">
+                <ScalarProperty Name="Terreno_Afectado" ColumnName="Terreno_Afectado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TTerrenosxExpediente">
+            <EntityTypeMapping TypeName="LitigiosoModel.TTerrenosxExpediente">
+              <MappingFragment StoreEntitySet="TTerrenosxExpediente">
+                <ScalarProperty Name="NumExpediente" ColumnName="NumExpediente" />
+                <ScalarProperty Name="Terreno_Afectado" ColumnName="Terreno_Afectado" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TTipo">
+            <EntityTypeMapping TypeName="LitigiosoModel.TTipo">
+              <MappingFragment StoreEntitySet="TTipo">
+                <ScalarProperty Name="idTipo" ColumnName="idTipo" />
+                <ScalarProperty Name="MatIdMateria" ColumnName="MatIdMateria" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TTipoAudiencia">
+            <EntityTypeMapping TypeName="LitigiosoModel.TTipoAudiencia">
+              <MappingFragment StoreEntitySet="TTipoAudiencia">
+                <ScalarProperty Name="idTipoAudiencia" ColumnName="idTipoAudiencia" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TTipoExpediente">
+            <EntityTypeMapping TypeName="LitigiosoModel.TTipoExpediente">
+              <MappingFragment StoreEntitySet="TTipoExpediente">
+                <ScalarProperty Name="idTipoExpediente" ColumnName="idTipoExpediente" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Peso" ColumnName="Peso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TTipoGeneral">
+            <EntityTypeMapping TypeName="LitigiosoModel.TTipoGeneral">
+              <MappingFragment StoreEntitySet="TTipoGeneral">
+                <ScalarProperty Name="idGeneral" ColumnName="idGeneral" />
+                <ScalarProperty Name="MatIdMateria" ColumnName="MatIdMateria" />
+                <ScalarProperty Name="TipIdTipo" ColumnName="TipIdTipo" />
+                <ScalarProperty Name="AsuIdAsunto" ColumnName="AsuIdAsunto" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TTiposNegociacion">
+            <EntityTypeMapping TypeName="LitigiosoModel.TTiposNegociacion">
+              <MappingFragment StoreEntitySet="TTiposNegociacion">
+                <ScalarProperty Name="Tipo_Negociacion" ColumnName="Tipo_Negociacion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TVotosxExpediente">
+            <EntityTypeMapping TypeName="LitigiosoModel.TVotosxExpediente">
+              <MappingFragment StoreEntitySet="TVotosxExpediente">
+                <ScalarProperty Name="NumExpediente" ColumnName="NumExpediente" />
+                <ScalarProperty Name="Juzgado" ColumnName="Juzgado" />
+                <ScalarProperty Name="Num_Voto" ColumnName="Num_Voto" />
+                <ScalarProperty Name="Resolucion" ColumnName="Resolucion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBitacoraMovimientos">
+            <EntityTypeMapping TypeName="LitigiosoModel.TBitacoraMovimientos">
+              <MappingFragment StoreEntitySet="TBitacoraMovimientos">
+                <ScalarProperty Name="Id_Sistema" ColumnName="Id_Sistema" />
+                <ScalarProperty Name="Cedula_Usuario" ColumnName="Cedula_Usuario" />
+                <ScalarProperty Name="Fecha_Movimiento" ColumnName="Fecha_Movimiento" />
+                <ScalarProperty Name="Tabla" ColumnName="Tabla" />
+                <ScalarProperty Name="Id_Llave" ColumnName="Id_Llave" />
+                <ScalarProperty Name="Tipo_Movimiento" ColumnName="Tipo_Movimiento" />
+                <ScalarProperty Name="Valores_Anteriores" ColumnName="Valores_Anteriores" />
+                <ScalarProperty Name="Valores_Actuales" ColumnName="Valores_Actuales" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TNatutalizaciones">
+            <EntityTypeMapping TypeName="LitigiosoModel.TNatutalizaciones">
+              <MappingFragment StoreEntitySet="TNatutalizaciones">
+                <ScalarProperty Name="idConsecutivoNaturalizacion" ColumnName="idConsecutivoNaturalizacion" />
+                <ScalarProperty Name="idNumExpediente" ColumnName="idNumExpediente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TParametros">
+            <EntityTypeMapping TypeName="LitigiosoModel.TParametros">
+              <MappingFragment StoreEntitySet="TParametros">
+                <ScalarProperty Name="ProcuradorInfPosesorias" ColumnName="ProcuradorInfPosesorias" />
+                <ScalarProperty Name="ExpedientesEntregaInmediata" ColumnName="ExpedientesEntregaInmediata" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

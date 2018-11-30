@@ -67,6 +67,8 @@
       <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.5.1\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -125,8 +127,133 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MonedaController.cs" />
+    <Compile Include="Controllers\TipoAudienciaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DBLitigioso.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBLitigioso.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DBLitigioso.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBLitigioso.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DBLitigioso.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBLitigioso.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TAnomalias.cs">
+      <DependentUpon>DBLitigioso.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TAsunto.cs">
+      <DependentUpon>DBLitigioso.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TAudiencias.cs">
+      <DependentUpon>DBLitigioso.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TAudienciasDetalleExpediente.cs">
+      <DependentUpon>DBLitigioso.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TBitacoraMovimientos.cs">
+      <DependentUpon>DBLitigioso.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TBitacoraNotificaciones.cs">
+      <DependentUpon>DBLitigioso.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TCircuitosJudiciales.cs">
+      <DependentUpon>DBLitigioso.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TDespachosJudiciales.cs">
+      <DependentUpon>DBLitigioso.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TDetalleExpediente.cs">
+      <DependentUpon>DBLitigioso.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TEstadoProcesal.cs">
+      <DependentUpon>DBLitigioso.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TEstadosxAudiencia.cs">
+      <DependentUpon>DBLitigioso.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TEstadosxExpediente.cs">
+      <DependentUpon>DBLitigioso.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TExpediente.cs">
+      <DependentUpon>DBLitigioso.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TExpedientesAcumulados.cs">
+      <DependentUpon>DBLitigioso.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TFormatosExpedientes.cs">
+      <DependentUpon>DBLitigioso.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TInstitucionesxExpediente.cs">
+      <DependentUpon>DBLitigioso.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TMateria.cs">
+      <DependentUpon>DBLitigioso.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TMediosNotificacion.cs">
+      <DependentUpon>DBLitigioso.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TMoneda.cs">
+      <DependentUpon>DBLitigioso.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TMovimientosxAudiencias.cs">
+      <DependentUpon>DBLitigioso.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TNatutalizaciones.cs">
+      <DependentUpon>DBLitigioso.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TNegociacionesxExpediente.cs">
+      <DependentUpon>DBLitigioso.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TNotificacioneSinExpediente.cs">
+      <DependentUpon>DBLitigioso.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TNotificacionesxExpediente.cs">
+      <DependentUpon>DBLitigioso.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TParametros.cs">
+      <DependentUpon>DBLitigioso.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TParticipacionEstado.cs">
+      <DependentUpon>DBLitigioso.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TPlanosxExpediente.cs">
+      <DependentUpon>DBLitigioso.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TProcedenciaExpediente.cs">
+      <DependentUpon>DBLitigioso.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TTerrenosAfectados.cs">
+      <DependentUpon>DBLitigioso.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TTerrenosxExpediente.cs">
+      <DependentUpon>DBLitigioso.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TTipo.cs">
+      <DependentUpon>DBLitigioso.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TTipoAudiencia.cs">
+      <DependentUpon>DBLitigioso.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TTipoExpediente.cs">
+      <DependentUpon>DBLitigioso.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TTipoGeneral.cs">
+      <DependentUpon>DBLitigioso.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TTiposNegociacion.cs">
+      <DependentUpon>DBLitigioso.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TVotosxExpediente.cs">
+      <DependentUpon>DBLitigioso.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -139,8 +266,25 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\DBLitigioso.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DBLitigioso.edmx</DependentUpon>
+      <LastGenOutput>DBLitigioso.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\DBLitigioso.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DBLitigioso.edmx</DependentUpon>
+      <LastGenOutput>DBLitigioso.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\DBLitigioso.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DBLitigioso.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\DBLitigioso.edmx.diagram">
+      <DependentUpon>DBLitigioso.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -166,10 +310,19 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Moneda\Create.cshtml" />
+    <Content Include="Views\Moneda\Delete.cshtml" />
+    <Content Include="Views\Moneda\Details.cshtml" />
+    <Content Include="Views\Moneda\Edit.cshtml" />
+    <Content Include="Views\Moneda\Index.cshtml" />
+    <Content Include="Views\TipoAudiencia\Create.cshtml" />
+    <Content Include="Views\TipoAudiencia\Delete.cshtml" />
+    <Content Include="Views\TipoAudiencia\Details.cshtml" />
+    <Content Include="Views\TipoAudiencia\Edit.cshtml" />
+    <Content Include="Views\TipoAudiencia\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -183,6 +336,9 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

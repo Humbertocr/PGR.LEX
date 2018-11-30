@@ -1,0 +1,46 @@
+﻿@model IEnumerable<PGR.LEX.Models.TMoneda>
+
+@{
+    ViewBag.Title = "Tipo Moneda";
+}
+
+<h2>Monedas</h2>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.idMoneda)
+            </th>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.idMoneda)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @Html.ActionLink("Modificar", "Edit", new { id = item.idMoneda }) |
+                    @Html.ActionLink("Detalles", "Details", new { id = item.idMoneda }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.idMoneda })
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+<p>
+    @Html.ActionLink("Agregar", "Create")
+</p>
