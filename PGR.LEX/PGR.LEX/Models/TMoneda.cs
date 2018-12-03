@@ -16,7 +16,7 @@ namespace PGR.LEX.Models
 
     public partial class TMoneda
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+      
         public TMoneda()
         {
             this.TDetalleExpediente = new HashSet<TDetalleExpediente>();
@@ -27,9 +27,9 @@ namespace PGR.LEX.Models
         [Display(Name = "Descripción")]
         public string Descripcion { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+       
         public virtual ICollection<TDetalleExpediente> TDetalleExpediente { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+      
         public virtual ICollection<TDetalleExpediente> TDetalleExpediente1 { get; set; }
     }
 }

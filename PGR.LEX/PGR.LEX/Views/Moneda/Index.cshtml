@@ -8,14 +8,18 @@
 
 
 <table class="table table-striped">
-    <thead>
+    <thead class="thead-dark">
+
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.idMoneda)
             </th>
-           
+
             <th>
                 @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                Acciones
             </th>
         </tr>
 
@@ -41,6 +45,10 @@
 
 </table>
 
-<p>
-    @Html.ActionLink("Agregar", "Create")
-</p>
+
+
+@Html.ActionLink("Agregar", "Create", "Moneda", new object { }, new { @class = "btn btn-primary" })
+
+
+
+
