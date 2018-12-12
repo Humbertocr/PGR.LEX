@@ -29,3 +29,20 @@ textarea {
     background: #23374F;
     color:#ffffff;
 }
+
+.boton {
+    background: #23374f;
+    color:#ffffff;
+}
+
+    .boton:hover {
+        background: #68a5e8;
+        color: #ffffff;
+    }
+
+.encabezadoTabla {
+    background: #23374F;
+    color: #ffffff;
+    
+}
+

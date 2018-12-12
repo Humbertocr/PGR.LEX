@@ -11,15 +11,11 @@ namespace PGR.LEX.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class TTipo
     {
-        [Display(Name = "ID")]
         public int idTipo { get; set; }
-        [Display(Name = "Materia")]
         public int MatIdMateria { get; set; }
-        [Display(Name = "Descripción")]
         public string Descripcion { get; set; }
     
         public virtual TMateria TMateria { get; set; }

@@ -11,8 +11,7 @@ namespace PGR.LEX.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class TTipoAudiencia
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,9 +19,8 @@ namespace PGR.LEX.Models
         {
             this.TAudiencias = new HashSet<TAudiencias>();
         }
-        [Display(Name = "ID")]
+    
         public int idTipoAudiencia { get; set; }
-        [Display(Name = "Descripción")]
         public string Descripcion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

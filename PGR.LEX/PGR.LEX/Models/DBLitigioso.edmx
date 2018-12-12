@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LitigiosoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="LitigiosoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="TAnomalias">
           <Key>
             <PropertyRef Name="idAnomalia" />
@@ -18,7 +18,7 @@
             <PropertyRef Name="MatIdMateria" />
             <PropertyRef Name="TipIdTipo" />
           </Key>
-          <Property Name="idAsunto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idAsunto" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="MatIdMateria" Type="int" Nullable="false" />
           <Property Name="TipIdTipo" Type="int" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="150" />
@@ -202,7 +202,7 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TBitacoraMovimientos' no tiene
           <Key>
             <PropertyRef Name="idMateria" />
           </Key>
-          <Property Name="idMateria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idMateria" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="idArea" Type="int" />
         </EntityType>
@@ -350,11 +350,10 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
         <EntityType Name="TTipo">
           <Key>
             <PropertyRef Name="idTipo" />
-            <PropertyRef Name="MatIdMateria" />
           </Key>
-          <Property Name="idTipo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idTipo" Type="int" Nullable="false" />
           <Property Name="MatIdMateria" Type="int" Nullable="false" />
-          <Property Name="Descripcion" Type="varchar" MaxLength="150" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="150" Nullable="false" />
         </EntityType>
         <EntityType Name="TTipoAudiencia">
           <Key>
@@ -367,7 +366,7 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
           <Key>
             <PropertyRef Name="idTipoExpediente" />
           </Key>
-          <Property Name="idTipoExpediente" Type="int" Nullable="false" />
+          <Property Name="idTipoExpediente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="Peso" Type="int" />
         </EntityType>
@@ -378,7 +377,7 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
             <PropertyRef Name="TipIdTipo" />
             <PropertyRef Name="AsuIdAsunto" />
           </Key>
-          <Property Name="idGeneral" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idGeneral" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="MatIdMateria" Type="int" Nullable="false" />
           <Property Name="TipIdTipo" Type="int" Nullable="false" />
           <Property Name="AsuIdAsunto" Type="int" Nullable="false" />
@@ -517,18 +516,6 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
           <ReferentialConstraint>
             <Principal Role="TMateria">
               <PropertyRef Name="idMateria" />
-            </Principal>
-            <Dependent Role="TDetalleExpediente">
-              <PropertyRef Name="idMateria" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TDetalleExpediente_TMoneda">
-          <End Role="TMoneda" Type="Self.TMoneda" Multiplicity="1" />
-          <End Role="TDetalleExpediente" Type="Self.TDetalleExpediente" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TMoneda">
-              <PropertyRef Name="idMoneda" />
             </Principal>
             <Dependent Role="TDetalleExpediente">
               <PropertyRef Name="idMateria" />
@@ -849,10 +836,6 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
             <End Role="TMateria" EntitySet="TMateria" />
             <End Role="TDetalleExpediente" EntitySet="TDetalleExpediente" />
           </AssociationSet>
-          <AssociationSet Name="FK_TDetalleExpediente_TMoneda" Association="Self.FK_TDetalleExpediente_TMoneda">
-            <End Role="TMoneda" EntitySet="TMoneda" />
-            <End Role="TDetalleExpediente" EntitySet="TDetalleExpediente" />
-          </AssociationSet>
           <AssociationSet Name="FK_TDetalleExpediente_TMoneda1" Association="Self.FK_TDetalleExpediente_TMoneda1">
             <End Role="TMoneda" EntitySet="TMoneda" />
             <End Role="TDetalleExpediente" EntitySet="TDetalleExpediente" />
@@ -926,8 +909,7 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
             <End Role="TVotosxExpediente" EntitySet="TVotosxExpediente" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LitigiosoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1142,7 +1124,7 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
           <Property Name="idArea" Type="Int32" />
           <NavigationProperty Name="TAsunto" Relationship="Self.FK_TAsunto_TMateria" FromRole="TMateria" ToRole="TAsunto" />
           <NavigationProperty Name="TDetalleExpediente" Relationship="Self.FK_TDetalleExpediente_TMateria" FromRole="TMateria" ToRole="TDetalleExpediente" />
-          <NavigationProperty Name="TTipo" Relationship="Self.FK_TTipo_TMateria" FromRole="TMateria" ToRole="TTipo" />
+          <NavigationProperty Name="TTipo" Relationship="LitigiosoModel.FK_TTipo_TMateria" FromRole="TMateria" ToRole="TTipo" />
         </EntityType>
         <EntityType Name="TMediosNotificacion">
           <Key>
@@ -1283,16 +1265,6 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
           <Property Name="Observaciones" Type="String" MaxLength="125" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="TExpediente" Relationship="Self.FK_TTerrenosxExpediente_TExpediente" FromRole="TTerrenosxExpediente" ToRole="TExpediente" />
           <NavigationProperty Name="TTerrenosAfectados" Relationship="Self.FK_TTerrenosxExpediente_TTerrenosAfectados" FromRole="TTerrenosxExpediente" ToRole="TTerrenosAfectados" />
-        </EntityType>
-        <EntityType Name="TTipo">
-          <Key>
-            <PropertyRef Name="idTipo" />
-            <PropertyRef Name="MatIdMateria" />
-          </Key>
-          <Property Name="idTipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MatIdMateria" Type="Int32" Nullable="false" />
-          <Property Name="Descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="TMateria" Relationship="Self.FK_TTipo_TMateria" FromRole="TTipo" ToRole="TMateria" />
         </EntityType>
         <EntityType Name="TTipoAudiencia">
           <Key>
@@ -1657,18 +1629,6 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TTipo_TMateria">
-          <End Role="TMateria" Type="Self.TMateria" Multiplicity="1" />
-          <End Role="TTipo" Type="Self.TTipo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TMateria">
-              <PropertyRef Name="idMateria" />
-            </Principal>
-            <Dependent Role="TTipo">
-              <PropertyRef Name="MatIdMateria" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_TNotificacionesxExpediente_TMediosNotificacion">
           <End Role="TMediosNotificacion" Type="Self.TMediosNotificacion" Multiplicity="1" />
           <End Role="TNotificacionesxExpediente" Type="Self.TNotificacionesxExpediente" Multiplicity="*" />
@@ -1757,7 +1717,6 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
           <EntitySet Name="TProcedenciaExpediente" EntityType="Self.TProcedenciaExpediente" />
           <EntitySet Name="TTerrenosAfectados" EntityType="Self.TTerrenosAfectados" />
           <EntitySet Name="TTerrenosxExpediente" EntityType="Self.TTerrenosxExpediente" />
-          <EntitySet Name="TTipo" EntityType="Self.TTipo" />
           <EntitySet Name="TTipoAudiencia" EntityType="Self.TTipoAudiencia" />
           <EntitySet Name="TTipoExpediente" EntityType="Self.TTipoExpediente" />
           <EntitySet Name="TTipoGeneral" EntityType="Self.TTipoGeneral" />
@@ -1858,10 +1817,6 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
             <End Role="TExpediente" EntitySet="TExpediente" />
             <End Role="TVotosxExpediente" EntitySet="TVotosxExpediente" />
           </AssociationSet>
-          <AssociationSet Name="FK_TTipo_TMateria" Association="Self.FK_TTipo_TMateria">
-            <End Role="TMateria" EntitySet="TMateria" />
-            <End Role="TTipo" EntitySet="TTipo" />
-          </AssociationSet>
           <AssociationSet Name="FK_TNotificacionesxExpediente_TMediosNotificacion" Association="Self.FK_TNotificacionesxExpediente_TMediosNotificacion">
             <End Role="TMediosNotificacion" EntitySet="TMediosNotificacion" />
             <End Role="TNotificacionesxExpediente" EntitySet="TNotificacionesxExpediente" />
@@ -1882,7 +1837,33 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
             <End Role="TTerrenosAfectados" EntitySet="TTerrenosAfectados" />
             <End Role="TTerrenosxExpediente" EntitySet="TTerrenosxExpediente" />
           </AssociationSet>
+          <EntitySet Name="TTipo" EntityType="LitigiosoModel.TTipo" />
+          <AssociationSet Name="FK_TTipo_TMateria" Association="LitigiosoModel.FK_TTipo_TMateria">
+            <End Role="TMateria" EntitySet="TMateria" />
+            <End Role="TTipo" EntitySet="TTipo" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="TTipo">
+          <Key>
+            <PropertyRef Name="idTipo" />
+          </Key>
+          <Property Name="idTipo" Type="Int32" Nullable="false" />
+          <Property Name="MatIdMateria" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TMateria" Relationship="LitigiosoModel.FK_TTipo_TMateria" FromRole="TTipo" ToRole="TMateria" />
+        </EntityType>
+        <Association Name="FK_TTipo_TMateria">
+          <End Type="LitigiosoModel.TMateria" Role="TMateria" Multiplicity="1" />
+          <End Type="LitigiosoModel.TTipo" Role="TTipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TMateria">
+              <PropertyRef Name="idMateria" />
+            </Principal>
+            <Dependent Role="TTipo">
+              <PropertyRef Name="MatIdMateria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2207,15 +2188,6 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TTipo">
-            <EntityTypeMapping TypeName="LitigiosoModel.TTipo">
-              <MappingFragment StoreEntitySet="TTipo">
-                <ScalarProperty Name="idTipo" ColumnName="idTipo" />
-                <ScalarProperty Name="MatIdMateria" ColumnName="MatIdMateria" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TTipoAudiencia">
             <EntityTypeMapping TypeName="LitigiosoModel.TTipoAudiencia">
               <MappingFragment StoreEntitySet="TTipoAudiencia">
@@ -2289,6 +2261,15 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
               <MappingFragment StoreEntitySet="TParametros">
                 <ScalarProperty Name="ProcuradorInfPosesorias" ColumnName="ProcuradorInfPosesorias" />
                 <ScalarProperty Name="ExpedientesEntregaInmediata" ColumnName="ExpedientesEntregaInmediata" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TTipo">
+            <EntityTypeMapping TypeName="LitigiosoModel.TTipo">
+              <MappingFragment StoreEntitySet="TTipo">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="MatIdMateria" ColumnName="MatIdMateria" />
+                <ScalarProperty Name="idTipo" ColumnName="idTipo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
