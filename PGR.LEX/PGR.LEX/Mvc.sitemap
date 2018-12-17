@@ -7,6 +7,8 @@
     <mvcSiteMapNode title="Catálogos" controller="Catalogos" action="Index">
       <mvcSiteMapNode title="Moneda" action="Index" controller="Moneda">
         <mvcSiteMapNode title="Agregar" action="Create"  controller="Moneda" />
+        <mvcSiteMapNode title="Detalles" action="Details"  controller="Moneda" />
+        <mvcSiteMapNode title="Modificar" action="Edit"  controller="Moneda" />
       </mvcSiteMapNode>
       <mvcSiteMapNode title="Tipo" action="Index"  controller="Tipo" />
     </mvcSiteMapNode>
