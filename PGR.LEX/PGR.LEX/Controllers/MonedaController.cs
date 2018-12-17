@@ -45,7 +45,9 @@ namespace PGR.LEX.Controllers
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+ 
         [ValidateAntiForgeryToken]
+       
         public ActionResult Create([Bind(Include = "idMoneda,Descripcion")] TMoneda tMoneda)
         {
             if (ModelState.IsValid)
@@ -114,6 +116,17 @@ namespace PGR.LEX.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        //[ValidateAntiForgeryToken]
+        public ActionResult Borrar(int id)
+        {
+            TMoneda tMoneda = db.TMoneda.Find(id);
+            db.TMoneda.Remove(tMoneda);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
 
         protected override void Dispose(bool disposing)
         {

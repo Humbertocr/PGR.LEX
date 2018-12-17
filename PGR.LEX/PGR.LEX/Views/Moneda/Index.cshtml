@@ -21,13 +21,7 @@
                 @Html.DisplayNameFor(model => model.Descripcion)
             </th>
             <th>
-                Modificar
-            </th>
-            <th>
-                Eliminar
-            </th>
-            <th>
-                Ver detalles
+                Acciones
             </th>
         </tr>
 
@@ -35,33 +29,38 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.idMoneda)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
-            </td>
-            <td>
-                @Html.ActionLink("Modificar", "Edit", new { id = item.idMoneda }) 
-              
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.idMoneda)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
 
-            </td>
-            <td>
-                @Html.ActionLink("Eliminar", "Delete", new { id = item.idMoneda })
-            </td>
-            <td>
-                @Html.ActionLink("Detalles", "Details", new { id = item.idMoneda })
-            </td>
-        </tr>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.idMoneda }) |
+                    @Html.ActionLink("Detalles", "Details", new { id = item.idMoneda }) |
+                    @*@Html.ActionLink("Eliminar", "Delete", new { id = item.idMoneda })*@
+
+                    @Html.ActionLink(
+                   "Eliminar",
+                   "Borrar",
+                   new { id = item.idMoneda },
+                   new { onclick = "return confirm('¿Está seguro que desea eliminar este registro?');" })
+                   
+                </td>
+
+
+            </tr>
         }
     </tbody>
 
 </table>
 
+<br />
 
+@Html.ActionLink(" AGREGAR", "Create", "Moneda", new object { }, new { @class = "btn boton fa fa-plus", title= "Agregar un nuevo tipo de moneda" })
 
-@Html.ActionLink("Agregar", "Create", "Moneda", new object { }, new { @class = "btn boton" })
 
 
 

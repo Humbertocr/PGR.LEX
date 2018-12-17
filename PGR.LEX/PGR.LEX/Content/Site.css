@@ -33,6 +33,8 @@ textarea {
 .boton {
     background: #23374f;
     color:#ffffff;
+    
+
 }
 
     .boton:hover {
@@ -44,5 +46,21 @@ textarea {
     background: #23374F;
     color: #ffffff;
     
+}
+
+
+h2 {
+    color: #337ab7;
+  
+}
+
+footer {
+    background: #23374F;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    min-height:11%;
+    padding:2% 0 2% 0;
+    color:#ffffff;
 }
 

@@ -25,13 +25,32 @@
             </div>
         </div>
     </nav>
+
     <div class="container body-content">
+
+        <nav aria-label="breadcrumb">
+            @Html.MvcSiteMap().SiteMapPath()
+        </nav>
+
+
+
+
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - PGR  LITIGIOSO </p>
-        </footer>
+
     </div>
+    <footer>
+        <div class="container">
+         
+                <p class="d-flex justify-content-center">Procuradur&iacute;a General de la Rep&uacute;blica</p>
+        
+                <p class="d-flex justify-content-center">&copy; @DateTime.Now.Year - PGR LITIGIOSO </p>
+            
+  
+
+        </div>
+       
+    </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
