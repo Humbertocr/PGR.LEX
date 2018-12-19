@@ -185,9 +185,6 @@
     <Compile Include="Models\TDespachosJudiciales.cs">
       <DependentUpon>DBLitigioso.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TDetalleExpediente.cs">
-      <DependentUpon>DBLitigioso.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\TEstadoProcesal.cs">
       <DependentUpon>DBLitigioso.tt</DependentUpon>
     </Compile>
@@ -328,7 +325,9 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
-    <Content Include="Mvc.sitemap" />
+    <Content Include="Mvc.sitemap">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="MvcSiteMapSchema.xsd">
       <SubType>Designer</SubType>
     </None>

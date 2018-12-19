@@ -1,10 +1,10 @@
 ﻿@model PGR.LEX.Models.TTipo
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Modificar tipo";
 }
 
-<h2>Edit</h2>
+<h2>Modificar tipo</h2>
 
 
 @using (Html.BeginForm())
@@ -12,7 +12,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>TTipo</h4>
+      
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.idTipo)
@@ -29,15 +29,15 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                @Html.ActionLink(" REGRESAR", "Index", "Tipo", new object { }, new { @class = "btn boton fa fa-arrow-left" })
+                <input type="submit" value="GUARDAR" class="btn boton fa" />
+
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

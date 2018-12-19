@@ -11,28 +11,10 @@ namespace PGR.LEX.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
-
+    
     public partial class TMoneda
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TMoneda()
-        {
-            this.TDetalleExpediente = new HashSet<TDetalleExpediente>();
-            this.TDetalleExpediente1 = new HashSet<TDetalleExpediente>();
-        }
-
-        [Display(Name = "ID")]
         public int idMoneda { get; set; }
-        [Required]
-        [StringLength(50)]
-        [Display(Name = "Descripción")]
         public string Descripcion { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TDetalleExpediente> TDetalleExpediente { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TDetalleExpediente> TDetalleExpediente1 { get; set; }
     }
 }

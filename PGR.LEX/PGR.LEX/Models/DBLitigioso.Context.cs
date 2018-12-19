@@ -32,7 +32,6 @@ namespace PGR.LEX.Models
         public virtual DbSet<TBitacoraNotificaciones> TBitacoraNotificaciones { get; set; }
         public virtual DbSet<TCircuitosJudiciales> TCircuitosJudiciales { get; set; }
         public virtual DbSet<TDespachosJudiciales> TDespachosJudiciales { get; set; }
-        public virtual DbSet<TDetalleExpediente> TDetalleExpediente { get; set; }
         public virtual DbSet<TEstadoProcesal> TEstadoProcesal { get; set; }
         public virtual DbSet<TEstadosxAudiencia> TEstadosxAudiencia { get; set; }
         public virtual DbSet<TEstadosxExpediente> TEstadosxExpediente { get; set; }

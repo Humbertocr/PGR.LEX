@@ -100,34 +100,6 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TBitacoraMovimientos' no tiene
           <Property Name="Electronico" Type="bit" Nullable="false" />
           <Property Name="EntregaInmediata" Type="bit" Nullable="false" />
         </EntityType>
-        <EntityType Name="TDetalleExpediente">
-          <Key>
-            <PropertyRef Name="idDetalleExpediente" />
-          </Key>
-          <Property Name="idDetalleExpediente" Type="int" Nullable="false" />
-          <Property Name="idNumExpediente" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="idMateria" Type="int" Nullable="false" />
-          <Property Name="idTipo" Type="int" Nullable="false" />
-          <Property Name="idAsunto" Type="int" Nullable="false" />
-          <Property Name="idGeneral" Type="int" />
-          <Property Name="idParticipacion" Type="int" />
-          <Property Name="idEstadoProcesal" Type="int" Nullable="false" />
-          <Property Name="Inestimable" Type="bit" Nullable="false" />
-          <Property Name="Activo" Type="bit" Nullable="false" />
-          <Property Name="fechaFenecido" Type="datetime" />
-          <Property Name="Area" Type="int" Nullable="false" />
-          <Property Name="Comentarios" Type="varchar" MaxLength="5000" />
-          <Property Name="IdMonedaPretencion" Type="int" />
-          <Property Name="Pretension" Type="money" Nullable="false" />
-          <Property Name="IdMonedaCuantia" Type="int" />
-          <Property Name="Cuantia" Type="money" Nullable="false" />
-          <Property Name="Costas" Type="money" Nullable="false" />
-          <Property Name="idCedulaFuncionario" Type="bigint" Nullable="false" />
-          <Property Name="Procurador" Type="bit" Nullable="false" />
-          <Property Name="AsignadoActual" Type="bit" Nullable="false" />
-          <Property Name="FechaAsignacion" Type="datetime" Nullable="false" />
-          <Property Name="FechaDesasignacion" Type="datetime" />
-        </EntityType>
         <EntityType Name="TEstadoProcesal">
           <Key>
             <PropertyRef Name="idEstadoProcesal" />
@@ -180,7 +152,7 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TBitacoraMovimientos' no tiene
           </Key>
           <Property Name="ExpedientePrincipal" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ExpedienteHijo" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" />
         </EntityType>
         <EntityType Name="TFormatosExpedientes">
           <Key>
@@ -202,7 +174,7 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TBitacoraMovimientos' no tiene
           <Key>
             <PropertyRef Name="idMateria" />
           </Key>
-          <Property Name="idMateria" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idMateria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="idArea" Type="int" />
         </EntityType>
@@ -351,7 +323,7 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
           <Key>
             <PropertyRef Name="idTipo" />
           </Key>
-          <Property Name="idTipo" Type="int" Nullable="false" />
+          <Property Name="idTipo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MatIdMateria" Type="int" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="150" Nullable="false" />
         </EntityType>
@@ -366,7 +338,7 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
           <Key>
             <PropertyRef Name="idTipoExpediente" />
           </Key>
-          <Property Name="idTipoExpediente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idTipoExpediente" Type="int" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="Peso" Type="int" />
         </EntityType>
@@ -495,54 +467,6 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
             </Principal>
             <Dependent Role="TDespachosJudiciales">
               <PropertyRef Name="idCircuito" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TDetalleExpediente_TEstadoProcesal">
-          <End Role="TEstadoProcesal" Type="Self.TEstadoProcesal" Multiplicity="1" />
-          <End Role="TDetalleExpediente" Type="Self.TDetalleExpediente" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TEstadoProcesal">
-              <PropertyRef Name="idEstadoProcesal" />
-            </Principal>
-            <Dependent Role="TDetalleExpediente">
-              <PropertyRef Name="idEstadoProcesal" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TDetalleExpediente_TMateria">
-          <End Role="TMateria" Type="Self.TMateria" Multiplicity="1" />
-          <End Role="TDetalleExpediente" Type="Self.TDetalleExpediente" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TMateria">
-              <PropertyRef Name="idMateria" />
-            </Principal>
-            <Dependent Role="TDetalleExpediente">
-              <PropertyRef Name="idMateria" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TDetalleExpediente_TMoneda1">
-          <End Role="TMoneda" Type="Self.TMoneda" Multiplicity="0..1" />
-          <End Role="TDetalleExpediente" Type="Self.TDetalleExpediente" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TMoneda">
-              <PropertyRef Name="idMoneda" />
-            </Principal>
-            <Dependent Role="TDetalleExpediente">
-              <PropertyRef Name="IdMonedaCuantia" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TDetalleExpediente_TParticipacionEstado">
-          <End Role="TParticipacionEstado" Type="Self.TParticipacionEstado" Multiplicity="0..1" />
-          <End Role="TDetalleExpediente" Type="Self.TDetalleExpediente" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TParticipacionEstado">
-              <PropertyRef Name="idParticipacion" />
-            </Principal>
-            <Dependent Role="TDetalleExpediente">
-              <PropertyRef Name="idParticipacion" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -746,7 +670,6 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
           <EntitySet Name="TBitacoraNotificaciones" EntityType="Self.TBitacoraNotificaciones" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TCircuitosJudiciales" EntityType="Self.TCircuitosJudiciales" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TDespachosJudiciales" EntityType="Self.TDespachosJudiciales" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TDetalleExpediente" EntityType="Self.TDetalleExpediente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TEstadoProcesal" EntityType="Self.TEstadoProcesal" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TEstadosxAudiencia" EntityType="Self.TEstadosxAudiencia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TEstadosxExpediente" EntityType="Self.TEstadosxExpediente" Schema="dbo" store:Type="Tables" />
@@ -827,22 +750,6 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
           <AssociationSet Name="FK_TDespachosJudiciales_TCircuitosJudiciales" Association="Self.FK_TDespachosJudiciales_TCircuitosJudiciales">
             <End Role="TCircuitosJudiciales" EntitySet="TCircuitosJudiciales" />
             <End Role="TDespachosJudiciales" EntitySet="TDespachosJudiciales" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TDetalleExpediente_TEstadoProcesal" Association="Self.FK_TDetalleExpediente_TEstadoProcesal">
-            <End Role="TEstadoProcesal" EntitySet="TEstadoProcesal" />
-            <End Role="TDetalleExpediente" EntitySet="TDetalleExpediente" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TDetalleExpediente_TMateria" Association="Self.FK_TDetalleExpediente_TMateria">
-            <End Role="TMateria" EntitySet="TMateria" />
-            <End Role="TDetalleExpediente" EntitySet="TDetalleExpediente" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TDetalleExpediente_TMoneda1" Association="Self.FK_TDetalleExpediente_TMoneda1">
-            <End Role="TMoneda" EntitySet="TMoneda" />
-            <End Role="TDetalleExpediente" EntitySet="TDetalleExpediente" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TDetalleExpediente_TParticipacionEstado" Association="Self.FK_TDetalleExpediente_TParticipacionEstado">
-            <End Role="TParticipacionEstado" EntitySet="TParticipacionEstado" />
-            <End Role="TDetalleExpediente" EntitySet="TDetalleExpediente" />
           </AssociationSet>
           <AssociationSet Name="FK_TEstadosxExpediente_TEstadoProcesal" Association="Self.FK_TEstadosxExpediente_TEstadoProcesal">
             <End Role="TEstadoProcesal" EntitySet="TEstadoProcesal" />
@@ -997,39 +904,6 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
           <NavigationProperty Name="TCircuitosJudiciales" Relationship="Self.FK_TDespachosJudiciales_TCircuitosJudiciales" FromRole="TDespachosJudiciales" ToRole="TCircuitosJudiciales" />
           <NavigationProperty Name="TExpediente" Relationship="Self.FK_TExpediente_TDespachosJudiciales" FromRole="TDespachosJudiciales" ToRole="TExpediente" />
         </EntityType>
-        <EntityType Name="TDetalleExpediente">
-          <Key>
-            <PropertyRef Name="idDetalleExpediente" />
-          </Key>
-          <Property Name="idDetalleExpediente" Type="Int32" Nullable="false" />
-          <Property Name="idNumExpediente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="idMateria" Type="Int32" Nullable="false" />
-          <Property Name="idTipo" Type="Int32" Nullable="false" />
-          <Property Name="idAsunto" Type="Int32" Nullable="false" />
-          <Property Name="idGeneral" Type="Int32" />
-          <Property Name="idParticipacion" Type="Int32" />
-          <Property Name="idEstadoProcesal" Type="Int32" Nullable="false" />
-          <Property Name="Inestimable" Type="Boolean" Nullable="false" />
-          <Property Name="Activo" Type="Boolean" Nullable="false" />
-          <Property Name="fechaFenecido" Type="DateTime" Precision="3" />
-          <Property Name="Area" Type="Int32" Nullable="false" />
-          <Property Name="Comentarios" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
-          <Property Name="IdMonedaPretencion" Type="Int32" />
-          <Property Name="Pretension" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <Property Name="IdMonedaCuantia" Type="Int32" />
-          <Property Name="Cuantia" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <Property Name="Costas" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <Property Name="idCedulaFuncionario" Type="Int64" Nullable="false" />
-          <Property Name="Procurador" Type="Boolean" Nullable="false" />
-          <Property Name="AsignadoActual" Type="Boolean" Nullable="false" />
-          <Property Name="FechaAsignacion" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="FechaDesasignacion" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="TEstadoProcesal" Relationship="Self.FK_TDetalleExpediente_TEstadoProcesal" FromRole="TDetalleExpediente" ToRole="TEstadoProcesal" />
-          <NavigationProperty Name="TMateria" Relationship="Self.FK_TDetalleExpediente_TMateria" FromRole="TDetalleExpediente" ToRole="TMateria" />
-          <NavigationProperty Name="TMoneda" Relationship="Self.FK_TDetalleExpediente_TMoneda" FromRole="TDetalleExpediente" ToRole="TMoneda" />
-          <NavigationProperty Name="TMoneda1" Relationship="Self.FK_TDetalleExpediente_TMoneda1" FromRole="TDetalleExpediente" ToRole="TMoneda" />
-          <NavigationProperty Name="TParticipacionEstado" Relationship="Self.FK_TDetalleExpediente_TParticipacionEstado" FromRole="TDetalleExpediente" ToRole="TParticipacionEstado" />
-        </EntityType>
         <EntityType Name="TEstadoProcesal">
           <Key>
             <PropertyRef Name="idEstadoProcesal" />
@@ -1038,7 +912,6 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
           <Property Name="Descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="Area_Corresponde" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Tipo_Expediente" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="TDetalleExpediente" Relationship="Self.FK_TDetalleExpediente_TEstadoProcesal" FromRole="TEstadoProcesal" ToRole="TDetalleExpediente" />
           <NavigationProperty Name="TEstadosxExpediente" Relationship="Self.FK_TEstadosxExpediente_TEstadoProcesal" FromRole="TEstadoProcesal" ToRole="TEstadosxExpediente" />
         </EntityType>
         <EntityType Name="TEstadosxAudiencia">
@@ -1095,7 +968,7 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
           </Key>
           <Property Name="ExpedientePrincipal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ExpedienteHijo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Fecha" Type="DateTime" Precision="3" />
           <NavigationProperty Name="TExpediente" Relationship="Self.FK_TExpedientesAcumulados_TExpediente" FromRole="TExpedientesAcumulados" ToRole="TExpediente" />
         </EntityType>
         <EntityType Name="TFormatosExpedientes">
@@ -1123,7 +996,6 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="idArea" Type="Int32" />
           <NavigationProperty Name="TAsunto" Relationship="Self.FK_TAsunto_TMateria" FromRole="TMateria" ToRole="TAsunto" />
-          <NavigationProperty Name="TDetalleExpediente" Relationship="Self.FK_TDetalleExpediente_TMateria" FromRole="TMateria" ToRole="TDetalleExpediente" />
           <NavigationProperty Name="TTipo" Relationship="LitigiosoModel.FK_TTipo_TMateria" FromRole="TMateria" ToRole="TTipo" />
         </EntityType>
         <EntityType Name="TMediosNotificacion">
@@ -1140,8 +1012,6 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
           </Key>
           <Property Name="idMoneda" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="TDetalleExpediente" Relationship="Self.FK_TDetalleExpediente_TMoneda" FromRole="TMoneda" ToRole="TDetalleExpediente" />
-          <NavigationProperty Name="TDetalleExpediente1" Relationship="Self.FK_TDetalleExpediente_TMoneda1" FromRole="TMoneda" ToRole="TDetalleExpediente" />
         </EntityType>
         <EntityType Name="TMovimientosxAudiencias">
           <Key>
@@ -1221,7 +1091,6 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
           </Key>
           <Property Name="idParticipacion" Type="Int32" Nullable="false" />
           <Property Name="Descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="TDetalleExpediente" Relationship="Self.FK_TDetalleExpediente_TParticipacionEstado" FromRole="TParticipacionEstado" ToRole="TDetalleExpediente" />
           <NavigationProperty Name="TNotificacioneSinExpediente" Relationship="Self.FK_TNotificacioneSinExpediente_TParticipacionEstado" FromRole="TParticipacionEstado" ToRole="TNotificacioneSinExpediente" />
         </EntityType>
         <EntityType Name="TPlanosxExpediente">
@@ -1461,66 +1330,6 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TDetalleExpediente_TEstadoProcesal">
-          <End Role="TEstadoProcesal" Type="Self.TEstadoProcesal" Multiplicity="1" />
-          <End Role="TDetalleExpediente" Type="Self.TDetalleExpediente" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TEstadoProcesal">
-              <PropertyRef Name="idEstadoProcesal" />
-            </Principal>
-            <Dependent Role="TDetalleExpediente">
-              <PropertyRef Name="idEstadoProcesal" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TDetalleExpediente_TMateria">
-          <End Role="TMateria" Type="Self.TMateria" Multiplicity="1" />
-          <End Role="TDetalleExpediente" Type="Self.TDetalleExpediente" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TMateria">
-              <PropertyRef Name="idMateria" />
-            </Principal>
-            <Dependent Role="TDetalleExpediente">
-              <PropertyRef Name="idMateria" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TDetalleExpediente_TMoneda">
-          <End Role="TMoneda" Type="Self.TMoneda" Multiplicity="1" />
-          <End Role="TDetalleExpediente" Type="Self.TDetalleExpediente" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TMoneda">
-              <PropertyRef Name="idMoneda" />
-            </Principal>
-            <Dependent Role="TDetalleExpediente">
-              <PropertyRef Name="idMateria" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TDetalleExpediente_TMoneda1">
-          <End Role="TMoneda" Type="Self.TMoneda" Multiplicity="0..1" />
-          <End Role="TDetalleExpediente" Type="Self.TDetalleExpediente" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TMoneda">
-              <PropertyRef Name="idMoneda" />
-            </Principal>
-            <Dependent Role="TDetalleExpediente">
-              <PropertyRef Name="IdMonedaCuantia" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TDetalleExpediente_TParticipacionEstado">
-          <End Role="TParticipacionEstado" Type="Self.TParticipacionEstado" Multiplicity="0..1" />
-          <End Role="TDetalleExpediente" Type="Self.TDetalleExpediente" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TParticipacionEstado">
-              <PropertyRef Name="idParticipacion" />
-            </Principal>
-            <Dependent Role="TDetalleExpediente">
-              <PropertyRef Name="idParticipacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_TEstadosxExpediente_TEstadoProcesal">
           <End Role="TEstadoProcesal" Type="Self.TEstadoProcesal" Multiplicity="1" />
           <End Role="TEstadosxExpediente" Type="Self.TEstadosxExpediente" Multiplicity="*" />
@@ -1697,7 +1506,6 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
           <EntitySet Name="TBitacoraNotificaciones" EntityType="Self.TBitacoraNotificaciones" />
           <EntitySet Name="TCircuitosJudiciales" EntityType="Self.TCircuitosJudiciales" />
           <EntitySet Name="TDespachosJudiciales" EntityType="Self.TDespachosJudiciales" />
-          <EntitySet Name="TDetalleExpediente" EntityType="Self.TDetalleExpediente" />
           <EntitySet Name="TEstadoProcesal" EntityType="Self.TEstadoProcesal" />
           <EntitySet Name="TEstadosxAudiencia" EntityType="Self.TEstadosxAudiencia" />
           <EntitySet Name="TEstadosxExpediente" EntityType="Self.TEstadosxExpediente" />
@@ -1760,26 +1568,6 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
           <AssociationSet Name="FK_TExpediente_TDespachosJudiciales" Association="Self.FK_TExpediente_TDespachosJudiciales">
             <End Role="TDespachosJudiciales" EntitySet="TDespachosJudiciales" />
             <End Role="TExpediente" EntitySet="TExpediente" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TDetalleExpediente_TEstadoProcesal" Association="Self.FK_TDetalleExpediente_TEstadoProcesal">
-            <End Role="TEstadoProcesal" EntitySet="TEstadoProcesal" />
-            <End Role="TDetalleExpediente" EntitySet="TDetalleExpediente" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TDetalleExpediente_TMateria" Association="Self.FK_TDetalleExpediente_TMateria">
-            <End Role="TMateria" EntitySet="TMateria" />
-            <End Role="TDetalleExpediente" EntitySet="TDetalleExpediente" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TDetalleExpediente_TMoneda" Association="Self.FK_TDetalleExpediente_TMoneda">
-            <End Role="TMoneda" EntitySet="TMoneda" />
-            <End Role="TDetalleExpediente" EntitySet="TDetalleExpediente" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TDetalleExpediente_TMoneda1" Association="Self.FK_TDetalleExpediente_TMoneda1">
-            <End Role="TMoneda" EntitySet="TMoneda" />
-            <End Role="TDetalleExpediente" EntitySet="TDetalleExpediente" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TDetalleExpediente_TParticipacionEstado" Association="Self.FK_TDetalleExpediente_TParticipacionEstado">
-            <End Role="TParticipacionEstado" EntitySet="TParticipacionEstado" />
-            <End Role="TDetalleExpediente" EntitySet="TDetalleExpediente" />
           </AssociationSet>
           <AssociationSet Name="FK_TEstadosxExpediente_TEstadoProcesal" Association="Self.FK_TEstadosxExpediente_TEstadoProcesal">
             <End Role="TEstadoProcesal" EntitySet="TEstadoProcesal" />
@@ -1847,7 +1635,7 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
           <Key>
             <PropertyRef Name="idTipo" />
           </Key>
-          <Property Name="idTipo" Type="Int32" Nullable="false" />
+          <Property Name="idTipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MatIdMateria" Type="Int32" Nullable="false" />
           <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="TMateria" Relationship="LitigiosoModel.FK_TTipo_TMateria" FromRole="TTipo" ToRole="TMateria" />
@@ -1945,35 +1733,6 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="Electronico" ColumnName="Electronico" />
                 <ScalarProperty Name="EntregaInmediata" ColumnName="EntregaInmediata" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TDetalleExpediente">
-            <EntityTypeMapping TypeName="LitigiosoModel.TDetalleExpediente">
-              <MappingFragment StoreEntitySet="TDetalleExpediente">
-                <ScalarProperty Name="idDetalleExpediente" ColumnName="idDetalleExpediente" />
-                <ScalarProperty Name="idNumExpediente" ColumnName="idNumExpediente" />
-                <ScalarProperty Name="idMateria" ColumnName="idMateria" />
-                <ScalarProperty Name="idTipo" ColumnName="idTipo" />
-                <ScalarProperty Name="idAsunto" ColumnName="idAsunto" />
-                <ScalarProperty Name="idGeneral" ColumnName="idGeneral" />
-                <ScalarProperty Name="idParticipacion" ColumnName="idParticipacion" />
-                <ScalarProperty Name="idEstadoProcesal" ColumnName="idEstadoProcesal" />
-                <ScalarProperty Name="Inestimable" ColumnName="Inestimable" />
-                <ScalarProperty Name="Activo" ColumnName="Activo" />
-                <ScalarProperty Name="fechaFenecido" ColumnName="fechaFenecido" />
-                <ScalarProperty Name="Area" ColumnName="Area" />
-                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
-                <ScalarProperty Name="IdMonedaPretencion" ColumnName="IdMonedaPretencion" />
-                <ScalarProperty Name="Pretension" ColumnName="Pretension" />
-                <ScalarProperty Name="IdMonedaCuantia" ColumnName="IdMonedaCuantia" />
-                <ScalarProperty Name="Cuantia" ColumnName="Cuantia" />
-                <ScalarProperty Name="Costas" ColumnName="Costas" />
-                <ScalarProperty Name="idCedulaFuncionario" ColumnName="idCedulaFuncionario" />
-                <ScalarProperty Name="Procurador" ColumnName="Procurador" />
-                <ScalarProperty Name="AsignadoActual" ColumnName="AsignadoActual" />
-                <ScalarProperty Name="FechaAsignacion" ColumnName="FechaAsignacion" />
-                <ScalarProperty Name="FechaDesasignacion" ColumnName="FechaDesasignacion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

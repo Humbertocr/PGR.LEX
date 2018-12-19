@@ -7,21 +7,21 @@
 <h2>Detalle Moneda</h2>
 
 <div>
-   
+
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </dt>
+    <div class="form-group">
 
-        <dd>
-            @Html.DisplayFor(model => model.Descripcion)
-        </dd>
+        @Html.DisplayNameFor(model => model.Descripcion)
 
-    </dl>
-</div>
-<p>
+       
+        @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control", disabled = "true" } })
 
-    @Html.ActionLink(" REGRESAR", "Index", "Moneda", new object { }, new { @class = "btn boton fa fa-arrow-left" })
-    @Html.ActionLink(" MODIFICAR", "Edit", new { id = Model.idMoneda }, new { @class = "btn boton fa fa-pencil" }) 
-</p>
+    </div>
+       
+
+    </div>
+    <p>
+
+        @Html.ActionLink(" REGRESAR", "Index", "Moneda", new object { }, new { @class = "btn boton fa fa-arrow-left" })
+        @Html.ActionLink(" MODIFICAR", "Edit", new { id = Model.idMoneda }, new { @class = "btn boton fa fa-pencil" })
+    </p>

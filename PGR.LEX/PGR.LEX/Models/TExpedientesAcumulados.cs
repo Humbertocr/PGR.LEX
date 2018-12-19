@@ -16,7 +16,7 @@ namespace PGR.LEX.Models
     {
         public string ExpedientePrincipal { get; set; }
         public string ExpedienteHijo { get; set; }
-        public System.DateTime Fecha { get; set; }
+        public Nullable<System.DateTime> Fecha { get; set; }
     
         public virtual TExpediente TExpediente { get; set; }
     }

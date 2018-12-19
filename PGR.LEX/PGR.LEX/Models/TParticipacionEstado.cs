@@ -17,15 +17,12 @@ namespace PGR.LEX.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TParticipacionEstado()
         {
-            this.TDetalleExpediente = new HashSet<TDetalleExpediente>();
             this.TNotificacioneSinExpediente = new HashSet<TNotificacioneSinExpediente>();
         }
     
         public int idParticipacion { get; set; }
         public string Descripcion { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TDetalleExpediente> TDetalleExpediente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TNotificacioneSinExpediente> TNotificacioneSinExpediente { get; set; }
     }

@@ -4,23 +4,20 @@
     ViewBag.Title = "Detalle Tipo de Audiencia";
 }
 
-<h2>Tipo de Audiencia</h2>
+<h2>Tipo de audiencia</h2>
 
 <div>
-   
+
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </dt>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control", disabled = "true" } })
+        </div>
+    </div>
+    </div>
+    <p>
 
-        <dd>
-            @Html.DisplayFor(model => model.Descripcion)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Modificar", "Edit", new { id = Model.idTipoAudiencia }) |
-    @Html.ActionLink("Regresar", "Index")
-</p>
+        @Html.ActionLink(" REGRESAR", "Index", "TipoAudiencia", new object { }, new { @class = "btn boton fa fa-arrow-left" })
+        @Html.ActionLink(" MODIFICAR", "Edit", new { id = Model.idTipoAudiencia }, new { @class = "btn boton fa fa-pencil" })
+    </p>

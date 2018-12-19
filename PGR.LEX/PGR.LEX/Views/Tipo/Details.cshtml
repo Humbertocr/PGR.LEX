@@ -1,34 +1,46 @@
 ﻿@model PGR.LEX.Models.TTipo
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalle tipo";
 }
 
-<h2>Details</h2>
+<h2>Detalle tipo</h2>
 
 <div>
-    <h4>TTipo</h4>
+
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Descripcion)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TMateria.Descripcion)
-        </dt>
+    <div class="form-group">
+        @Html.DisplayNameFor(model => model.TMateria.Descripcion)
 
-        <dd>
-            @Html.DisplayFor(model => model.TMateria.Descripcion)
-        </dd>
+        @Html.EditorFor(model => model.TMateria.Descripcion, new { htmlAttributes = new { @class = "form-control", disabled = "true" } })
+    </div>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+    <div class="form-group">
+        @Html.DisplayNameFor(model => model.Descripcion)
+
+        @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control", disabled = "true" } })
+    </div>
+
+
+
+
+
+      
+
+
+
+
+
+
+    </div>
+    <p>
+        @Html.ActionLink(" REGRESAR", "Index", "Tipo", new object { }, new { @class = "btn boton fa fa-arrow-left" })
+        @*@Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |*@
+
+
+
+
+        @Html.ActionLink(" MODIFICAR", "Edit", new { id = Model.idTipo }, new { @class = "btn boton fa fa-pencil" })
+    </p>

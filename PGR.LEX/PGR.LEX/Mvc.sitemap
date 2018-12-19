@@ -4,13 +4,21 @@
             xsi:schemaLocation="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0 MvcSiteMapSchema.xsd">
 
   <mvcSiteMapNode title="Inicio" controller="Home" action="Index">
-    <mvcSiteMapNode title="Catálogos" controller="Catalogos" action="Index">
-      <mvcSiteMapNode title="Moneda" action="Index" controller="Moneda">
+    <mvcSiteMapNode title="Catálogos" controller="Catalogos" action="Index" >
+      
+      
+      <mvcSiteMapNode title="Moneda" controller="Moneda" action="Index">
         <mvcSiteMapNode title="Agregar" action="Create"  controller="Moneda" />
-        <mvcSiteMapNode title="Detalles" action="Details"  controller="Moneda" />
-        <mvcSiteMapNode title="Modificar" action="Edit"  controller="Moneda" />
+        <mvcSiteMapNode title="Editar"   action="Edit" controller="Moneda" />
+        
       </mvcSiteMapNode>
-      <mvcSiteMapNode title="Tipo" action="Index"  controller="Tipo" />
+      <mvcSiteMapNode title="Tipo" action="Index"  controller="Tipo">
+        <mvcSiteMapNode title="Agregar" action="Create"  controller="Tipo" />
+    </mvcSiteMapNode>
+
+      <mvcSiteMapNode title="Tipo de audiencia" action="Index"  controller="TipoAudiencia">
+        <mvcSiteMapNode title="Agregar" action="Create"  controller="TipoAudiencia" />
+      </mvcSiteMapNode>
     </mvcSiteMapNode>
   
     

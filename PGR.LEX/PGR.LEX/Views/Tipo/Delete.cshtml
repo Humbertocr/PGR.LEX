@@ -4,37 +4,45 @@
     ViewBag.Title = "Eliminar Tipo";
 }
 
-<h2>Eliminar</h2>
+<h2>Eliminar tipo</h2>
 
-<h3>&iquest;Est&aacute; seguro que desea eliminar el registro?</h3>
+<br />
+<div class="alert alert-info" role="alert">
+    <i class="fa fa-exclamation-circle fa-lg" aria-hidden="true"></i>
+    &iquest;Est&aacute; seguro que desea eliminar el registro?
+</div>
+
+   
 <div>
-    <h4>TTipo</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Descripcion)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TMateria.Descripcion)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TMateria.Descripcion)
-        </dd>
 
-    </dl>
+    <div class="form-group">
+        @Html.DisplayNameFor(model => model.TMateria.Descripcion)
 
-    @using (Html.BeginForm()) {
+        @Html.DisplayFor(model => model.TMateria.Descripcion)
+        @Html.EditorFor(model => model.TMateria.Descripcion, new { htmlAttributes = new { @class = "form-control", disabled = "true" } })
+    </div>
+
+    <div class="form-group">
+        @Html.DisplayNameFor(model => model.Descripcion)
+        @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control", disabled = "true" } })
+    </div>
+
+
+
+
+
+
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Eliminar" class="btn btn-default" /> |
-            @Html.ActionLink("Regresar", "Index")
+
+            @Html.ActionLink(" REGRESAR", "Index", "TipoAudiencia", new object { }, new { @class = "btn boton fa fa-arrow-left" })
+            <input type="submit" value="ELIMINAR" class="btn boton fa" />
         </div>
     }
 </div>

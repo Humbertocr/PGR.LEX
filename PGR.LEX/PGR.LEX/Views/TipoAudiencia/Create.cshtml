@@ -1,10 +1,10 @@
 ﻿@model PGR.LEX.Models.TTipoAudiencia
 
 @{
-    ViewBag.Title = "Agregar Tipo de audiencia";
+    ViewBag.Title = "Agregar tipo de audiencia";
 }
 
-<h2>Agregar</h2>
+<h2>Agregar tipo de audiencia</h2>
 
 
 @using (Html.BeginForm()) 
@@ -25,14 +25,15 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-default" />
+                @Html.ActionLink(" REGRESAR", "Index", "TipoAudiencia", new object { }, new { @class = "btn boton fa fa-arrow-left" })
+                <input type="submit" value="GUARDAR" class="btn boton fa" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Regresar", "Index")
+  
 </div>
 
 @section Scripts {

@@ -17,7 +17,6 @@ namespace PGR.LEX.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TEstadoProcesal()
         {
-            this.TDetalleExpediente = new HashSet<TDetalleExpediente>();
             this.TEstadosxExpediente = new HashSet<TEstadosxExpediente>();
         }
     
@@ -26,8 +25,6 @@ namespace PGR.LEX.Models
         public string Area_Corresponde { get; set; }
         public string Tipo_Expediente { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TDetalleExpediente> TDetalleExpediente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TEstadosxExpediente> TEstadosxExpediente { get; set; }
     }
