@@ -5,7 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="d5bc1fbeb8c7452fb9ba2b7a8a7abbad" Name="Diagram1">
-        <EntityTypeShape EntityType="LitigiosoModel.TAnomalias" Width="1.5" PointX="8.25" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="LitigiosoModel.TAsunto" Width="1.5" PointX="15" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="LitigiosoModel.TAudiencias" Width="1.5" PointX="8.25" PointY="20.625" IsExpanded="true" />
         <EntityTypeShape EntityType="LitigiosoModel.TAudienciasDetalleExpediente" Width="1.5" PointX="10.5" PointY="13.125" IsExpanded="true" />
@@ -23,24 +22,20 @@
         <EntityTypeShape EntityType="LitigiosoModel.TMediosNotificacion" Width="1.5" PointX="8.25" PointY="28.625" IsExpanded="true" />
         <EntityTypeShape EntityType="LitigiosoModel.TMoneda" Width="1.5" PointX="15.75" PointY="8.625" IsExpanded="true" />
         <EntityTypeShape EntityType="LitigiosoModel.TMovimientosxAudiencias" Width="1.5" PointX="10.5" PointY="21" IsExpanded="true" />
-        <EntityTypeShape EntityType="LitigiosoModel.TNegociacionesxExpediente" Width="1.5" PointX="10.5" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LitigiosoModel.TNegociacionesxExpediente" Width="3" PointX="10.5" PointY="9.875" IsExpanded="true" />
         <EntityTypeShape EntityType="LitigiosoModel.TNotificacioneSinExpediente" Width="1.5" PointX="21" PointY="6.625" IsExpanded="true" />
         <EntityTypeShape EntityType="LitigiosoModel.TNotificacionesxExpediente" Width="1.5" PointX="10.5" PointY="16.125" IsExpanded="true" />
         <EntityTypeShape EntityType="LitigiosoModel.TParticipacionEstado" Width="1.5" PointX="15.75" PointY="11.125" IsExpanded="true" />
         <EntityTypeShape EntityType="LitigiosoModel.TPlanosxExpediente" Width="1.5" PointX="7.5" PointY="24.625" IsExpanded="true" />
         <EntityTypeShape EntityType="LitigiosoModel.TProcedenciaExpediente" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LitigiosoModel.TTerrenosAfectados" Width="1.5" PointX="5.25" PointY="18.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="LitigiosoModel.TTerrenosxExpediente" Width="1.5" PointX="7.5" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LitigiosoModel.TTerrenosxExpediente" Width="1.5" PointX="5.125" PointY="17.875" IsExpanded="true" />
         <EntityTypeShape EntityType="LitigiosoModel.TTipoAudiencia" Width="1.5" PointX="6" PointY="21.375" IsExpanded="true" />
         <EntityTypeShape EntityType="LitigiosoModel.TTipoExpediente" Width="1.5" PointX="18.75" PointY="12.125" IsExpanded="true" />
         <EntityTypeShape EntityType="LitigiosoModel.TTipoGeneral" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LitigiosoModel.TTiposNegociacion" Width="1.5" PointX="8.25" PointY="8.375" IsExpanded="true" />
         <EntityTypeShape EntityType="LitigiosoModel.TVotosxExpediente" Width="1.5" PointX="7.5" PointY="31.125" IsExpanded="true" />
         <EntityTypeShape EntityType="LitigiosoModel.TBitacoraMovimientos" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LitigiosoModel.TNatutalizaciones" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LitigiosoModel.TParametros" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
-        <AssociationConnector Association="LitigiosoModel.FK_TNotificacioneSinExpediente_TAnomalias" ManuallyRouted="false" />
-        <AssociationConnector Association="LitigiosoModel.FK_TNotificacionesxExpediente_TAnomalias" ManuallyRouted="false" />
         <AssociationConnector Association="LitigiosoModel.FK_TAsunto_TMateria" ManuallyRouted="false" />
         <AssociationConnector Association="LitigiosoModel.FK_TAudiencias_TTipoAudiencia" ManuallyRouted="false" />
         <AssociationConnector Association="LitigiosoModel.FK_TAudienciasDetalleExp_TAudiencias" ManuallyRouted="false" />
@@ -58,12 +53,17 @@
         <AssociationConnector Association="LitigiosoModel.FK_TTerrenosxExpediente_TExpediente" ManuallyRouted="false" />
         <AssociationConnector Association="LitigiosoModel.FK_Votos_x_Expediente_Expediente" ManuallyRouted="false" />
         <AssociationConnector Association="LitigiosoModel.FK_TNotificacionesxExpediente_TMediosNotificacion" ManuallyRouted="false" />
-        <AssociationConnector Association="LitigiosoModel.FK_Med_Alternas_x_Expediente_Tipos_Negociacion" ManuallyRouted="false" />
         <AssociationConnector Association="LitigiosoModel.FK_TNotificacioneSinExpediente_TParticipacionEstado" ManuallyRouted="false" />
         <AssociationConnector Association="LitigiosoModel.FK_TNotificacioneSinExpediente_TTipoExpediente" ManuallyRouted="false" />
-        <AssociationConnector Association="LitigiosoModel.FK_TTerrenosxExpediente_TTerrenosAfectados" ManuallyRouted="false" />
         <EntityTypeShape EntityType="LitigiosoModel.TTipo" Width="1.5" PointX="15" PointY="14.5" />
         <AssociationConnector Association="LitigiosoModel.FK_TTipo_TMateria" />
+        <EntityTypeShape EntityType="LitigiosoModel.TAnomalias" Width="1.5" PointX="7.5" PointY="6.125" />
+        <AssociationConnector Association="LitigiosoModel.FK_TNotificacioneSinExpediente_TAnomalias" />
+        <AssociationConnector Association="LitigiosoModel.FK_TNotificacionesxExpediente_TAnomalias" />
+        <EntityTypeShape EntityType="LitigiosoModel.TTiposNegociacion" Width="1.5" PointX="3.375" PointY="7.875" />
+        <AssociationConnector Association="LitigiosoModel.FK_Med_Alternas_x_Expediente_Tipos_Negociacion" />
+        <EntityTypeShape EntityType="LitigiosoModel.TTerrenosAfectados" Width="1.5" PointX="7.375" PointY="8.875" />
+        <AssociationConnector Association="LitigiosoModel.FK_TTerrenosxExpediente_TTerrenosAfectados" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

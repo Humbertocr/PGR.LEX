@@ -9,15 +9,44 @@
       
       <mvcSiteMapNode title="Moneda" controller="Moneda" action="Index">
         <mvcSiteMapNode title="Agregar" action="Create"  controller="Moneda" />
-        <mvcSiteMapNode title="Editar"   action="Edit" controller="Moneda" />
+        <mvcSiteMapNode title="Modificar"   action="Edit" controller="Moneda"  preservedRouteParameters="id" />
+        <mvcSiteMapNode title="Detalles"   action="Details" controller="Moneda"  preservedRouteParameters="id" />
+        <mvcSiteMapNode title="Eliminar"   action="Delete" controller="Moneda"  preservedRouteParameters="id" />
         
       </mvcSiteMapNode>
       <mvcSiteMapNode title="Tipo" action="Index"  controller="Tipo">
         <mvcSiteMapNode title="Agregar" action="Create"  controller="Tipo" />
+        <mvcSiteMapNode title="Modificar"   action="Edit" controller="Tipo"  preservedRouteParameters="id" />
+        <mvcSiteMapNode title="Detalles"   action="Details" controller="Tipo"  preservedRouteParameters="id" />
+        <mvcSiteMapNode title="Eliminar"   action="Delete" controller="Tipo"  preservedRouteParameters="id" />
     </mvcSiteMapNode>
 
       <mvcSiteMapNode title="Tipo de audiencia" action="Index"  controller="TipoAudiencia">
         <mvcSiteMapNode title="Agregar" action="Create"  controller="TipoAudiencia" />
+        <mvcSiteMapNode title="Modificar"   action="Edit" controller="TipoAudiencia"  preservedRouteParameters="id" />
+        <mvcSiteMapNode title="Detalles"   action="Details" controller="TipoAudiencia"  preservedRouteParameters="id" />
+        <mvcSiteMapNode title="Eliminar"   action="Delete" controller="TipoAudiencia"  preservedRouteParameters="id" />
+      </mvcSiteMapNode>
+      
+      <mvcSiteMapNode title="Anomalías" action="Index"  controller="Anomalias">
+        <mvcSiteMapNode title="Agregar" action="Create"  controller="Anomalias" />
+        <mvcSiteMapNode title="Modificar"   action="Edit" controller="Anomalias"  preservedRouteParameters="id" />
+        <mvcSiteMapNode title="Detalles"   action="Details" controller="Anomalias"  preservedRouteParameters="id" />
+        <mvcSiteMapNode title="Eliminar"   action="Delete" controller="Anomalias"  preservedRouteParameters="id" />
+      </mvcSiteMapNode>
+      
+       <mvcSiteMapNode title="Tipo de negociación" action="Index"  controller="TiposNegociacion">
+         <mvcSiteMapNode title="Agregar" action="Create"  controller="TiposNegociacion" />
+         <mvcSiteMapNode title="Modificar"   action="Edit" controller="TiposNegociacion"  preservedRouteParameters="id" />
+         <mvcSiteMapNode title="Detalles"   action="Details" controller="TiposNegociacion"  preservedRouteParameters="id" />
+         <mvcSiteMapNode title="Eliminar"   action="Delete" controller="TiposNegociacion"  preservedRouteParameters="id" />
+       </mvcSiteMapNode>
+
+      <mvcSiteMapNode title="Terrenos afectados" action="Index"  controller="TerrenosAfectados">
+        <mvcSiteMapNode title="Agregar" action="Create"  controller="TerrenosAfectados" />
+        <mvcSiteMapNode title="Modificar"   action="Edit" controller="TerrenosAfectados"  preservedRouteParameters="id" />
+        <mvcSiteMapNode title="Detalles"   action="Details" controller="TerrenosAfectados"  preservedRouteParameters="id" />
+        <mvcSiteMapNode title="Eliminar"   action="Delete" controller="TerrenosAfectados"  preservedRouteParameters="id" />
       </mvcSiteMapNode>
     </mvcSiteMapNode>
   

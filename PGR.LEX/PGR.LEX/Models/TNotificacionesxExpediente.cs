@@ -28,8 +28,8 @@ namespace PGR.LEX.Models
         public string NumCarpeta { get; set; }
         public Nullable<byte> AvisadoChk { get; set; }
     
-        public virtual TAnomalias TAnomalias { get; set; }
         public virtual TExpediente TExpediente { get; set; }
         public virtual TMediosNotificacion TMediosNotificacion { get; set; }
+        public virtual TAnomalias TAnomalias { get; set; }
     }
 }

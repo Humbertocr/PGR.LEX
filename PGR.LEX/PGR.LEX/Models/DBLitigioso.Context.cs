@@ -25,7 +25,6 @@ namespace PGR.LEX.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<TAnomalias> TAnomalias { get; set; }
         public virtual DbSet<TAsunto> TAsunto { get; set; }
         public virtual DbSet<TAudiencias> TAudiencias { get; set; }
         public virtual DbSet<TAudienciasDetalleExpediente> TAudienciasDetalleExpediente { get; set; }
@@ -49,16 +48,17 @@ namespace PGR.LEX.Models
         public virtual DbSet<TParticipacionEstado> TParticipacionEstado { get; set; }
         public virtual DbSet<TPlanosxExpediente> TPlanosxExpediente { get; set; }
         public virtual DbSet<TProcedenciaExpediente> TProcedenciaExpediente { get; set; }
-        public virtual DbSet<TTerrenosAfectados> TTerrenosAfectados { get; set; }
         public virtual DbSet<TTerrenosxExpediente> TTerrenosxExpediente { get; set; }
         public virtual DbSet<TTipoAudiencia> TTipoAudiencia { get; set; }
         public virtual DbSet<TTipoExpediente> TTipoExpediente { get; set; }
         public virtual DbSet<TTipoGeneral> TTipoGeneral { get; set; }
-        public virtual DbSet<TTiposNegociacion> TTiposNegociacion { get; set; }
         public virtual DbSet<TVotosxExpediente> TVotosxExpediente { get; set; }
         public virtual DbSet<TBitacoraMovimientos> TBitacoraMovimientos { get; set; }
         public virtual DbSet<TNatutalizaciones> TNatutalizaciones { get; set; }
         public virtual DbSet<TParametros> TParametros { get; set; }
         public virtual DbSet<TTipo> TTipo { get; set; }
+        public virtual DbSet<TAnomalias> TAnomalias { get; set; }
+        public virtual DbSet<TTiposNegociacion> TTiposNegociacion { get; set; }
+        public virtual DbSet<TTerrenosAfectados> TTerrenosAfectados { get; set; }
     }
 }

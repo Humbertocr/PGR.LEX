@@ -1,0 +1,41 @@
+﻿@model IEnumerable<PGR.LEX.Models.TAnomalias>
+
+@{
+    ViewBag.Title = "Anomalías";
+}
+
+<h2>Anomal&iacute;as</h2>
+
+<br />
+<table class="table table-striped table-hover">
+    <thead class="encabezadoTabla">
+        <tr>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+          
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.ActionLink("Modificar", "Edit", new { id = item.idAnomalia }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.idAnomalia }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.idAnomalia })
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<p>
+
+    @Html.ActionLink(" AGREGAR", "Create", "Anomalias", new object { }, new { @class = "btn boton fa fa-plus", title = "Agregar una nueva anomalía" })
+</p>

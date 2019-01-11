@@ -3,6 +3,35 @@
     ViewBag.Title = "Catálogos";
 }
 
+
+<div class="container">
+    <h2>Cat&aacute;logos</h2>
+    <br />
+    <div class="row">
+        <div class="col-lg-3 col-md-2 col-sm-1">
+            <div class="panel">
+                <div class="headerItem">
+                    <a></a>
+                    <i class="fa fa-money fa-3x" aria-hidden="true"></i>
+
+                </div>
+                <div class="cuerpoItem">
+                    @Html.ActionLink("Ir a", "Index", "Moneda", new object { }, new { @class = "IrA", title = "Agregar un nuevo tipo de moneda" })
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-2 col-sm-1">
+           2
+        </div>
+        <div class="col-lg-4 col-md-2 col-sm-1">
+           
+        </div>
+    </div>
+</div>
+
+
+
 <div class="card">
     <div class="card-body">
         <h4 class="card-title">Catalogos</h4>
@@ -11,6 +40,8 @@
             <li class="list-group-item">@Html.ActionLink("Moneda", "Index", "Moneda")</li>
             <li class="list-group-item">@Html.ActionLink("Tipo", "Index", "Tipo")</li>
             <li class="list-group-item">@Html.ActionLink("Tipos de Audiencia", "Index", "TipoAudiencia")</li>
+            <li class="list-group-item">@Html.ActionLink("Anomalías", "Index", "Anomalias")</li>
+            <li class="list-group-item">@Html.ActionLink("Tipo de negociación", "Index", "TiposNegociacion")</li>
         </ul>
 
     </div>

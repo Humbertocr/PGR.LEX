@@ -6,7 +6,7 @@
 
 <h2>Eliminar tipo de audiencia</h2>
 <br />
-<div class="alert alert-info" role="alert">
+<div class="alert alert-warning" role="alert">
     <i class="fa fa-exclamation-circle fa-lg" aria-hidden="true"></i>
     &iquest;Est&aacute; seguro que desea eliminar el registro?
 </div>
@@ -14,10 +14,12 @@
 
     <hr />
     <div class="form-group">
-        @Html.DisplayNameFor(model => model.Descripcion)
+        @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
 
-      
-        @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control", disabled = "true" } })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control", disabled = "true" } })
+        </div>
+
     </div>
 
         @using (Html.BeginForm())
@@ -26,7 +28,7 @@
 
             <div class="form-actions no-color">
 
-                @Html.ActionLink(" REGRESAR", "Index", "Tipo", new object { }, new { @class = "btn boton fa fa-arrow-left" })
+                @Html.ActionLink(" REGRESAR", "Index", "TipoAudiencia", new object { }, new { @class = "btn boton fa fa-arrow-left" })
                 <input type="submit" value="ELIMINAR" class="btn boton fa" />
             </div>
         }

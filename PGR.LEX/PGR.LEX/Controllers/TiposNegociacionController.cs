@@ -8,109 +8,109 @@ using System.Web;
 using System.Web.Mvc;
 using PGR.LEX.Models;
 
-namespace PGR.LEX.Content
+namespace PGR.LEX.Controllers
 {
-    public class TerrenosAfectadosController : Controller
+    public class TiposNegociacionController : Controller
     {
         private LitigiosoEntities db = new LitigiosoEntities();
 
-        // GET: TerrenosAfectados
+        // GET: TiposNegociacion
         public ActionResult Index()
         {
-            return View(db.TTerrenosAfectados.ToList());
+            return View(db.TTiposNegociacion.ToList());
         }
 
-        // GET: TerrenosAfectados/Details/5
-        public ActionResult Details(short? id)
+        // GET: TiposNegociacion/Details/5
+        public ActionResult Details(byte? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TTerrenosAfectados tTerrenosAfectados = db.TTerrenosAfectados.Find(id);
-            if (tTerrenosAfectados == null)
+            TTiposNegociacion tTiposNegociacion = db.TTiposNegociacion.Find(id);
+            if (tTiposNegociacion == null)
             {
                 return HttpNotFound();
             }
-            return View(tTerrenosAfectados);
+            return View(tTiposNegociacion);
         }
 
-        // GET: TerrenosAfectados/Create
+        // GET: TiposNegociacion/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: TerrenosAfectados/Create
+        // POST: TiposNegociacion/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Terreno_Afectado,Nombre")] TTerrenosAfectados tTerrenosAfectados)
+        public ActionResult Create([Bind(Include = "Tipo_Negociacion,Nombre")] TTiposNegociacion tTiposNegociacion)
         {
             if (ModelState.IsValid)
             {
-                db.TTerrenosAfectados.Add(tTerrenosAfectados);
+                db.TTiposNegociacion.Add(tTiposNegociacion);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(tTerrenosAfectados);
+            return View(tTiposNegociacion);
         }
 
-        // GET: TerrenosAfectados/Edit/5
-        public ActionResult Edit(short? id)
+        // GET: TiposNegociacion/Edit/5
+        public ActionResult Edit(byte? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TTerrenosAfectados tTerrenosAfectados = db.TTerrenosAfectados.Find(id);
-            if (tTerrenosAfectados == null)
+            TTiposNegociacion tTiposNegociacion = db.TTiposNegociacion.Find(id);
+            if (tTiposNegociacion == null)
             {
                 return HttpNotFound();
             }
-            return View(tTerrenosAfectados);
+            return View(tTiposNegociacion);
         }
 
-        // POST: TerrenosAfectados/Edit/5
+        // POST: TiposNegociacion/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Terreno_Afectado,Nombre")] TTerrenosAfectados tTerrenosAfectados)
+        public ActionResult Edit([Bind(Include = "Tipo_Negociacion,Nombre")] TTiposNegociacion tTiposNegociacion)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tTerrenosAfectados).State = EntityState.Modified;
+                db.Entry(tTiposNegociacion).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(tTerrenosAfectados);
+            return View(tTiposNegociacion);
         }
 
-        // GET: TerrenosAfectados/Delete/5
-        public ActionResult Delete(short? id)
+        // GET: TiposNegociacion/Delete/5
+        public ActionResult Delete(byte? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TTerrenosAfectados tTerrenosAfectados = db.TTerrenosAfectados.Find(id);
-            if (tTerrenosAfectados == null)
+            TTiposNegociacion tTiposNegociacion = db.TTiposNegociacion.Find(id);
+            if (tTiposNegociacion == null)
             {
                 return HttpNotFound();
             }
-            return View(tTerrenosAfectados);
+            return View(tTiposNegociacion);
         }
 
-        // POST: TerrenosAfectados/Delete/5
+        // POST: TiposNegociacion/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(short id)
+        public ActionResult DeleteConfirmed(byte id)
         {
-            TTerrenosAfectados tTerrenosAfectados = db.TTerrenosAfectados.Find(id);
-            db.TTerrenosAfectados.Remove(tTerrenosAfectados);
+            TTiposNegociacion tTiposNegociacion = db.TTiposNegociacion.Find(id);
+            db.TTiposNegociacion.Remove(tTiposNegociacion);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

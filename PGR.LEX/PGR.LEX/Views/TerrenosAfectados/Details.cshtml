@@ -1,26 +1,24 @@
 ﻿@model PGR.LEX.Models.TTerrenosAfectados
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalle terreno afectado";
 }
 
-<h2>Details</h2>
+<h2>Detalle terreno afectado</h2>
 
 <div>
-    <h4>TTerrenosAfectados</h4>
+   
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
-
-    </dl>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-12">
+            @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control", disabled = "true" } })
+        </div>
+    </div>
 </div>
+
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Terreno_Afectado }) |
-    @Html.ActionLink("Back to List", "Index")
+
+    @Html.ActionLink(" REGRESAR", "Index", "TerrenosAfectados", new object { }, new { @class = "btn boton fa fa-arrow-left" })
+    @Html.ActionLink(" MODIFICAR", "Edit", new { id = Model.Terreno_Afectado }, new { @class = "btn boton fa fa-pencil" })
 </p>

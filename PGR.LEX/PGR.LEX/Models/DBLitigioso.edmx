@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="idAnomalia" />
           </Key>
-          <Property Name="idAnomalia" Type="int" Nullable="false" />
+          <Property Name="idAnomalia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="150" Nullable="false" />
         </EntityType>
         <EntityType Name="TAsunto">
@@ -307,7 +307,7 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
           <Key>
             <PropertyRef Name="Terreno_Afectado" />
           </Key>
-          <Property Name="Terreno_Afectado" Type="smallint" Nullable="false" />
+          <Property Name="Terreno_Afectado" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="TTerrenosxExpediente">
@@ -359,7 +359,7 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
           <Key>
             <PropertyRef Name="Tipo_Negociacion" />
           </Key>
-          <Property Name="Tipo_Negociacion" Type="tinyint" Nullable="false" />
+          <Property Name="Tipo_Negociacion" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="TVotosxExpediente">
@@ -820,15 +820,6 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LitigiosoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="TAnomalias">
-          <Key>
-            <PropertyRef Name="idAnomalia" />
-          </Key>
-          <Property Name="idAnomalia" Type="Int32" Nullable="false" />
-          <Property Name="Descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="TNotificacioneSinExpediente" Relationship="Self.FK_TNotificacioneSinExpediente_TAnomalias" FromRole="TAnomalias" ToRole="TNotificacioneSinExpediente" />
-          <NavigationProperty Name="TNotificacionesxExpediente" Relationship="Self.FK_TNotificacionesxExpediente_TAnomalias" FromRole="TAnomalias" ToRole="TNotificacionesxExpediente" />
-        </EntityType>
         <EntityType Name="TAsunto">
           <Key>
             <PropertyRef Name="idAsunto" />
@@ -1037,7 +1028,7 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
           <Property Name="Fecha_Vence" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Observaciones" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="TExpediente" Relationship="Self.FK_Med_Alternas_x_Expediente_Expediente" FromRole="TNegociacionesxExpediente" ToRole="TExpediente" />
-          <NavigationProperty Name="TTiposNegociacion" Relationship="Self.FK_Med_Alternas_x_Expediente_Tipos_Negociacion" FromRole="TNegociacionesxExpediente" ToRole="TTiposNegociacion" />
+          <NavigationProperty Name="TTiposNegociacion" Relationship="LitigiosoModel.FK_Med_Alternas_x_Expediente_Tipos_Negociacion" FromRole="TNegociacionesxExpediente" ToRole="TTiposNegociacion" />
         </EntityType>
         <EntityType Name="TNotificacioneSinExpediente">
           <Key>
@@ -1059,9 +1050,9 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
           <Property Name="idTipoExpediente" Type="Int32" Nullable="false" />
           <Property Name="idParticipacionEstado" Type="Int32" Nullable="false" />
           <Property Name="idNotificacionPK" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="TAnomalias" Relationship="Self.FK_TNotificacioneSinExpediente_TAnomalias" FromRole="TNotificacioneSinExpediente" ToRole="TAnomalias" />
           <NavigationProperty Name="TParticipacionEstado" Relationship="Self.FK_TNotificacioneSinExpediente_TParticipacionEstado" FromRole="TNotificacioneSinExpediente" ToRole="TParticipacionEstado" />
           <NavigationProperty Name="TTipoExpediente" Relationship="Self.FK_TNotificacioneSinExpediente_TTipoExpediente" FromRole="TNotificacioneSinExpediente" ToRole="TTipoExpediente" />
+          <NavigationProperty Name="TAnomalias" Relationship="LitigiosoModel.FK_TNotificacioneSinExpediente_TAnomalias" FromRole="TNotificacioneSinExpediente" ToRole="TAnomalias" />
         </EntityType>
         <EntityType Name="TNotificacionesxExpediente">
           <Key>
@@ -1081,9 +1072,9 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
           <Property Name="ExpedienteOriginal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="NumCarpeta" Type="String" MaxLength="25" FixedLength="true" Unicode="true" />
           <Property Name="AvisadoChk" Type="Byte" />
-          <NavigationProperty Name="TAnomalias" Relationship="Self.FK_TNotificacionesxExpediente_TAnomalias" FromRole="TNotificacionesxExpediente" ToRole="TAnomalias" />
           <NavigationProperty Name="TExpediente" Relationship="Self.FK_TNotificacionesxExpediente_TExpediente" FromRole="TNotificacionesxExpediente" ToRole="TExpediente" />
           <NavigationProperty Name="TMediosNotificacion" Relationship="Self.FK_TNotificacionesxExpediente_TMediosNotificacion" FromRole="TNotificacionesxExpediente" ToRole="TMediosNotificacion" />
+          <NavigationProperty Name="TAnomalias" Relationship="LitigiosoModel.FK_TNotificacionesxExpediente_TAnomalias" FromRole="TNotificacionesxExpediente" ToRole="TAnomalias" />
         </EntityType>
         <EntityType Name="TParticipacionEstado">
           <Key>
@@ -1116,14 +1107,6 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
           <Property Name="idProcedenciaExpediente" Type="Int32" Nullable="false" />
           <Property Name="idInstitucion" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityType Name="TTerrenosAfectados">
-          <Key>
-            <PropertyRef Name="Terreno_Afectado" />
-          </Key>
-          <Property Name="Terreno_Afectado" Type="Int16" Nullable="false" />
-          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="TTerrenosxExpediente" Relationship="Self.FK_TTerrenosxExpediente_TTerrenosAfectados" FromRole="TTerrenosAfectados" ToRole="TTerrenosxExpediente" />
-        </EntityType>
         <EntityType Name="TTerrenosxExpediente">
           <Key>
             <PropertyRef Name="NumExpediente" />
@@ -1133,7 +1116,7 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
           <Property Name="Terreno_Afectado" Type="Int16" Nullable="false" />
           <Property Name="Observaciones" Type="String" MaxLength="125" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="TExpediente" Relationship="Self.FK_TTerrenosxExpediente_TExpediente" FromRole="TTerrenosxExpediente" ToRole="TExpediente" />
-          <NavigationProperty Name="TTerrenosAfectados" Relationship="Self.FK_TTerrenosxExpediente_TTerrenosAfectados" FromRole="TTerrenosxExpediente" ToRole="TTerrenosAfectados" />
+          <NavigationProperty Name="TTerrenosAfectados" Relationship="LitigiosoModel.FK_TTerrenosxExpediente_TTerrenosAfectados" FromRole="TTerrenosxExpediente" ToRole="TTerrenosAfectados" />
         </EntityType>
         <EntityType Name="TTipoAudiencia">
           <Key>
@@ -1164,14 +1147,6 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
           <Property Name="TipIdTipo" Type="Int32" Nullable="false" />
           <Property Name="AsuIdAsunto" Type="Int32" Nullable="false" />
           <Property Name="Descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="TTiposNegociacion">
-          <Key>
-            <PropertyRef Name="Tipo_Negociacion" />
-          </Key>
-          <Property Name="Tipo_Negociacion" Type="Byte" Nullable="false" />
-          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="TNegociacionesxExpediente" Relationship="Self.FK_Med_Alternas_x_Expediente_Tipos_Negociacion" FromRole="TTiposNegociacion" ToRole="TNegociacionesxExpediente" />
         </EntityType>
         <EntityType Name="TVotosxExpediente">
           <Key>
@@ -1222,30 +1197,6 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
           <Property Name="ProcuradorInfPosesorias" Type="Byte" Nullable="false" />
           <Property Name="ExpedientesEntregaInmediata" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
-        <Association Name="FK_TNotificacioneSinExpediente_TAnomalias">
-          <End Role="TAnomalias" Type="Self.TAnomalias" Multiplicity="1" />
-          <End Role="TNotificacioneSinExpediente" Type="Self.TNotificacioneSinExpediente" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TAnomalias">
-              <PropertyRef Name="idAnomalia" />
-            </Principal>
-            <Dependent Role="TNotificacioneSinExpediente">
-              <PropertyRef Name="idAnomalia" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TNotificacionesxExpediente_TAnomalias">
-          <End Role="TAnomalias" Type="Self.TAnomalias" Multiplicity="0..1" />
-          <End Role="TNotificacionesxExpediente" Type="Self.TNotificacionesxExpediente" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TAnomalias">
-              <PropertyRef Name="idAnomalia" />
-            </Principal>
-            <Dependent Role="TNotificacionesxExpediente">
-              <PropertyRef Name="idAnomalia" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_TAsunto_TMateria">
           <End Role="TMateria" Type="Self.TMateria" Multiplicity="1" />
           <End Role="TAsunto" Type="Self.TAsunto" Multiplicity="*" />
@@ -1450,18 +1401,6 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Med_Alternas_x_Expediente_Tipos_Negociacion">
-          <End Role="TTiposNegociacion" Type="Self.TTiposNegociacion" Multiplicity="1" />
-          <End Role="TNegociacionesxExpediente" Type="Self.TNegociacionesxExpediente" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TTiposNegociacion">
-              <PropertyRef Name="Tipo_Negociacion" />
-            </Principal>
-            <Dependent Role="TNegociacionesxExpediente">
-              <PropertyRef Name="Tipo_Negociacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_TNotificacioneSinExpediente_TParticipacionEstado">
           <End Role="TParticipacionEstado" Type="Self.TParticipacionEstado" Multiplicity="1" />
           <End Role="TNotificacioneSinExpediente" Type="Self.TNotificacioneSinExpediente" Multiplicity="*" />
@@ -1486,20 +1425,7 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TTerrenosxExpediente_TTerrenosAfectados">
-          <End Role="TTerrenosAfectados" Type="Self.TTerrenosAfectados" Multiplicity="1" />
-          <End Role="TTerrenosxExpediente" Type="Self.TTerrenosxExpediente" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TTerrenosAfectados">
-              <PropertyRef Name="Terreno_Afectado" />
-            </Principal>
-            <Dependent Role="TTerrenosxExpediente">
-              <PropertyRef Name="Terreno_Afectado" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="LitigiosoEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="TAnomalias" EntityType="Self.TAnomalias" />
           <EntitySet Name="TAsunto" EntityType="Self.TAsunto" />
           <EntitySet Name="TAudiencias" EntityType="Self.TAudiencias" />
           <EntitySet Name="TAudienciasDetalleExpediente" EntityType="Self.TAudienciasDetalleExpediente" />
@@ -1523,24 +1449,14 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
           <EntitySet Name="TParticipacionEstado" EntityType="Self.TParticipacionEstado" />
           <EntitySet Name="TPlanosxExpediente" EntityType="Self.TPlanosxExpediente" />
           <EntitySet Name="TProcedenciaExpediente" EntityType="Self.TProcedenciaExpediente" />
-          <EntitySet Name="TTerrenosAfectados" EntityType="Self.TTerrenosAfectados" />
           <EntitySet Name="TTerrenosxExpediente" EntityType="Self.TTerrenosxExpediente" />
           <EntitySet Name="TTipoAudiencia" EntityType="Self.TTipoAudiencia" />
           <EntitySet Name="TTipoExpediente" EntityType="Self.TTipoExpediente" />
           <EntitySet Name="TTipoGeneral" EntityType="Self.TTipoGeneral" />
-          <EntitySet Name="TTiposNegociacion" EntityType="Self.TTiposNegociacion" />
           <EntitySet Name="TVotosxExpediente" EntityType="Self.TVotosxExpediente" />
           <EntitySet Name="TBitacoraMovimientos" EntityType="Self.TBitacoraMovimientos" />
           <EntitySet Name="TNatutalizaciones" EntityType="Self.TNatutalizaciones" />
           <EntitySet Name="TParametros" EntityType="Self.TParametros" />
-          <AssociationSet Name="FK_TNotificacioneSinExpediente_TAnomalias" Association="Self.FK_TNotificacioneSinExpediente_TAnomalias">
-            <End Role="TAnomalias" EntitySet="TAnomalias" />
-            <End Role="TNotificacioneSinExpediente" EntitySet="TNotificacioneSinExpediente" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TNotificacionesxExpediente_TAnomalias" Association="Self.FK_TNotificacionesxExpediente_TAnomalias">
-            <End Role="TAnomalias" EntitySet="TAnomalias" />
-            <End Role="TNotificacionesxExpediente" EntitySet="TNotificacionesxExpediente" />
-          </AssociationSet>
           <AssociationSet Name="FK_TAsunto_TMateria" Association="Self.FK_TAsunto_TMateria">
             <End Role="TMateria" EntitySet="TMateria" />
             <End Role="TAsunto" EntitySet="TAsunto" />
@@ -1609,10 +1525,6 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
             <End Role="TMediosNotificacion" EntitySet="TMediosNotificacion" />
             <End Role="TNotificacionesxExpediente" EntitySet="TNotificacionesxExpediente" />
           </AssociationSet>
-          <AssociationSet Name="FK_Med_Alternas_x_Expediente_Tipos_Negociacion" Association="Self.FK_Med_Alternas_x_Expediente_Tipos_Negociacion">
-            <End Role="TTiposNegociacion" EntitySet="TTiposNegociacion" />
-            <End Role="TNegociacionesxExpediente" EntitySet="TNegociacionesxExpediente" />
-          </AssociationSet>
           <AssociationSet Name="FK_TNotificacioneSinExpediente_TParticipacionEstado" Association="Self.FK_TNotificacioneSinExpediente_TParticipacionEstado">
             <End Role="TParticipacionEstado" EntitySet="TParticipacionEstado" />
             <End Role="TNotificacioneSinExpediente" EntitySet="TNotificacioneSinExpediente" />
@@ -1621,14 +1533,29 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
             <End Role="TTipoExpediente" EntitySet="TTipoExpediente" />
             <End Role="TNotificacioneSinExpediente" EntitySet="TNotificacioneSinExpediente" />
           </AssociationSet>
-          <AssociationSet Name="FK_TTerrenosxExpediente_TTerrenosAfectados" Association="Self.FK_TTerrenosxExpediente_TTerrenosAfectados">
-            <End Role="TTerrenosAfectados" EntitySet="TTerrenosAfectados" />
-            <End Role="TTerrenosxExpediente" EntitySet="TTerrenosxExpediente" />
-          </AssociationSet>
           <EntitySet Name="TTipo" EntityType="LitigiosoModel.TTipo" />
           <AssociationSet Name="FK_TTipo_TMateria" Association="LitigiosoModel.FK_TTipo_TMateria">
             <End Role="TMateria" EntitySet="TMateria" />
             <End Role="TTipo" EntitySet="TTipo" />
+          </AssociationSet>
+          <EntitySet Name="TAnomalias" EntityType="LitigiosoModel.TAnomalias" />
+          <AssociationSet Name="FK_TNotificacioneSinExpediente_TAnomalias" Association="LitigiosoModel.FK_TNotificacioneSinExpediente_TAnomalias">
+            <End Role="TAnomalias" EntitySet="TAnomalias" />
+            <End Role="TNotificacioneSinExpediente" EntitySet="TNotificacioneSinExpediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TNotificacionesxExpediente_TAnomalias" Association="LitigiosoModel.FK_TNotificacionesxExpediente_TAnomalias">
+            <End Role="TAnomalias" EntitySet="TAnomalias" />
+            <End Role="TNotificacionesxExpediente" EntitySet="TNotificacionesxExpediente" />
+          </AssociationSet>
+          <EntitySet Name="TTiposNegociacion" EntityType="LitigiosoModel.TTiposNegociacion" />
+          <AssociationSet Name="FK_Med_Alternas_x_Expediente_Tipos_Negociacion" Association="LitigiosoModel.FK_Med_Alternas_x_Expediente_Tipos_Negociacion">
+            <End Role="TTiposNegociacion" EntitySet="TTiposNegociacion" />
+            <End Role="TNegociacionesxExpediente" EntitySet="TNegociacionesxExpediente" />
+          </AssociationSet>
+          <EntitySet Name="TTerrenosAfectados" EntityType="LitigiosoModel.TTerrenosAfectados" />
+          <AssociationSet Name="FK_TTerrenosxExpediente_TTerrenosAfectados" Association="LitigiosoModel.FK_TTerrenosxExpediente_TTerrenosAfectados">
+            <End Role="TTerrenosAfectados" EntitySet="TTerrenosAfectados" />
+            <End Role="TTerrenosxExpediente" EntitySet="TTerrenosxExpediente" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="TTipo">
@@ -1652,20 +1579,85 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="TAnomalias">
+          <Key>
+            <PropertyRef Name="idAnomalia" />
+          </Key>
+          <Property Name="idAnomalia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TNotificacioneSinExpediente" Relationship="LitigiosoModel.FK_TNotificacioneSinExpediente_TAnomalias" FromRole="TAnomalias" ToRole="TNotificacioneSinExpediente" />
+          <NavigationProperty Name="TNotificacionesxExpediente" Relationship="LitigiosoModel.FK_TNotificacionesxExpediente_TAnomalias" FromRole="TAnomalias" ToRole="TNotificacionesxExpediente" />
+        </EntityType>
+        <Association Name="FK_TNotificacioneSinExpediente_TAnomalias">
+          <End Type="LitigiosoModel.TAnomalias" Role="TAnomalias" Multiplicity="1" />
+          <End Type="LitigiosoModel.TNotificacioneSinExpediente" Role="TNotificacioneSinExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TAnomalias">
+              <PropertyRef Name="idAnomalia" />
+            </Principal>
+            <Dependent Role="TNotificacioneSinExpediente">
+              <PropertyRef Name="idAnomalia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TNotificacionesxExpediente_TAnomalias">
+          <End Type="LitigiosoModel.TAnomalias" Role="TAnomalias" Multiplicity="0..1" />
+          <End Type="LitigiosoModel.TNotificacionesxExpediente" Role="TNotificacionesxExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TAnomalias">
+              <PropertyRef Name="idAnomalia" />
+            </Principal>
+            <Dependent Role="TNotificacionesxExpediente">
+              <PropertyRef Name="idAnomalia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TTiposNegociacion">
+          <Key>
+            <PropertyRef Name="Tipo_Negociacion" />
+          </Key>
+          <Property Name="Tipo_Negociacion" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TNegociacionesxExpediente" Relationship="LitigiosoModel.FK_Med_Alternas_x_Expediente_Tipos_Negociacion" FromRole="TTiposNegociacion" ToRole="TNegociacionesxExpediente" />
+        </EntityType>
+        <Association Name="FK_Med_Alternas_x_Expediente_Tipos_Negociacion">
+          <End Type="LitigiosoModel.TTiposNegociacion" Role="TTiposNegociacion" Multiplicity="1" />
+          <End Type="LitigiosoModel.TNegociacionesxExpediente" Role="TNegociacionesxExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TTiposNegociacion">
+              <PropertyRef Name="Tipo_Negociacion" />
+            </Principal>
+            <Dependent Role="TNegociacionesxExpediente">
+              <PropertyRef Name="Tipo_Negociacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TTerrenosAfectados">
+          <Key>
+            <PropertyRef Name="Terreno_Afectado" />
+          </Key>
+          <Property Name="Terreno_Afectado" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TTerrenosxExpediente" Relationship="LitigiosoModel.FK_TTerrenosxExpediente_TTerrenosAfectados" FromRole="TTerrenosAfectados" ToRole="TTerrenosxExpediente" />
+        </EntityType>
+        <Association Name="FK_TTerrenosxExpediente_TTerrenosAfectados">
+          <End Type="LitigiosoModel.TTerrenosAfectados" Role="TTerrenosAfectados" Multiplicity="1" />
+          <End Type="LitigiosoModel.TTerrenosxExpediente" Role="TTerrenosxExpediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TTerrenosAfectados">
+              <PropertyRef Name="Terreno_Afectado" />
+            </Principal>
+            <Dependent Role="TTerrenosxExpediente">
+              <PropertyRef Name="Terreno_Afectado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="LitigiosoModelStoreContainer" CdmEntityContainer="LitigiosoEntities">
-          <EntitySetMapping Name="TAnomalias">
-            <EntityTypeMapping TypeName="LitigiosoModel.TAnomalias">
-              <MappingFragment StoreEntitySet="TAnomalias">
-                <ScalarProperty Name="idAnomalia" ColumnName="idAnomalia" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TAsunto">
             <EntityTypeMapping TypeName="LitigiosoModel.TAsunto">
               <MappingFragment StoreEntitySet="TAsunto">
@@ -1930,14 +1922,6 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TTerrenosAfectados">
-            <EntityTypeMapping TypeName="LitigiosoModel.TTerrenosAfectados">
-              <MappingFragment StoreEntitySet="TTerrenosAfectados">
-                <ScalarProperty Name="Terreno_Afectado" ColumnName="Terreno_Afectado" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TTerrenosxExpediente">
             <EntityTypeMapping TypeName="LitigiosoModel.TTerrenosxExpediente">
               <MappingFragment StoreEntitySet="TTerrenosxExpediente">
@@ -1972,14 +1956,6 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
                 <ScalarProperty Name="TipIdTipo" ColumnName="TipIdTipo" />
                 <ScalarProperty Name="AsuIdAsunto" ColumnName="AsuIdAsunto" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TTiposNegociacion">
-            <EntityTypeMapping TypeName="LitigiosoModel.TTiposNegociacion">
-              <MappingFragment StoreEntitySet="TTiposNegociacion">
-                <ScalarProperty Name="Tipo_Negociacion" ColumnName="Tipo_Negociacion" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2029,6 +2005,30 @@ advertencia 6002: La tabla o vista 'Litigioso.dbo.TParametros' no tiene definida
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="MatIdMateria" ColumnName="MatIdMateria" />
                 <ScalarProperty Name="idTipo" ColumnName="idTipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TAnomalias">
+            <EntityTypeMapping TypeName="LitigiosoModel.TAnomalias">
+              <MappingFragment StoreEntitySet="TAnomalias">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="idAnomalia" ColumnName="idAnomalia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TTiposNegociacion">
+            <EntityTypeMapping TypeName="LitigiosoModel.TTiposNegociacion">
+              <MappingFragment StoreEntitySet="TTiposNegociacion">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Tipo_Negociacion" ColumnName="Tipo_Negociacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TTerrenosAfectados">
+            <EntityTypeMapping TypeName="LitigiosoModel.TTerrenosAfectados">
+              <MappingFragment StoreEntitySet="TTerrenosAfectados">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Terreno_Afectado" ColumnName="Terreno_Afectado" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

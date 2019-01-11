@@ -49,14 +49,26 @@ textarea {
 }
 
 
+.headerItem {
+    background: #4e5a68;
+    color: #ffffff;
+}
+
+.IrA {
+    background: #68a5e8;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 20px;
+}
+
+
 h2 {
     color: #337ab7;
-  
 }
 
 footer {
     background: #23374F;
-    position: absolute;
+    /*position: absolute;*/
     bottom: 0;
     width: 100%;
     /*min-height:11%;*/

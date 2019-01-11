@@ -31,8 +31,8 @@ namespace PGR.LEX.Models
         public int idParticipacionEstado { get; set; }
         public int idNotificacionPK { get; set; }
     
-        public virtual TAnomalias TAnomalias { get; set; }
         public virtual TParticipacionEstado TParticipacionEstado { get; set; }
         public virtual TTipoExpediente TTipoExpediente { get; set; }
+        public virtual TAnomalias TAnomalias { get; set; }
     }
 }

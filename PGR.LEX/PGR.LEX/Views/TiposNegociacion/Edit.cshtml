@@ -1,0 +1,41 @@
+﻿@model PGR.LEX.Models.TTiposNegociacion
+
+@{
+    ViewBag.Title = "Modificar el tipo de negociación";
+}
+
+<h2>Modificar el tipo de negociaci&oacute;n</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+   
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Tipo_Negociacion)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                @Html.ActionLink(" REGRESAR", "Index", "TiposNegociacion", new object { }, new { @class = "btn boton fa fa-arrow-left" })
+                <input type="submit" value="GUARDAR" class="btn boton fa" />
+            </div>
+        </div>
+    </div>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

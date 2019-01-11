@@ -1,23 +1,28 @@
 ﻿@model PGR.LEX.Models.TMoneda
 
 @{
-    ViewBag.Title = "Detalle Moneda";
+    ViewBag.Title = "Detalle moneda";
 }
 
-<h2>Detalle Moneda</h2>
+<h2>Detalle moneda</h2>
 
 <div>
 
     <hr />
     <div class="form-group">
 
-        @Html.DisplayNameFor(model => model.Descripcion)
+        @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
 
-       
-        @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control", disabled = "true" } })
+            @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control", disabled = "true" } })
+
+        </div>
+
+
+   
 
     </div>
-       
+
 
     </div>
     <p>

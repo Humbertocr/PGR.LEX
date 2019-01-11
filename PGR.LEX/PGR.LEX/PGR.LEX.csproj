@@ -137,12 +137,14 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Content\TerrenosAfectadosController.cs" />
+    <Compile Include="Controllers\AnomaliasController.cs" />
     <Compile Include="Controllers\CatalogosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MonedaController.cs" />
+    <Compile Include="Controllers\TerrenosAfectadosController.cs" />
     <Compile Include="Controllers\TipoAudienciaController.cs" />
     <Compile Include="Controllers\TipoController.cs" />
+    <Compile Include="Controllers\TiposNegociacionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -161,6 +163,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DBLitigioso.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Metadata\MetaAnomalias.cs" />
+    <Compile Include="Models\Metadata\MetaMoneda.cs" />
+    <Compile Include="Models\Metadata\MetaTipo.cs" />
+    <Compile Include="Models\Metadata\MetaTipoAudiencia.cs" />
+    <Compile Include="Models\Metadata\MetaTiposNegociacion.cs" />
     <Compile Include="Models\TAnomalias.cs">
       <DependentUpon>DBLitigioso.tt</DependentUpon>
     </Compile>
@@ -388,11 +395,6 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\TerrenosAfectados\Create.cshtml" />
-    <Content Include="Views\TerrenosAfectados\Delete.cshtml" />
-    <Content Include="Views\TerrenosAfectados\Details.cshtml" />
-    <Content Include="Views\TerrenosAfectados\Edit.cshtml" />
-    <Content Include="Views\TerrenosAfectados\Index.cshtml" />
     <Content Include="Views\Home\Catalogo.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\SiteMapTitleHelperModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\SiteMapPathHelperModel.cshtml" />
@@ -403,6 +405,21 @@
     <Content Include="Views\Shared\DisplayTemplates\MenuHelperModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\CanonicalHelperModel.cshtml" />
     <Content Include="Views\Catalogos\Index.cshtml" />
+    <Content Include="Views\Anomalias\Create.cshtml" />
+    <Content Include="Views\Anomalias\Delete.cshtml" />
+    <Content Include="Views\Anomalias\Details.cshtml" />
+    <Content Include="Views\Anomalias\Edit.cshtml" />
+    <Content Include="Views\Anomalias\Index.cshtml" />
+    <Content Include="Views\TiposNegociacion\Create.cshtml" />
+    <Content Include="Views\TiposNegociacion\Delete.cshtml" />
+    <Content Include="Views\TiposNegociacion\Details.cshtml" />
+    <Content Include="Views\TiposNegociacion\Edit.cshtml" />
+    <Content Include="Views\TiposNegociacion\Index.cshtml" />
+    <Content Include="Views\TerrenosAfectados\Create.cshtml" />
+    <Content Include="Views\TerrenosAfectados\Delete.cshtml" />
+    <Content Include="Views\TerrenosAfectados\Details.cshtml" />
+    <Content Include="Views\TerrenosAfectados\Edit.cshtml" />
+    <Content Include="Views\TerrenosAfectados\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

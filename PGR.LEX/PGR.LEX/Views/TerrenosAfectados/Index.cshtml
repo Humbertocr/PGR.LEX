@@ -1,33 +1,40 @@
 ﻿@model IEnumerable<PGR.LEX.Models.TTerrenosAfectados>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Terrenos afectados";
 }
 
-<h2>Index</h2>
+<h2>Terrenos afectados</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Terreno_Afectado }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Terreno_Afectado }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Terreno_Afectado })
-        </td>
-    </tr>
-}
+<br />
+<table class="table table-striped table-hover">
+    <thead class="encabezadoTabla">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.ActionLink("Modificar", "Edit", new { id = item.Terreno_Afectado }) |
+                    @Html.ActionLink("Detalles", "Details", new { id = item.Terreno_Afectado }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.Terreno_Afectado })
+                </td>
+            </tr>
+        }
+    </tbody>
 
 </table>
+
+<p>
+
+    @Html.ActionLink(" AGREGAR", "Create", "TerrenosAfectados", new object { }, new { @class = "btn boton fa fa-plus", title = "Agregar un terreno afectado" })
+</p>
