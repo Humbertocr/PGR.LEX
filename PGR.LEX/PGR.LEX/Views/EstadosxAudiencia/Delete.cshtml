@@ -1,21 +1,19 @@
-﻿@model PGR.LEX.Models.TMoneda
+﻿@model PGR.LEX.Models.TEstadosxAudiencia
 
 @{
-    ViewBag.Title = "Eliminar moneda";
+    ViewBag.Title = "Eliminar estado audiencia";
 }
 
-<h2>Eliminar moneda</h2>
+<h2>Eliminar estado audiencia</h2>
 
 <br />
 <div class="alert alert-warning" role="alert">
     <i class="fa fa-exclamation-circle fa-lg" aria-hidden="true"></i>
     &iquest;Est&aacute; seguro que desea eliminar el registro?
 </div>
-
 <div>
 
     <hr />
-
     <div class="form-group">
 
         @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -23,15 +21,15 @@
         <div class="col-md-10">
             @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control", disabled = "true" } })
         </div>
-        </div>
-
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
-
-            <div class="form-actions no-color">
-                @Html.ActionLink(" REGRESAR", "Index", "Moneda", new object { }, new { @class = "btn boton fa fa-arrow-left" })
-                <input type="submit" value="ELIMINAR" class="btn boton fa" />
-            </div>
-        }
     </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            @Html.ActionLink(" REGRESAR", "Index", "EstadosxAudiencia", new object { }, new { @class = "btn boton fa fa-arrow-left" })
+            <input type="submit" value="ELIMINAR" class="btn boton fa" />
+        </div>
+    }
+</div>

@@ -1,0 +1,24 @@
+﻿@model PGR.LEX.Models.TEstadosxAudiencia
+
+@{
+    ViewBag.Title = "Detalle estado de audiencia";
+}
+
+<h2>Detalle estado de audiencia</h2>
+<br />
+<div>  
+    <hr />
+    <div class="form-group">
+
+        @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+
+            @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control", disabled = "true" } })
+
+        </div>
+    </div>
+</div>
+<p>
+    @Html.ActionLink(" REGRESAR", "Index", "EstadosxAudiencia", new object { }, new { @class = "btn boton fa fa-arrow-left" })
+    @Html.ActionLink(" MODIFICAR", "Edit", new { id = Model.idEstado }, new { @class = "btn boton fa fa-pencil" })
+</p>

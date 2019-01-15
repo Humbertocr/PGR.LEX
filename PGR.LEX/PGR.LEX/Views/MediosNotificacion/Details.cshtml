@@ -1,0 +1,29 @@
+﻿@model PGR.LEX.Models.TMediosNotificacion
+
+@{
+    ViewBag.Title = "Detalle del medio de notificaci&oacute;n";
+}
+
+<h2>Detalle del medio de notificaci&oacute;n</h2>
+
+
+
+    <hr />
+    <div class="form-group">
+
+        @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+
+            @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control", disabled = "true" } })
+
+        </div>
+    </div>
+
+    <p>
+
+        @Html.ActionLink(" REGRESAR", "Index", "MediosNotificacion", new object { }, new { @class = "btn boton fa fa-arrow-left" })
+        @Html.ActionLink(" MODIFICAR", "Edit", new { id = Model.idMedioNotificacion }, new { @class = "btn boton fa fa-pencil" })
+    </p>
+
+
+

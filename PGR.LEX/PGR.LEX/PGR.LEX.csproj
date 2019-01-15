@@ -139,7 +139,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AnomaliasController.cs" />
     <Compile Include="Controllers\CatalogosController.cs" />
+    <Compile Include="Controllers\EstadosxAudienciaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MediosNotificacionController.cs" />
     <Compile Include="Controllers\MonedaController.cs" />
     <Compile Include="Controllers\TerrenosAfectadosController.cs" />
     <Compile Include="Controllers\TipoAudienciaController.cs" />
@@ -420,6 +422,16 @@
     <Content Include="Views\TerrenosAfectados\Details.cshtml" />
     <Content Include="Views\TerrenosAfectados\Edit.cshtml" />
     <Content Include="Views\TerrenosAfectados\Index.cshtml" />
+    <Content Include="Views\MediosNotificacion\Create.cshtml" />
+    <Content Include="Views\MediosNotificacion\Delete.cshtml" />
+    <Content Include="Views\MediosNotificacion\Details.cshtml" />
+    <Content Include="Views\MediosNotificacion\Edit.cshtml" />
+    <Content Include="Views\MediosNotificacion\Index.cshtml" />
+    <Content Include="Views\EstadosxAudiencia\Create.cshtml" />
+    <Content Include="Views\EstadosxAudiencia\Delete.cshtml" />
+    <Content Include="Views\EstadosxAudiencia\Details.cshtml" />
+    <Content Include="Views\EstadosxAudiencia\Edit.cshtml" />
+    <Content Include="Views\EstadosxAudiencia\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -48,7 +48,27 @@
         <mvcSiteMapNode title="Detalles"   action="Details" controller="TerrenosAfectados"  preservedRouteParameters="id" />
         <mvcSiteMapNode title="Eliminar"   action="Delete" controller="TerrenosAfectados"  preservedRouteParameters="id" />
       </mvcSiteMapNode>
+
+      <mvcSiteMapNode title="Medios de notificación" action="Index"  controller="MediosNotificacion">
+        <mvcSiteMapNode title="Agregar" action="Create"  controller="MediosNotificacion" />
+        <mvcSiteMapNode title="Modificar"   action="Edit" controller="MediosNotificacion"  preservedRouteParameters="id" />
+        <mvcSiteMapNode title="Detalles"   action="Details" controller="MediosNotificacion"  preservedRouteParameters="id" />
+        <mvcSiteMapNode title="Eliminar"   action="Delete" controller="MediosNotificacion"  preservedRouteParameters="id" />
+      </mvcSiteMapNode>
+
+
+
+      <mvcSiteMapNode title="Estados por audiencia" action="Index"  controller="EstadosxAudiencia">
+        <mvcSiteMapNode title="Agregar" action="Create"  controller="EstadosxAudiencia" />
+        <mvcSiteMapNode title="Modificar"   action="Edit" controller="EstadosxAudiencia"  preservedRouteParameters="id" />
+        <mvcSiteMapNode title="Detalles"   action="Details" controller="EstadosxAudiencia"  preservedRouteParameters="id" />
+        <mvcSiteMapNode title="Eliminar"   action="Delete" controller="EstadosxAudiencia"  preservedRouteParameters="id" />
+      </mvcSiteMapNode>
+      
     </mvcSiteMapNode>
+
+    
+
   
     
     <mvcSiteMapNode title="Contacto" controller="Home" action="Contact"/>
