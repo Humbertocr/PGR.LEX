@@ -19,6 +19,7 @@ namespace PGR.LEX.Models
         {
             this.TAsunto = new HashSet<TAsunto>();
             this.TTipo = new HashSet<TTipo>();
+            this.TDetalleExpediente = new HashSet<TDetalleExpediente>();
         }
     
         public int idMateria { get; set; }
@@ -29,5 +30,7 @@ namespace PGR.LEX.Models
         public virtual ICollection<TAsunto> TAsunto { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TTipo> TTipo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TDetalleExpediente> TDetalleExpediente { get; set; }
     }
 }

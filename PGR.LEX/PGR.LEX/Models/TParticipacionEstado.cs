@@ -18,6 +18,7 @@ namespace PGR.LEX.Models
         public TParticipacionEstado()
         {
             this.TNotificacioneSinExpediente = new HashSet<TNotificacioneSinExpediente>();
+            this.TDetalleExpediente = new HashSet<TDetalleExpediente>();
         }
     
         public int idParticipacion { get; set; }
@@ -25,5 +26,7 @@ namespace PGR.LEX.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TNotificacioneSinExpediente> TNotificacioneSinExpediente { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TDetalleExpediente> TDetalleExpediente { get; set; }
     }
 }

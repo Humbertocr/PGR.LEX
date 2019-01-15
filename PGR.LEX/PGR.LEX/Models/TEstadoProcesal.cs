@@ -18,6 +18,7 @@ namespace PGR.LEX.Models
         public TEstadoProcesal()
         {
             this.TEstadosxExpediente = new HashSet<TEstadosxExpediente>();
+            this.TDetalleExpediente = new HashSet<TDetalleExpediente>();
         }
     
         public int idEstadoProcesal { get; set; }
@@ -27,5 +28,7 @@ namespace PGR.LEX.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TEstadosxExpediente> TEstadosxExpediente { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TDetalleExpediente> TDetalleExpediente { get; set; }
     }
 }

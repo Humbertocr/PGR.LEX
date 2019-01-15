@@ -60,5 +60,6 @@ namespace PGR.LEX.Models
         public virtual DbSet<TAnomalias> TAnomalias { get; set; }
         public virtual DbSet<TTiposNegociacion> TTiposNegociacion { get; set; }
         public virtual DbSet<TTerrenosAfectados> TTerrenosAfectados { get; set; }
+        public virtual DbSet<TDetalleExpediente> TDetalleExpediente { get; set; }
     }
 }

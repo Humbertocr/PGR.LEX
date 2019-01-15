@@ -194,6 +194,9 @@
     <Compile Include="Models\TDespachosJudiciales.cs">
       <DependentUpon>DBLitigioso.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TDetalleExpediente.cs">
+      <DependentUpon>DBLitigioso.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TEstadoProcesal.cs">
       <DependentUpon>DBLitigioso.tt</DependentUpon>
     </Compile>
