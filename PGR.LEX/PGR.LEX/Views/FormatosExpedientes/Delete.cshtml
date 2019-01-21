@@ -1,0 +1,49 @@
+﻿@model PGR.LEX.Models.TFormatosExpedientes
+
+@{
+    ViewBag.Title = "Eliminar formato expediente";
+}
+
+<h2>Eliminar formato expediente</h2>
+
+<br />
+<div class="alert alert-warning" role="alert">
+    <i class="fa fa-exclamation-circle fa-lg" aria-hidden="true"></i>
+    &iquest;Est&aacute; seguro que desea eliminar el registro?
+</div>
+<div>
+
+    <hr />
+    <dl class="dl-horizontal form-group">
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control", disabled = "true" } })
+        </dd>
+
+        <dt>
+          
+            @Html.LabelFor(model => model.ExpresionRegular)
+        </dt>
+
+        <dd>
+           
+            @Html.EditorFor(model => model.ExpresionRegular, new { htmlAttributes = new { @class = "form-control", disabled = "true" } })
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+      
+
+        <div class="form-actions no-color">
+            @Html.ActionLink(" REGRESAR", "Index", "FormatosExpedientes", new object { }, new { @class = "btn boton fa fa-arrow-left" })
+            <input type="submit" value="ELIMINAR" class="btn boton fa" />
+        </div>
+    }
+</div>

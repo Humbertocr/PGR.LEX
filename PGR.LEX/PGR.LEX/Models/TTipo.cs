@@ -11,7 +11,10 @@ namespace PGR.LEX.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using PGR.LEX.Models.Metadata;
+
+    [MetadataType(typeof(MetaTipo))]
     public partial class TTipo
     {
         public int idTipo { get; set; }

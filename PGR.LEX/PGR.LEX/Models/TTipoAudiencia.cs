@@ -11,7 +11,10 @@ namespace PGR.LEX.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using PGR.LEX.Models.Metadata;
+
+    [MetadataType(typeof(MetaTipoAudiencia))]
     public partial class TTipoAudiencia
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]

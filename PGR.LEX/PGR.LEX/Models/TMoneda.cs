@@ -11,7 +11,11 @@ namespace PGR.LEX.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using PGR.LEX.Models.Metadata;
+
+
+    [MetadataType(typeof(MetaMoneda))]
     public partial class TMoneda
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]

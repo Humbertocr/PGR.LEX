@@ -11,7 +11,7 @@ namespace PGR.LEX.Models.Metadata
         [Display(Name = "ID")]
 
         public int idTipo { get; set; }
-
+        [Required (ErrorMessage = "Seleccione la materia")]
         [Display(Name = "Materia")]
         public int MatIdMateria { get; set; }
 

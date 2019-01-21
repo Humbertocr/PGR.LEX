@@ -1,0 +1,41 @@
+﻿@model PGR.LEX.Models.TFormatosExpedientes
+
+@{
+    ViewBag.Title = "Detalle formato expediente";
+}
+
+<h2>Detalle formato expediente</h2>
+
+<div>
+  
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+           
+            @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control", disabled = "true" } })
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExpresionRegular)
+        </dt>
+
+        <dd>
+          
+            @Html.EditorFor(model => model.ExpresionRegular, new { htmlAttributes = new { @class = "form-control", disabled = "true" } })
+        </dd>
+
+    </dl>
+</div>
+
+
+
+<p>
+
+    @Html.ActionLink(" REGRESAR", "Index", "FormatosExpedientes", new object { }, new { @class = "btn boton fa fa-arrow-left" })
+    @Html.ActionLink(" MODIFICAR", "Edit", new { id = Model.IdFormato }, new { @class = "btn boton fa fa-pencil" })
+</p>
+

@@ -64,6 +64,14 @@
         <mvcSiteMapNode title="Detalles"   action="Details" controller="EstadosxAudiencia"  preservedRouteParameters="id" />
         <mvcSiteMapNode title="Eliminar"   action="Delete" controller="EstadosxAudiencia"  preservedRouteParameters="id" />
       </mvcSiteMapNode>
+
+
+      <mvcSiteMapNode title="Formato expediente" action="Index"  controller="FormatosExpedientes">
+        <mvcSiteMapNode title="Agregar" action="Create"  controller="FormatosExpedientes" />
+        <mvcSiteMapNode title="Modificar"   action="Edit" controller="FormatosExpedientes"  preservedRouteParameters="id" />
+        <mvcSiteMapNode title="Detalles"   action="Details" controller="FormatosExpedientes"  preservedRouteParameters="id" />
+        <mvcSiteMapNode title="Eliminar"   action="Delete" controller="FormatosExpedientes"  preservedRouteParameters="id" />
+      </mvcSiteMapNode>
       
     </mvcSiteMapNode>
 

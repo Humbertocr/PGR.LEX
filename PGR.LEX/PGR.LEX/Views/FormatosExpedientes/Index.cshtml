@@ -1,0 +1,42 @@
+﻿@model IEnumerable<PGR.LEX.Models.TFormatosExpedientes>
+
+@{
+    ViewBag.Title = "Formato expediente";
+}
+
+<h2>Formato expediente</h2>
+<br />
+
+<table class="table table-striped table-hover table-sm-responsive">
+    <thead class="encabezadoTabla">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExpresionRegular)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExpresionRegular)
+                </td>
+                <td>
+                    @Html.ActionLink("Modificar", "Edit", new { id = item.IdFormato }) |
+                    @Html.ActionLink("Detalles", "Details", new { id = item.IdFormato }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.IdFormato })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@Html.ActionLink(" AGREGAR", "Create", "FormatosExpedientes", new object { }, new { @class = "btn boton fa fa-plus", title = "Agregar un formato de expediente" })

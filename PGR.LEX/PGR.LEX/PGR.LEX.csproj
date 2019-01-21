@@ -140,6 +140,7 @@
     <Compile Include="Controllers\AnomaliasController.cs" />
     <Compile Include="Controllers\CatalogosController.cs" />
     <Compile Include="Controllers\EstadosxAudienciaController.cs" />
+    <Compile Include="Controllers\FormatosExpedientesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MediosNotificacionController.cs" />
     <Compile Include="Controllers\MonedaController.cs" />
@@ -435,6 +436,11 @@
     <Content Include="Views\EstadosxAudiencia\Details.cshtml" />
     <Content Include="Views\EstadosxAudiencia\Edit.cshtml" />
     <Content Include="Views\EstadosxAudiencia\Index.cshtml" />
+    <Content Include="Views\FormatosExpedientes\Create.cshtml" />
+    <Content Include="Views\FormatosExpedientes\Delete.cshtml" />
+    <Content Include="Views\FormatosExpedientes\Details.cshtml" />
+    <Content Include="Views\FormatosExpedientes\Edit.cshtml" />
+    <Content Include="Views\FormatosExpedientes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
